@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{__('New Paciente')}}</h1>
+                    <h1>{{__('Nuevo Paciente')}}</h1>
                 </div>
                 <div class="col ">
                     <a class="btn btn-outline-info float-right"
@@ -26,27 +26,35 @@
 
             @include('layouts.partials.request_errors')
 
-            <div class="card">
-                <div class="card-body">
-                    {!! Form::open(['route' => 'pacientes.store','class' => 'wait-on-submit']) !!}
-                        <div class="form-row">
+            {!! Form::open(['route' => 'pacientes.store']) !!}
 
-                            @include('pacientes.fields')
+                <div class="col-12">
+                    <div class="card card-outline card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Datos Personales</h3>
 
-                            <!-- Submit Field -->
-                            <div class="form-group col-sm-12 text-right">
-                                <a href="{!! route('pacientes.index') !!}" class="btn btn-outline-secondary">
-                                    Cancelar
-                                </a>
-                                &nbsp;
-                                <button type="submit" class="btn btn-outline-success">
-                                    <i class="fa fa-floppy-o"></i> Guardar
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                                 </button>
                             </div>
+                            <!-- /.card-tools -->
                         </div>
-                    {!! Form::close() !!}
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="form-row">
+                                @include('pacientes.fields')
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
                 </div>
-            </div>
+
+                <!-- Submit Field -->
+                <div class="form-group col-sm-12">
+                    <button type="submit" onClick="this.form.submit(); this.disabled=true;" class="btn btn-outline-success">Guardar</button>
+                    <a href="{!! route('pacientes.index') !!}" class="btn btn-outline-secondary">Cancelar</a>
+                </div>
+            {!! Form::close() !!}
         </div>
     </div>
 
