@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Medicamento;
+use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
@@ -32,7 +33,16 @@ class MedicamentoDataTable extends DataTable
                  //return view('medicamentos.modal_detalles',compact('medicamento'))->render();
 
              })
-             ->rawColumns(['action','id']);
+           ->editColumn('categorias',function (Medicamento $medicamento){
+               return view('medicamentos.list_categorias',compact('medicamento'));
+           })
+           ->editColumn('laboratorio.nombre',function (Medicamento $medicamento){
+               return $medicamento->laboratorio->nombre ?? null;
+           })
+           ->editColumn('forma.nombre',function (Medicamento $medicamento){
+               return $medicamento->forma->nombre ?? null;
+           })
+             ->rawColumns(['categorias','action','id']);
 
     }
 
@@ -44,7 +54,7 @@ class MedicamentoDataTable extends DataTable
      */
     public function query(Medicamento $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()->with(['forma','laboratorio']);
     }
 
     /**
@@ -96,18 +106,10 @@ class MedicamentoDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'nombre',
-            'indicaciones',
-            'contraindicaciones',
-            'advertencias',
-            'dosis',
-            'via_admin',
-            'laboratorio_id',
-            'forma_id',
-            'receta',
-            'cantidad_total',
-            'cantidad_formula',
-            'generico'
+            Column::make('nombre'),
+            Column::make('laboratorio')->data('laboratorio.nombre')->name('laboratorio.nombre'),
+            Column::make('forma/presentación')->data('forma.nombre')->name('forma.nombre'),
+            Column::make('categorias')->searchable(false)->orderable(false),
         ];
     }
 

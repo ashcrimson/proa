@@ -53,7 +53,7 @@ class MedicamentosTableSeeder extends Seeder
         foreach (Medicamento::all() as $index => $medicamento) {
 
             //asociar la categoría atibiotico a todos
-            $medicamento->farmacoCategorias()->sync([1]);
+            $medicamento->categorias()->sync([1]);
         }
 
 

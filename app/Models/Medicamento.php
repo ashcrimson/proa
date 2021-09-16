@@ -122,13 +122,13 @@ class Medicamento extends Model
      **/
     public function forma()
     {
-        return $this->belongsTo(\App\Models\FormasFarmaceutica::class, 'forma_id');
+        return $this->belongsTo(\App\Models\FormaFarmaceutica::class, 'forma_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function farmacoCategorias()
+    public function categorias()
     {
         return $this->belongsToMany(\App\Models\FarmacoCategoria::class, 'medicamento_has_categoria','medicamento_id','categoria_id');
     }
@@ -136,7 +136,7 @@ class Medicamento extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function medicamentoFarmacos()
+    public function farmacos()
     {
         return $this->hasMany(\App\Models\MedicamentoFarmaco::class, 'medicamento_id');
     }
