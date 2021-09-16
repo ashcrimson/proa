@@ -16,10 +16,10 @@ class SolicitudController extends AppBaseController
 
     public function __construct()
     {
-        $this->middleware('permission:Ver Solicituds')->only(['show']);
-        $this->middleware('permission:Crear Solicituds')->only(['create','store']);
-        $this->middleware('permission:Editar Solicituds')->only(['edit','update',]);
-        $this->middleware('permission:Eliminar Solicituds')->only(['destroy']);
+        $this->middleware('permission:Ver solicitudes')->only(['show']);
+        $this->middleware('permission:Crear solicitudes')->only(['create','store']);
+        $this->middleware('permission:Editar solicitudes')->only(['edit','update',]);
+        $this->middleware('permission:Eliminar solicitudes')->only(['destroy']);
     }
 
     /**
@@ -30,7 +30,7 @@ class SolicitudController extends AppBaseController
      */
     public function index(SolicitudDataTable $solicitudDataTable)
     {
-        return $solicitudDataTable->render('solicituds.index');
+        return $solicitudDataTable->render('solicitudes.index');
     }
 
     /**
@@ -40,7 +40,7 @@ class SolicitudController extends AppBaseController
      */
     public function create()
     {
-        return view('solicituds.create');
+        return view('solicitudes.create');
     }
 
     /**
@@ -59,7 +59,7 @@ class SolicitudController extends AppBaseController
 
         Flash::success('Solicitud guardado exitosamente.');
 
-        return redirect(route('solicituds.index'));
+        return redirect(route('solicitudes.index'));
     }
 
     /**
@@ -77,10 +77,10 @@ class SolicitudController extends AppBaseController
         if (empty($solicitud)) {
             Flash::error('Solicitud no encontrado');
 
-            return redirect(route('solicituds.index'));
+            return redirect(route('solicitudes.index'));
         }
 
-        return view('solicituds.show')->with('solicitud', $solicitud);
+        return view('solicitudes.show')->with('solicitud', $solicitud);
     }
 
     /**
@@ -98,10 +98,10 @@ class SolicitudController extends AppBaseController
         if (empty($solicitud)) {
             Flash::error('Solicitud no encontrado');
 
-            return redirect(route('solicituds.index'));
+            return redirect(route('solicitudes.index'));
         }
 
-        return view('solicituds.edit')->with('solicitud', $solicitud);
+        return view('solicitudes.edit')->with('solicitud', $solicitud);
     }
 
     /**
@@ -120,7 +120,7 @@ class SolicitudController extends AppBaseController
         if (empty($solicitud)) {
             Flash::error('Solicitud no encontrado');
 
-            return redirect(route('solicituds.index'));
+            return redirect(route('solicitudes.index'));
         }
 
         $solicitud->fill($request->all());
@@ -128,7 +128,7 @@ class SolicitudController extends AppBaseController
 
         Flash::success('Solicitud actualizado con éxito.');
 
-        return redirect(route('solicituds.index'));
+        return redirect(route('solicitudes.index'));
     }
 
     /**
@@ -148,13 +148,13 @@ class SolicitudController extends AppBaseController
         if (empty($solicitud)) {
             Flash::error('Solicitud no encontrado');
 
-            return redirect(route('solicituds.index'));
+            return redirect(route('solicitudes.index'));
         }
 
         $solicitud->delete();
 
         Flash::success('Solicitud deleted successfully.');
 
-        return redirect(route('solicituds.index'));
+        return redirect(route('solicitudes.index'));
     }
 }

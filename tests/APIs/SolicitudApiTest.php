@@ -19,7 +19,7 @@ class SolicitudApiTest extends TestCase
 
         $this->response = $this->json(
             'POST',
-            '/api/solicituds', $solicitud
+            '/api/solicitudes', $solicitud
         );
 
         $this->assertApiResponse($solicitud);
@@ -34,7 +34,7 @@ class SolicitudApiTest extends TestCase
 
         $this->response = $this->json(
             'GET',
-            '/api/solicituds/'.$solicitud->id
+            '/api/solicitudes/'.$solicitud->id
         );
 
         $this->assertApiResponse($solicitud->toArray());
@@ -50,7 +50,7 @@ class SolicitudApiTest extends TestCase
 
         $this->response = $this->json(
             'PUT',
-            '/api/solicituds/'.$solicitud->id,
+            '/api/solicitudes/'.$solicitud->id,
             $editedSolicitud
         );
 
@@ -66,13 +66,13 @@ class SolicitudApiTest extends TestCase
 
         $this->response = $this->json(
             'DELETE',
-             '/api/solicituds/'.$solicitud->id
+             '/api/solicitudes/'.$solicitud->id
          );
 
         $this->assertApiSuccess();
         $this->response = $this->json(
             'GET',
-            '/api/solicituds/'.$solicitud->id
+            '/api/solicitudes/'.$solicitud->id
         );
 
         $this->response->assertStatus(404);

@@ -61,7 +61,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('medicamentos', 'MedicamentoController');
 
-    Route::resource('solicituds', 'SolicitudController');
+    Route::resource('solicitudes', 'SolicitudController');
 });
 
 

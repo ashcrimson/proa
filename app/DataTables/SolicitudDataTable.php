@@ -22,14 +22,14 @@ class SolicitudDataTable extends DataTable
 
                  $id = $solicitud->id;
 
-                 return view('solicituds.datatables_actions',compact('solicitud','id'))->render();
+                 return view('solicitudes.datatables_actions',compact('solicitud','id'))->render();
              })
              ->editColumn('id',function (Solicitud $solicitud){
 
                  return $solicitud->id;
 
                  //se debe crear la vista modal_detalles
-                 //return view('solicituds.modal_detalles',compact('solicitud'))->render();
+                 //return view('solicitudes.modal_detalles',compact('solicitud'))->render();
 
              })
              ->rawColumns(['action','id']);
@@ -123,6 +123,6 @@ class SolicitudDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'solicitudsdatatable_' . time();
+        return 'solicitudesdatatable_' . time();
     }
 }
