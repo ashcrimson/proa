@@ -96,7 +96,8 @@ class MicroorganismoDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'nombre'
+            'nombre',
+            'morfologia'
         ];
     }
 

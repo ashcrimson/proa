@@ -16,6 +16,7 @@ class CreateMicroorganismosTable extends Migration
         Schema::create('microorganismos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre')->unique('nombre_UNIQUE');
+            $table->string('morfologia')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

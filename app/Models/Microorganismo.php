@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Microorganismo
  * @package App\Models
- * @version September 16, 2021, 3:17 pm CST
+ * @version September 16, 2021, 3:55 pm CST
  *
  * @property \Illuminate\Database\Eloquent\Collection $solicitudMicrooganismos
  * @property string $nombre
+ * @property string $morfologia
  */
 class Microorganismo extends Model
 {
@@ -27,7 +28,8 @@ class Microorganismo extends Model
 
 
     public $fillable = [
-        'nombre'
+        'nombre',
+        'morfologia'
     ];
 
     /**
@@ -37,7 +39,8 @@ class Microorganismo extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'nombre' => 'string'
+        'nombre' => 'string',
+        'morfologia' => 'string'
     ];
 
     /**
@@ -47,6 +50,7 @@ class Microorganismo extends Model
      */
     public static $rules = [
         'nombre' => 'required|string|max:255',
+        'morfologia' => 'nullable|string|max:255',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
