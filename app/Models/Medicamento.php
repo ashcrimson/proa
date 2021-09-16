@@ -33,7 +33,7 @@ class Medicamento extends Model
     use SoftDeletes;
 
     public $table = 'medicamentos';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -130,7 +130,7 @@ class Medicamento extends Model
      **/
     public function farmacoCategorias()
     {
-        return $this->belongsToMany(\App\Models\FarmacoCategoria::class, 'categoria_has_medicamento');
+        return $this->belongsToMany(\App\Models\FarmacoCategoria::class, 'medicamento_has_categoria','medicamento_id','categoria_id');
     }
 
     /**

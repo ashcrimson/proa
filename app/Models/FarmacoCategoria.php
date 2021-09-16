@@ -18,7 +18,7 @@ class FarmacoCategoria extends Model
     use SoftDeletes;
 
     public $table = 'farmaco_categorias';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -58,7 +58,7 @@ class FarmacoCategoria extends Model
      **/
     public function medicamentos()
     {
-        return $this->belongsToMany(\App\Models\Medicamento::class, 'categoria_has_medicamento');
+        return $this->belongsToMany(\App\Models\Medicamento::class, 'medicamento_has_categoria');
     }
 
     /**

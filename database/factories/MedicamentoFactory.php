@@ -8,20 +8,17 @@ use Faker\Generator as Faker;
 $factory->define(Medicamento::class, function (Faker $faker) {
 
     return [
-        'nombre' => $this->faker->word,
-        'indicaciones' => $this->faker->word,
-        'contraindicaciones' => $this->faker->word,
-        'advertencias' => $this->faker->word,
-        'dosis' => $this->faker->word,
-        'via_admin' => $this->faker->word,
-        'laboratorio_id' => $this->faker->word,
-        'forma_id' => $this->faker->word,
-        'receta' => $this->faker->word,
-        'cantidad_total' => $this->faker->word,
-        'cantidad_formula' => $this->faker->word,
-        'generico' => $this->faker->word,
-        'created_at' => $this->faker->word,
-        'updated_at' => $this->faker->word,
-        'deleted_at' => $this->faker->word
+        'nombre' => $faker->word,
+        'indicaciones' => $faker->text,
+        'contraindicaciones' => $faker->text,
+        'advertencias' => $faker->text,
+        'dosis' => $faker->text,
+        'via_admin' => null,
+        'laboratorio_id' => null,
+        'forma_id' => null,
+        'receta' => null,
+        'cantidad_total' => null,
+        'cantidad_formula' => null,
+        'generico' => null,
     ];
 });
