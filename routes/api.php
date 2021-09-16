@@ -28,6 +28,8 @@ Route::group(['as'=>'api.','namespace' => 'API'], function () {
         Route::resource('microorganismos', 'MicroorganismoAPIController');
 
         Route::resource('farmaco_categorias', 'FarmacoCategoriaAPIController');
+
+        Route::resource('medicamentos', 'MedicamentoAPIController');
     });
 
 

@@ -59,6 +59,5 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('farmacoCategorias', 'FarmacoCategoriaController');
 
+    Route::resource('medicamentos', 'MedicamentoController');
 });
-
-
