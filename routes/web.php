@@ -47,7 +47,17 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('permissions', 'PermissionController');
 
-    Route::resource('projects', 'ProjectController');
+    Route::resource('solicitudEstados', 'SolicitudEstadoController');
+
+    Route::resource('pacientes', 'PacienteController');
+
+    Route::resource('cultivos', 'CultivoController');
+
+    Route::resource('diagnosticos', 'DiagnosticoController');
+
+    Route::resource('microorganismos', 'MicroorganismoController');
+
+    Route::resource('farmacoCategorias', 'FarmacoCategoriaController');
 
 });
 
