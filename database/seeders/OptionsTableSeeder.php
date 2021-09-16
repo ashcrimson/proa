@@ -14,12 +14,12 @@ class OptionsTableSeeder extends Seeder
      */
     public function run()
     {
-        \DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        
 
         \DB::table('options')->delete();
-
+        
         \DB::table('options')->insert(array (
-            0 =>
+            0 => 
             array (
                 'id' => 1,
                 'option_id' => NULL,
@@ -35,7 +35,7 @@ class OptionsTableSeeder extends Seeder
                 'updated_at' => '2020-08-26 11:51:32',
                 'deleted_at' => NULL,
             ),
-            1 =>
+            1 => 
             array (
                 'id' => 2,
                 'option_id' => NULL,
@@ -51,7 +51,7 @@ class OptionsTableSeeder extends Seeder
                 'updated_at' => '2021-03-14 21:01:22',
                 'deleted_at' => NULL,
             ),
-            2 =>
+            2 => 
             array (
                 'id' => 3,
                 'option_id' => 2,
@@ -67,7 +67,7 @@ class OptionsTableSeeder extends Seeder
                 'updated_at' => '2021-03-14 21:19:48',
                 'deleted_at' => NULL,
             ),
-            3 =>
+            3 => 
             array (
                 'id' => 4,
                 'option_id' => 2,
@@ -83,7 +83,7 @@ class OptionsTableSeeder extends Seeder
                 'updated_at' => '2021-03-14 21:19:48',
                 'deleted_at' => NULL,
             ),
-            4 =>
+            4 => 
             array (
                 'id' => 5,
                 'option_id' => 2,
@@ -99,7 +99,7 @@ class OptionsTableSeeder extends Seeder
                 'updated_at' => '2021-03-14 21:19:48',
                 'deleted_at' => NULL,
             ),
-            5 =>
+            5 => 
             array (
                 'id' => 6,
                 'option_id' => 2,
@@ -115,7 +115,7 @@ class OptionsTableSeeder extends Seeder
                 'updated_at' => '2021-03-14 21:19:48',
                 'deleted_at' => NULL,
             ),
-            6 =>
+            6 => 
             array (
                 'id' => 7,
                 'option_id' => NULL,
@@ -131,7 +131,7 @@ class OptionsTableSeeder extends Seeder
                 'updated_at' => '2021-03-14 21:13:25',
                 'deleted_at' => NULL,
             ),
-            7 =>
+            7 => 
             array (
                 'id' => 8,
                 'option_id' => 7,
@@ -147,7 +147,7 @@ class OptionsTableSeeder extends Seeder
                 'updated_at' => '2021-03-14 21:16:13',
                 'deleted_at' => NULL,
             ),
-            8 =>
+            8 => 
             array (
                 'id' => 9,
                 'option_id' => 7,
@@ -163,7 +163,7 @@ class OptionsTableSeeder extends Seeder
                 'updated_at' => '2021-03-14 21:15:59',
                 'deleted_at' => NULL,
             ),
-            9 =>
+            9 => 
             array (
                 'id' => 10,
                 'option_id' => 7,
@@ -179,7 +179,7 @@ class OptionsTableSeeder extends Seeder
                 'updated_at' => '2021-03-14 21:16:22',
                 'deleted_at' => NULL,
             ),
-            10 =>
+            10 => 
             array (
                 'id' => 11,
                 'option_id' => 7,
@@ -195,9 +195,136 @@ class OptionsTableSeeder extends Seeder
                 'updated_at' => '2021-03-14 21:19:48',
                 'deleted_at' => NULL,
             ),
+            11 => 
+            array (
+                'id' => 12,
+                'option_id' => NULL,
+                'nombre' => 'Solicitudes',
+                'ruta' => 'x',
+                'descripcion' => NULL,
+                'icono_l' => 'fa-list',
+                'icono_r' => NULL,
+                'orden' => 0,
+                'color' => NULL,
+                'dev' => 0,
+                'created_at' => '2021-09-16 15:31:06',
+                'updated_at' => '2021-09-16 15:31:06',
+                'deleted_at' => NULL,
+            ),
+            12 => 
+            array (
+                'id' => 13,
+                'option_id' => 12,
+                'nombre' => 'Nueva Solicitud',
+                'ruta' => 'solicitudes.create',
+                'descripcion' => NULL,
+                'icono_l' => 'fa-plus',
+                'icono_r' => NULL,
+                'orden' => 0,
+                'color' => NULL,
+                'dev' => 0,
+                'created_at' => '2021-09-16 15:31:30',
+                'updated_at' => '2021-09-16 15:39:33',
+                'deleted_at' => NULL,
+            ),
+            13 => 
+            array (
+                'id' => 14,
+                'option_id' => 12,
+                'nombre' => 'Mis Solicitudes',
+                'ruta' => 'solicitudes.user',
+                'descripcion' => NULL,
+                'icono_l' => 'fa-user',
+                'icono_r' => NULL,
+                'orden' => 1,
+                'color' => NULL,
+                'dev' => 0,
+                'created_at' => '2021-09-16 15:31:54',
+                'updated_at' => '2021-09-16 15:42:34',
+                'deleted_at' => NULL,
+            ),
+            14 => 
+            array (
+                'id' => 15,
+                'option_id' => 12,
+                'nombre' => 'Busca Solicitudes',
+                'ruta' => 'solicitudes.index',
+                'descripcion' => NULL,
+                'icono_l' => 'fa-search',
+                'icono_r' => NULL,
+                'orden' => 3,
+                'color' => NULL,
+                'dev' => 0,
+                'created_at' => '2021-09-16 15:32:23',
+                'updated_at' => '2021-09-16 15:42:34',
+                'deleted_at' => NULL,
+            ),
+            15 => 
+            array (
+                'id' => 16,
+                'option_id' => 12,
+                'nombre' => 'Aprobar Solicitud',
+                'ruta' => 'solicitudes.aprobar',
+                'descripcion' => NULL,
+                'icono_l' => 'fa-stamp',
+                'icono_r' => NULL,
+                'orden' => 2,
+                'color' => NULL,
+                'dev' => 0,
+                'created_at' => '2021-09-16 15:39:14',
+                'updated_at' => '2021-09-16 15:42:34',
+                'deleted_at' => NULL,
+            ),
+            16 => 
+            array (
+                'id' => 17,
+                'option_id' => 12,
+                'nombre' => 'Estados',
+                'ruta' => 'solicitudEstados.index',
+                'descripcion' => NULL,
+                'icono_l' => 'fa-circle-notch',
+                'icono_r' => NULL,
+                'orden' => 4,
+                'color' => NULL,
+                'dev' => 0,
+                'created_at' => '2021-09-16 15:41:55',
+                'updated_at' => '2021-09-16 15:42:34',
+                'deleted_at' => NULL,
+            ),
+            17 => 
+            array (
+                'id' => 18,
+                'option_id' => 12,
+                'nombre' => 'Admin Medicamentos',
+                'ruta' => 'medicamentos.index',
+                'descripcion' => NULL,
+                'icono_l' => 'fa-circle-notch',
+                'icono_r' => NULL,
+                'orden' => 5,
+                'color' => NULL,
+                'dev' => 0,
+                'created_at' => '2021-09-16 15:42:25',
+                'updated_at' => '2021-09-16 15:42:34',
+                'deleted_at' => NULL,
+            ),
+            18 => 
+            array (
+                'id' => 19,
+                'option_id' => 12,
+                'nombre' => 'Admin Microorganismos',
+                'ruta' => 'microorganismos.index',
+                'descripcion' => NULL,
+                'icono_l' => 'fa-circle-notch',
+                'icono_r' => NULL,
+                'orden' => 6,
+                'color' => NULL,
+                'dev' => 0,
+                'created_at' => '2021-09-16 15:42:57',
+                'updated_at' => '2021-09-16 15:43:11',
+                'deleted_at' => NULL,
+            ),
         ));
-
-        \DB::statement('SET FOREIGN_KEY_CHECKS=1');
-
+        
+        
     }
 }
