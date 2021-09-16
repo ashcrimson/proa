@@ -30,7 +30,10 @@ Route::group(['as'=>'api.','namespace' => 'API'], function () {
         Route::resource('farmaco_categorias', 'FarmacoCategoriaAPIController');
 
         Route::resource('medicamentos', 'MedicamentoAPIController');
+
+        Route::resource('solicituds', 'SolicitudAPIController');
     });
 
 
 });
+
