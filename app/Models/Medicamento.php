@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;;
 use Illuminate\Database\Eloquent\SoftDeletes;
 /**
@@ -147,5 +148,12 @@ class Medicamento extends Model
     public function solicitudMedicamentos()
     {
         return $this->hasMany(\App\Models\SolicitudMedicamento::class, 'medicamento_id');
+    }
+
+    public function scopeAntibioticos(Builder $query)
+    {
+        $query->whereHas('categorias',function ($queryCat){
+            $queryCat->where('id',FarmacoCategoria::ANTIBIOTICO);
+        });
     }
 }

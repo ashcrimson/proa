@@ -23,6 +23,9 @@ class FarmacoCategoria extends Model
     const UPDATED_AT = 'updated_at';
 
 
+    const ANTIBIOTICO = 1;
+
+
     protected $dates = ['deleted_at'];
 
 
