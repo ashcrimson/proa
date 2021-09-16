@@ -14,8 +14,8 @@ class AddForeignKeysToOptionUserTable extends Migration {
 	{
 		Schema::table('option_user', function(Blueprint $table)
 		{
-			$table->foreign('option_id', 'fk_options_has_users_options1')->references('id')->on('options')->onUpdate('NO ACTION')->onDelete('NO ACTION');
-			$table->foreign('user_id', 'fk_options_has_users_users1')->references('id')->on('users')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+			$table->foreign('option_id', 'fk_options_has_users_options1')->references('id')->on('options');
+			$table->foreign('user_id', 'fk_options_has_users_users1')->references('id')->on('users');
 		});
 	}
 
