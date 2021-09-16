@@ -17,9 +17,18 @@ class SolicitudEstado extends Model
     use SoftDeletes;
 
     public $table = 'solicitud_estados';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
+
+
+    const TEMPORAL =    1;
+    const INGRESADA =   2;
+    const SOLICITADA =  3;
+    const APROBADA =    4;
+    const RECHAZADA =   5;
+    const ANULADA =     6;
+    const VENCIDA =     7;
 
 
     protected $dates = ['deleted_at'];

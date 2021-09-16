@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col">
-                    <h1>{{__('Edit Solicitud')}}</h1>
+                    <h1>{{ $solicitud->esTemporal() ? "Nueva" : "Editar"  }} Solicitud</h1>
                 </div>
                 <div class="col">
                     <a class="btn btn-outline-info float-right"

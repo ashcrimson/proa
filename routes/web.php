@@ -50,6 +50,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('solicitudEstados', 'SolicitudEstadoController');
 
     Route::resource('pacientes', 'PacienteController');
+    Route::get('get/data/paciente', 'PacienteController@getPacientePorApi')->name('get.datos.paciente');
 
     Route::resource('cultivos', 'CultivoController');
 

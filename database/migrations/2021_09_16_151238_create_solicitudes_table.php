@@ -17,8 +17,8 @@ class CreateSolicitudesTable extends Migration
             $table->bigIncrements('id');
             $table->string('codigo', 45)->nullable();
             $table->integer('correlativo')->nullable();
-            $table->unsignedBigInteger('paciente_id')->index('fk_solicitudes_pacientes1_idx');
-            $table->unsignedBigInteger('estado_id')->index('fk_solicitudes_solicitud_estados1_idx');
+            $table->unsignedBigInteger('paciente_id')->nullable()->index('fk_solicitudes_pacientes1_idx');
+            $table->unsignedBigInteger('estado_id')->nullable()->index('fk_solicitudes_solicitud_estados1_idx');
             $table->tinyInteger('inicio')->nullable();
             $table->tinyInteger('continuacion')->nullable();
             $table->text('terapia_empirica')->nullable();
@@ -31,7 +31,7 @@ class CreateSolicitudesTable extends Migration
             $table->decimal('peso')->nullable();
             $table->text('observaciones')->nullable();
             $table->unsignedBigInteger('user_crea')->index('fk_solicitudes_users1_idx');
-            $table->unsignedBigInteger('user_actualiza')->index('fk_solicitudes_users2_idx');
+            $table->unsignedBigInteger('user_actualiza')->nullable()->index('fk_solicitudes_users2_idx');
             $table->timestamps();
             $table->softDeletes();
         });

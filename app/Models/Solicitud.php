@@ -40,7 +40,7 @@ class Solicitud extends Model
     use SoftDeletes;
 
     public $table = 'solicitudes';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -174,7 +174,7 @@ class Solicitud extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function solicitudMedicamentos()
+    public function medicamentos()
     {
         return $this->hasMany(\App\Models\SolicitudMedicamento::class, 'solicitud_id');
     }
@@ -182,8 +182,14 @@ class Solicitud extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function solicitudMicrooganismos()
+    public function microoganismos()
     {
         return $this->hasMany(\App\Models\SolicitudMicrooganismo::class, 'solicitud_id');
+    }
+
+
+    public function esTemporal()
+    {
+        return $this->estado_id==SolicitudEstado::TEMPORAL;
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title_page',__('Solicitud'))
+@section('title_page',__('Rema'))
 
 @section('content')
 
@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{__('Solicitud')}}</h1>
+                    <h1>{{__('Rema')}}</h1>
                 </div>
                 <div class="col-sm-6">
 
@@ -19,17 +19,12 @@
     </section>
 
     <div class="content">
-        <div class="card card-primary">
-            <div class="card-body">
-                <div class="row">
-                    <div class="form-group col-sm-12">
-                        @include('solicitudes.show_fields')
-                        <a href="{{ route('solicitudes.index') }}" class="btn btn-default">
-                        {{__('Back')}}
-                        </a>
-                    </div>
-                </div>
-            </div>
+        <div class="card-body" >
+            @include('remas.show_fields')
+            <a href="{{ route('remas.index') }}" class="btn btn-default" style="margin-left: 10px;">
+            {{__('Back')}}
+            </a>
         </div>
+
     </div>
 @endsection

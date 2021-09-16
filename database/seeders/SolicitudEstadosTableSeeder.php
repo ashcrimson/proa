@@ -19,6 +19,7 @@ class SolicitudEstadosTableSeeder extends Seeder
 
         \DB::table('solicitud_estados')->delete();
 
+        factory(SolicitudEstado::class,1)->create(['nombre' => 'Temporal']);
         factory(SolicitudEstado::class,1)->create(['nombre' => 'Ingresada']);
         factory(SolicitudEstado::class,1)->create(['nombre' => 'Solicitada']);
         factory(SolicitudEstado::class,1)->create(['nombre' => 'Aprobada']);

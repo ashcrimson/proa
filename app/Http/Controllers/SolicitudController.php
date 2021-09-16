@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Requests\CreateSolicitudRequest;
 use App\Http\Requests\UpdateSolicitudRequest;
 use App\Models\Solicitud;
+use App\Models\SolicitudEstado;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
@@ -40,7 +41,10 @@ class SolicitudController extends AppBaseController
      */
     public function create()
     {
-        return view('solicitudes.create');
+        $solicitud = $this->getSolicitudTemporal();
+
+        return redirect(route('solicitudes.edit',$solicitud->id));
+
     }
 
     /**
@@ -156,5 +160,19 @@ class SolicitudController extends AppBaseController
         Flash::success('Solicitud deleted successfully.');
 
         return redirect(route('solicitudes.index'));
+    }
+
+    public function getSolicitudTemporal()
+    {
+        $sol = Solicitud::where('user_crea',auth()->user()->id)->where('estado_id',SolicitudEstado::TEMPORAL)->first();
+
+        if (!$sol){
+            $sol = Solicitud::create([
+                'user_crea' => auth()->user()->id,
+                'estado_id' => SolicitudEstado::TEMPORAL,
+            ]);
+        }
+
+        return $sol;
     }
 }
