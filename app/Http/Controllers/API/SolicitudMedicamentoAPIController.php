@@ -25,7 +25,7 @@ class SolicitudMedicamentoAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $query = SolicitudMedicamento::query();
+        $query = SolicitudMedicamento::with('medicamento');
 
         if ($request->get('skip')) {
             $query->skip($request->get('skip'));

@@ -13,45 +13,51 @@
     <div class="row">
 
         <div class="col-12 p-3">
-            <form action="" method="post" role="form" id="form-modal-models">
 
-                <div class="form-row">
-
-                    <div class="form-group col-sm-3">
-                        <label for="vol">Dosis:</label>
-                        <input class="form-control" type="text" v-model="editedItem.dosis">
-                    </div>
-
-                    <div class="form-group col-sm-3">
-                        <label for="vol">Frecuencia:</label>
-                        <input class="form-control" type="text" v-model="editedItem.frecuencia">
-                    </div>
+            <div class="form-row">
 
 
-                    <div class="form-group col-sm-3">
-                        <label for="peep">Periodo:</label>
-                        <input class="form-control" type="text" v-model="editedItem.periodo">
-                    </div>
+                <div class="form-group col-sm-8">
+                    <select-medicamento
+                        :items="medicamentos"
+                        label="Medicamento"
+                        v-model="medicamento" >
 
-                    <div class="form-group col-sm-3">
-                        <label for="peep">&nbsp;</label>
-                        <div>
-                            <button
-                                type="button" id="btnSubmitFormModels"
-                                data-loading-text="Guardando..."
-                                class="btn btn-success"
-                                autocomplete="off"
-                                @click.prevent="save()"
-                            >
-                                <i class="fa fa-plus"></i> Agregar
-                            </button>
-                        </div>
-                    </div>
-
-
+                    </select-medicamento>
                 </div>
 
-            </form>
+                <div class="form-group col-sm-12" style="padding: 0px; margin: 0px"></div>
+
+                <div class="form-group col-sm-3">
+                    <label for="vol">Dosis:</label>
+                    <input class="form-control" type="text" v-model="editedItem.dosis">
+                </div>
+
+                <div class="form-group col-sm-3">
+                    <label for="vol">Frecuencia:</label>
+                    <input class="form-control" type="text" v-model="editedItem.frecuencia">
+                </div>
+
+
+                <div class="form-group col-sm-3">
+                    <label for="peep">Periodo:</label>
+                    <input class="form-control" type="text" v-model="editedItem.periodo">
+                </div>
+
+                <div class="form-group col-sm-3">
+                    <label for="peep">&nbsp;</label>
+                    <div>
+                        <button type="button" class="btn btn-success" @click.prevent="save()">
+                            <i class="fa fa-save" v-show="!loading"></i>
+                            <i class="fa fa-sync fa-spin" v-show="loading"></i>
+                            <span v-text="textButtonSubmint"></span>
+                        </button>
+                    </div>
+                </div>
+
+
+            </div>
+
         </div>
     </div>
 
@@ -59,6 +65,7 @@
         <table class="table table-bordered table-sm table-striped mb-0">
             <thead>
             <tr>
+                <th>Antibiotico</th>
                 <th>dosis</th>
                 <th>frecuencia</th>
                 <th>periodo</th>
@@ -66,19 +73,20 @@
             </tr>
             </thead>
             <tbody>
-                <tr v-if="medicamentos.length == 0">
+                <tr v-if="solicitud_medicamentos.length == 0">
                         <td colspan="10" class="text-center">Ningún Registro agregado</td>
                 </tr>
-                <tr v-for="det in medicamentos">
+                <tr v-for="det in solicitud_medicamentos">
+                    <td v-text="det.medicamento.nombre"></td>
                     <td v-text="det.dosis"></td>
                     <td v-text="det.frecuencia"></td>
                     <td v-text="det.periodo"></td>
                     <td  class="text-nowrap">
-                        <button type="button" @click="editItem(item)" class="btn btn-sm btn-outline-info" v-tooltip="'Editar'"  >
+                        <button type="button" @click="editItem(det)" class="btn btn-sm btn-outline-info" v-tooltip="'Editar'"  >
                             <i class="fa fa-edit"></i>
                         </button>
 
-                        <button type="button" @click="deleteItem(item)"  class='btn btn-outline-danger btn-sm' v-tooltip="'Eliminar'" >
+                        <button type="button" @click="deleteItem(det)"  class='btn btn-outline-danger btn-sm' v-tooltip="'Eliminar'" >
                             <i class="fa fa-trash-alt"></i>
                         </button>
                     </td>
@@ -107,7 +115,9 @@
         },
         data: {
 
-            medicamentos: [],
+            medicamentos: @json(\App\Models\Medicamento::all() ?? []),
+            solicitud_medicamentos: [],
+            medicamento: null,
             editedItem: {
                 id : 0,
                 solicitud_id: @json($solicitud->id),
@@ -131,7 +141,7 @@
                 const res = await  axios.get(route('api.solicitud_medicamentos.index',{solicitud_id: this.solicitud_id}));
 
                 console.log('res getItems:',res)
-                this.medicamentos = res.data.data;
+                this.solicitud_medicamentos = res.data.data;
             },
             getId(item){
                 if(item)
@@ -140,12 +150,14 @@
                 return null
             },
             editItem (item) {
+                this.medicamento = Object.assign({}, item.medicamento);
                 this.editedItem = Object.assign({}, item);
 
             },
             close () {
                 this.loading = false;
                 setTimeout(() => {
+                    this.medicamento = null;
                     this.editedItem = Object.assign({}, this.defaultItem);
                 }, 300)
             },
@@ -157,6 +169,7 @@
 
                 try {
 
+                    this.editedItem.medicamento_id = this.getId(this.medicamento)
                     const data = this.editedItem;
 
                     console.log(data);
@@ -219,7 +232,13 @@
                 return this.editedItem.id === 0 ? 'Nuevo Detalle' : 'Editar Detalle'
             },
             textButtonSubmint () {
-                return this.editedItem.id === 0 ? 'Guardar' : 'Actualizar'
+                if (this.loading){
+                    return this.editedItem.id === 0 ? 'Agregando...' : 'Actualizando...'
+
+                }else {
+                    return this.editedItem.id === 0 ? 'Agregar' : 'Actualizar'
+
+                }
             }
         },
     });
