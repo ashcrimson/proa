@@ -1,5 +1,5 @@
-<div class="card card-outline card-success" id="panel_medicamentos">
-    <div class="card-header">
+<div class="card " id="panel_medicamentos">
+    <div class="card-header py-0 px-1">
         <h3 class="card-title">Antibiótico Solicitado</h3>
 
         <div class="card-tools">

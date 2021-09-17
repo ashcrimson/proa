@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Solicitud
  * @package App\Models
- * @version September 17, 2021, 4:28 pm CST
+ * @version September 17, 2021, 5:52 pm CST
  *
  * @property \App\Models\SolicitudEstado $estado
  * @property \App\Models\Paciente $paciente
@@ -23,8 +23,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property integer $estado_id
  * @property boolean $inicio
  * @property boolean $continuacion
- * @property string $terapia_empirica
- * @property string $terapia_especifica
+ * @property boolean $terapia_empirica
+ * @property boolean $terapia_especifica
  * @property boolean $infeccion_extrahospitalaria
  * @property boolean $infeccion_intrahospitalaria
  * @property boolean $disfuncion_renal
@@ -82,8 +82,8 @@ class Solicitud extends Model
         'estado_id' => 'integer',
         'inicio' => 'boolean',
         'continuacion' => 'boolean',
-        'terapia_empirica' => 'string',
-        'terapia_especifica' => 'string',
+        'terapia_empirica' => 'boolean',
+        'terapia_especifica' => 'boolean',
         'infeccion_extrahospitalaria' => 'boolean',
         'infeccion_intrahospitalaria' => 'boolean',
         'disfuncion_renal' => 'boolean',
@@ -103,8 +103,8 @@ class Solicitud extends Model
     public static $rules = [
         'inicio' => 'nullable|boolean',
         'continuacion' => 'nullable|boolean',
-        'terapia_empirica' => 'nullable|string',
-        'terapia_especifica' => 'nullable|string',
+        'terapia_empirica' => 'nullable|boolean',
+        'terapia_especifica' => 'nullable|boolean',
         'infeccion_extrahospitalaria' => 'nullable|boolean',
         'infeccion_intrahospitalaria' => 'nullable|boolean',
         'disfuncion_renal' => 'nullable|boolean',

@@ -21,8 +21,8 @@ class CreateSolicitudesTable extends Migration
             $table->unsignedBigInteger('estado_id')->nullable()->index('fk_solicitud_estado_idx');
             $table->tinyInteger('inicio')->nullable();
             $table->tinyInteger('continuacion')->nullable();
-            $table->text('terapia_empirica')->nullable();
-            $table->text('terapia_especifica')->nullable();
+            $table->tinyInteger('terapia_empirica')->nullable();
+            $table->tinyInteger('terapia_especifica')->nullable();
             $table->tinyInteger('infeccion_extrahospitalaria')->nullable();
             $table->tinyInteger('infeccion_intrahospitalaria')->nullable();
             $table->tinyInteger('disfuncion_renal')->nullable();

@@ -4,7 +4,7 @@
     <div class="col-12">
         <div class="card card-outline card-info">
             <div class="card-header">
-                <h3 class="card-title">Datos Personales</h3>
+                <h3 class="card-title">Datos Paciente</h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -29,7 +29,7 @@
     <div class="col-sm-12 mb-3">
         <div class="card card-outline card-info ">
             <div class="card-header">
-                <h3 class="card-title">Datos Atención</h3>
+                <h3 class="card-title">Datos Registro</h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -41,89 +41,182 @@
             <div class="card-body">
                 <div class="form-row">
 
-                    <!-- Inicio Field -->
-                    <div class="form-group col-sm-6">
-                        {!! Form::label('inicio', 'Inicio:') !!}
-                        <label class="checkbox-inline">
-                            {!! Form::hidden('inicio', 0) !!}
-                            {!! Form::checkbox('inicio', '1', null) !!}
-                        </label>
+                    <!-- Treatamiento -->
+                    <div class="form-group col-4">
+                        <div class="card ">
+                            <div class="card-header py-0 px-1">
+                                <h3 class="card-title">Tratamiento</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body p-2">
+                                <!-- radio -->
+                                <div class="form-group mb-0">
+                                    <div class="custom-control custom-radio">
+                                        <input type="hidden" name="inicio" value="0">
+                                      <input class="custom-control-input" type="radio" id="inicio" name="tratamiento" value="inicio"
+                                          {{($solicitud->inicio ?? 0) ? 'checked' : ''}}>
+                                      <label for="inicio" class="custom-control-label">Inicio</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="hidden" name="continuacion" value="0">
+                                      <input class="custom-control-input" type="radio" id="continuacion" name="tratamiento" value="continuacion"
+                                          {{($solicitud->continuacion ?? 0) ? 'checked' : ''}}>
+                                      <label for="continuacion" class="custom-control-label">Continuacion</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                    </div>
+
+                    <div class="form-group col-4">
+                        <div class="card ">
+                            <div class="card-header py-0 px-1">
+                                <h3 class="card-title">Terapia</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body p-2">
+                                <div class="form-group mb-0">
+                                    <div class="custom-control custom-radio">
+                                        <input type="hidden" name="terapia_empirica" value="0">
+                                        <input class="custom-control-input" type="radio" id="terapia_empirica" name="terapia" value="terapia_empirica"
+                                            {{($solicitud->terapia_empirica ?? 0) ? 'checked' : ''}}>
+                                        <label for="terapia_empirica" class="custom-control-label">Terapia Empirica</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="hidden" name="terapia_especifica" value="0">
+                                        <input class="custom-control-input" type="radio" id="terapia_especifica" name="terapia" value="terapia_especifica"
+                                            {{($solicitud->terapia_especifica ?? 0) ? 'checked' : ''}}>
+                                        <label for="terapia_especifica" class="custom-control-label">Terapia Especifica</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                    </div>
+
+                    <div class="form-group col-4">
+                        <div class="card ">
+                            <div class="card-header py-0 px-1">
+                                <h3 class="card-title">Fuente de infección</h3>
+
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body p-2">
+
+                                <div class="form-group mb-0">
+                                    <div class="custom-control custom-radio">
+                                        <input type="hidden" name="infeccion_extrahospitalaria" value="0">
+                                        <input class="custom-control-input" type="radio" id="infeccion_extrahospitalaria" name="fuente_infeccion" value="infeccion_extrahospitalaria"
+                                            {{($solicitud->infeccion_extrahospitalaria ?? 0) ? 'checked' : ''}}>
+                                        <label for="infeccion_extrahospitalaria" class="custom-control-label">Infección Extrahospitalaria</label>
+
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="hidden" name="infeccion_intrahospitalaria" value="0">
+                                        <input class="custom-control-input" type="radio" id="infeccion_intrahospitalaria" name="fuente_infeccion" value="infeccion_intrahospitalaria"
+                                            {{($solicitud->infeccion_intrahospitalaria ?? 0) ? 'checked' : ''}}>
+                                        <label for="infeccion_intrahospitalaria" class="custom-control-label">Infeccion Intrahospitalaria</label>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
                     </div>
 
 
-                    <!-- Continuacion Field -->
-                    <div class="form-group col-sm-6">
-                        {!! Form::label('continuacion', 'Continuacion:') !!}
-                        <label class="checkbox-inline">
-                            {!! Form::hidden('continuacion', 0) !!}
-                            {!! Form::checkbox('continuacion', '1', null) !!}
-                        </label>
+                    <div class="form-group col-12">
+                        <div class="card ">
+                            <div class="card-header py-0 px-1">
+                                <h3 class="card-title">Cultivos tomados</h3>
+
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body p-2">
+                                    <!-- checkbox -->
+                                <div class="form-group mb-0">
+                                    @foreach(\App\Models\Cultivo::all() as $cultivo)
+                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                            <input class="custom-control-input" type="checkbox" name="cultivos[]" value="{{$cultivo->id}}">
+                                            <label for="customCheckbox1" class="custom-control-label">
+                                                {{$cultivo->nombre}}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
                     </div>
 
 
-                    <!-- Terapia Empirica Field -->
+                    <div class="form-group col-12">
+                        <div class="card ">
+                            <div class="card-header py-0 px-1">
+                                <h3 class="card-title">Diagnostico o sitio de la infección</h3>
+
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                    </div>
+
+                    <div class="form-group col-12">
+                        <div class="card ">
+                            <div class="card-header py-0 px-1">
+                                <h3 class="card-title">Disfunción</h3>
+
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+
+                                <!-- Disfuncion Renal Field -->
+                                <div class="form-group col-sm-6">
+                                    {!! Form::label('disfuncion_renal', 'Disfuncion Renal:') !!}
+                                    <label class="checkbox-inline">
+                                        {!! Form::hidden('disfuncion_renal', 0) !!}
+                                        {!! Form::checkbox('disfuncion_renal', '1', null) !!}
+                                    </label>
+                                </div>
+
+
+                                <!-- Disfuncion Hepatica Field -->
+                                <div class="form-group col-sm-6">
+                                    {!! Form::label('disfuncion_hepatica', 'Disfuncion Hepatica:') !!}
+                                    <label class="checkbox-inline">
+                                        {!! Form::hidden('disfuncion_hepatica', 0) !!}
+                                        {!! Form::checkbox('disfuncion_hepatica', '1', null) !!}
+                                    </label>
+                                </div>
+
+
+                                <!-- Creatinina Field -->
+                                <div class="form-group col-sm-6">
+                                    {!! Form::label('creatinina', 'Creatinina:') !!}
+                                    {!! Form::number('creatinina', null, ['class' => 'form-control']) !!}
+                                </div>
+
+                                <!-- Peso Field -->
+                                <div class="form-group col-sm-6">
+                                    {!! Form::label('peso', 'Peso:') !!}
+                                    {!! Form::number('peso', null, ['class' => 'form-control']) !!}
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                    </div>
+
                     <div class="form-group col-sm-12 col-lg-12">
-                        {!! Form::label('terapia_empirica', 'Terapia Empirica:') !!}
-                        {!! Form::textarea('terapia_empirica', null, ['class' => 'form-control']) !!}
-                    </div>
-
-                    <!-- Terapia Especifica Field -->
-                    <div class="form-group col-sm-12 col-lg-12">
-                        {!! Form::label('terapia_especifica', 'Terapia Especifica:') !!}
-                        {!! Form::textarea('terapia_especifica', null, ['class' => 'form-control']) !!}
-                    </div>
-
-                    <!-- Fuente Infeccion Extrahospitalaria Field -->
-                    <div class="form-group col-sm-6">
-                        {!! Form::label('fuente_infeccion_extrahospitalaria', 'Fuente Infeccion Extrahospitalaria:') !!}
-                        <label class="checkbox-inline">
-                            {!! Form::hidden('fuente_infeccion_extrahospitalaria', 0) !!}
-                            {!! Form::checkbox('fuente_infeccion_extrahospitalaria', '1', null) !!}
-                        </label>
+                        @include('solicitudes.panel_medicamentos')
                     </div>
 
 
-                    <!-- Fuente Infeccion Intrahospitalaria Field -->
-                    <div class="form-group col-sm-6">
-                        {!! Form::label('fuente_infeccion_intrahospitalaria', 'Fuente Infeccion Intrahospitalaria:') !!}
-                        <label class="checkbox-inline">
-                            {!! Form::hidden('fuente_infeccion_intrahospitalaria', 0) !!}
-                            {!! Form::checkbox('fuente_infeccion_intrahospitalaria', '1', null) !!}
-                        </label>
-                    </div>
 
 
-                    <!-- Disfuncion Renal Field -->
-                    <div class="form-group col-sm-6">
-                        {!! Form::label('disfuncion_renal', 'Disfuncion Renal:') !!}
-                        <label class="checkbox-inline">
-                            {!! Form::hidden('disfuncion_renal', 0) !!}
-                            {!! Form::checkbox('disfuncion_renal', '1', null) !!}
-                        </label>
-                    </div>
-
-
-                    <!-- Disfuncion Hepatica Field -->
-                    <div class="form-group col-sm-6">
-                        {!! Form::label('disfuncion_hepatica', 'Disfuncion Hepatica:') !!}
-                        <label class="checkbox-inline">
-                            {!! Form::hidden('disfuncion_hepatica', 0) !!}
-                            {!! Form::checkbox('disfuncion_hepatica', '1', null) !!}
-                        </label>
-                    </div>
-
-
-                    <!-- Creatinina Field -->
-                    <div class="form-group col-sm-6">
-                        {!! Form::label('creatinina', 'Creatinina:') !!}
-                        {!! Form::number('creatinina', null, ['class' => 'form-control']) !!}
-                    </div>
-
-                    <!-- Peso Field -->
-                    <div class="form-group col-sm-6">
-                        {!! Form::label('peso', 'Peso:') !!}
-                        {!! Form::number('peso', null, ['class' => 'form-control']) !!}
-                    </div>
 
                     <!-- Observaciones Field -->
                     <div class="form-group col-sm-12 col-lg-12">
@@ -139,9 +232,7 @@
     </div>
 
 
-    <div class="form-group col-sm-12 col-lg-12">
-        @include('solicitudes.panel_medicamentos')
-    </div>
+
 {{--    --}}
 {{--    <div class="form-group col-sm-12 col-lg-12">--}}
 {{--        @include('remas.panel_ventilaciones_mecanicas')--}}
