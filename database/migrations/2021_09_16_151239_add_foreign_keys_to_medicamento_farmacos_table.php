@@ -14,10 +14,10 @@ class AddForeignKeysToMedicamentoFarmacosTable extends Migration
     public function up()
     {
         Schema::table('medicamento_farmacos', function (Blueprint $table) {
-            $table->foreign('farmaco_id', 'fk_medicamento_composicion_farmacos1')->references('id')->on('farmacos');
-            $table->foreign('medicamento_id', 'fk_medicamento_composicion_medicamentos1')->references('id')->on('medicamentos');
-            $table->foreign('unidad_medida_id', 'fk_medicamento_composicion_unidad_medida1')->references('id')->on('unidad_medida');
-            $table->foreign('unidad_medida_divisora', 'fk_medicamento_composicion_unidad_medida2')->references('id')->on('unidad_medida');
+            $table->foreign('farmaco_id', 'fk_medicamento_farmacos1')->references('id')->on('farmacos');
+            $table->foreign('medicamento_id', 'fk_medicamento_farmacos2')->references('id')->on('medicamentos');
+            $table->foreign('unidad_medida_id', 'fk_medicamento_farmacos3')->references('id')->on('unidad_medida');
+            $table->foreign('unidad_medida_divisora', 'fk_medicamento_farmacos4')->references('id')->on('unidad_medida');
         });
     }
 
@@ -29,10 +29,10 @@ class AddForeignKeysToMedicamentoFarmacosTable extends Migration
     public function down()
     {
         Schema::table('medicamento_farmacos', function (Blueprint $table) {
-            $table->dropForeign('fk_medicamento_composicion_farmacos1');
-            $table->dropForeign('fk_medicamento_composicion_medicamentos1');
-            $table->dropForeign('fk_medicamento_composicion_unidad_medida1');
-            $table->dropForeign('fk_medicamento_composicion_unidad_medida2');
+            $table->dropForeign('fk_medicamento_farmacos1');
+            $table->dropForeign('fk_medicamento_farmacos2');
+            $table->dropForeign('fk_medicamento_farmacos3');
+            $table->dropForeign('fk_medicamento_farmacos4');
         });
     }
 }

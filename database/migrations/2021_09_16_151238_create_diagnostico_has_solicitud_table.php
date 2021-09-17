@@ -14,8 +14,8 @@ class CreateDiagnosticoHasSolicitudTable extends Migration
     public function up()
     {
         Schema::create('diagnostico_has_solicitud', function (Blueprint $table) {
-            $table->unsignedBigInteger('diagnostico_id')->index('fk_diagnosticos_has_solicitudes_diagnosticos1_idx');
-            $table->unsignedBigInteger('solicitud_id')->index('fk_diagnosticos_has_solicitudes_solicitudes1_idx');
+            $table->unsignedBigInteger('diagnostico_id')->index('fk_diagnostico_solicitude_idx1');
+            $table->unsignedBigInteger('solicitud_id')->index('fk_diagnostico_solicitude_idx2');
             $table->text('otro')->nullable();
             $table->primary(['diagnostico_id', 'solicitud_id']);
         });

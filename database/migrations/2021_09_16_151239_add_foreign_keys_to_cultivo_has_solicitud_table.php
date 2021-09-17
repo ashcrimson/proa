@@ -14,8 +14,8 @@ class AddForeignKeysToCultivoHasSolicitudTable extends Migration
     public function up()
     {
         Schema::table('cultivo_has_solicitud', function (Blueprint $table) {
-            $table->foreign('cultivo_id', 'fk_cultivos_has_solicitudes_cultivos1')->references('id')->on('cultivos');
-            $table->foreign('solicitud_id', 'fk_cultivos_has_solicitudes_solicitudes1')->references('id')->on('solicitudes');
+            $table->foreign('cultivo_id', 'fk_cultivo_solicitud1')->references('id')->on('cultivos');
+            $table->foreign('solicitud_id', 'fk_cultivo_solicitud2')->references('id')->on('solicitudes');
         });
     }
 
@@ -27,8 +27,8 @@ class AddForeignKeysToCultivoHasSolicitudTable extends Migration
     public function down()
     {
         Schema::table('cultivo_has_solicitud', function (Blueprint $table) {
-            $table->dropForeign('fk_cultivos_has_solicitudes_cultivos1');
-            $table->dropForeign('fk_cultivos_has_solicitudes_solicitudes1');
+            $table->dropForeign('fk_cultivo_solicitud1');
+            $table->dropForeign('fk_cultivo_solicitud2');
         });
     }
 }

@@ -14,7 +14,7 @@ class AddForeignKeysToFormasFarmaceuticasTable extends Migration
     public function up()
     {
         Schema::table('formas_farmaceuticas', function (Blueprint $table) {
-            $table->foreign('tipo_id', 'fk_formas_farmaceuticas_forma_farmaceutica_tipo1')->references('id')->on('forma_farmaceutica_tipo');
+            $table->foreign('tipo_id', 'fk_formas_farmaceutica_tipo1')->references('id')->on('forma_farmaceutica_tipo');
         });
     }
 
@@ -26,7 +26,7 @@ class AddForeignKeysToFormasFarmaceuticasTable extends Migration
     public function down()
     {
         Schema::table('formas_farmaceuticas', function (Blueprint $table) {
-            $table->dropForeign('fk_formas_farmaceuticas_forma_farmaceutica_tipo1');
+            $table->dropForeign('fk_formas_farmaceutica_tipo1');
         });
     }
 }

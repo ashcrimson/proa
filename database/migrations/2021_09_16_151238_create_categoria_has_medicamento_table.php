@@ -14,8 +14,8 @@ class CreateCategoriaHasMedicamentoTable extends Migration
     public function up()
     {
         Schema::create('medicamento_has_categoria', function (Blueprint $table) {
-            $table->unsignedBigInteger('medicamento_id')->index('fk_farmaco_medicamento_has_categorias_medicamentos1_idx');
-            $table->unsignedBigInteger('categoria_id')->index('fk_farmaco_medicamento_has_categorias_farmaco_categoria1_idx');
+            $table->unsignedBigInteger('medicamento_id')->index('fk_medicamento_categorias_idx1');
+            $table->unsignedBigInteger('categoria_id')->index('fk_medicamento_categorias_idx2');
             $table->primary(['categoria_id', 'medicamento_id']);
         });
     }

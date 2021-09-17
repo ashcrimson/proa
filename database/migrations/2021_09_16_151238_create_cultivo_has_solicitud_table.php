@@ -14,8 +14,8 @@ class CreateCultivoHasSolicitudTable extends Migration
     public function up()
     {
         Schema::create('cultivo_has_solicitud', function (Blueprint $table) {
-            $table->unsignedBigInteger('cultivo_id')->index('fk_cultivos_has_solicitudes_cultivos1_idx');
-            $table->unsignedBigInteger('solicitud_id')->index('fk_cultivos_has_solicitudes_solicitudes1_idx');
+            $table->unsignedBigInteger('cultivo_id')->index('fk_cultivos_solicitudes_idx1');
+            $table->unsignedBigInteger('solicitud_id')->index('fk_cultivos_solicitudes_idx2');
             $table->string('otro')->nullable();
             $table->primary(['cultivo_id', 'solicitud_id']);
         });

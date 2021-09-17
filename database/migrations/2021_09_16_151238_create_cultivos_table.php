@@ -14,8 +14,8 @@ class CreateCultivosTable extends Migration
     public function up()
     {
         Schema::create('cultivos', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('nombre')->unique('nombre_UNIQUE');
+            $table->id();
+            $table->string('nombre')->unique();
             $table->timestamps();
             $table->softDeletes();
         });

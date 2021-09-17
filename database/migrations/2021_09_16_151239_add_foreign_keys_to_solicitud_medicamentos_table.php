@@ -14,8 +14,8 @@ class AddForeignKeysToSolicitudMedicamentosTable extends Migration
     public function up()
     {
         Schema::table('solicitud_medicamentos', function (Blueprint $table) {
-            $table->foreign('medicamento_id', 'fk_solicitud_medicamentos_medicamentos1')->references('id')->on('medicamentos');
-            $table->foreign('solicitud_id', 'fk_solicitud_medicamentos_solicitudes1')->references('id')->on('solicitudes');
+            $table->foreign('medicamento_id', 'fk_solicitud_medicamentos1')->references('id')->on('medicamentos');
+            $table->foreign('solicitud_id', 'fk_solicitud_medicamentos2')->references('id')->on('solicitudes');
         });
     }
 
@@ -27,8 +27,8 @@ class AddForeignKeysToSolicitudMedicamentosTable extends Migration
     public function down()
     {
         Schema::table('solicitud_medicamentos', function (Blueprint $table) {
-            $table->dropForeign('fk_solicitud_medicamentos_medicamentos1');
-            $table->dropForeign('fk_solicitud_medicamentos_solicitudes1');
+            $table->dropForeign('fk_solicitud_medicamentos1');
+            $table->dropForeign('fk_solicitud_medicamentos2');
         });
     }
 }

@@ -14,9 +14,9 @@ class CreateSolicitudMedicamentosTable extends Migration
     public function up()
     {
         Schema::create('solicitud_medicamentos', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('solicitud_id')->index('fk_solicitud_medicamentos_solicitudes1_idx');
-            $table->unsignedBigInteger('medicamento_id')->index('fk_solicitud_medicamentos_medicamentos1_idx');
+            $table->id();
+            $table->unsignedBigInteger('solicitud_id')->index('fk_solicitud_medicamentos_idx1');
+            $table->unsignedBigInteger('medicamento_id')->index('fk_solicitud_medicamentos_idx2');
             $table->string('dosis');
             $table->string('frecuencia')->nullable();
             $table->string('periodo')->nullable();

@@ -14,8 +14,8 @@ class AddForeignKeysToSolicitudMicrooganismosTable extends Migration
     public function up()
     {
         Schema::table('solicitud_microorganismos', function (Blueprint $table) {
-            $table->foreign('microorganismo_id', 'fk_solicitud_microorganismos_microorganismos1')->references('id')->on('microorganismos');
-            $table->foreign('solicitud_id', 'fk_solicitud_microorganismos_solicitudes1')->references('id')->on('solicitudes');
+            $table->foreign('microorganismo_id', 'fk_solicitud_microorganismos1')->references('id')->on('microorganismos');
+            $table->foreign('solicitud_id', 'fk_solicitud_microorganismos2')->references('id')->on('solicitudes');
         });
     }
 
@@ -27,8 +27,8 @@ class AddForeignKeysToSolicitudMicrooganismosTable extends Migration
     public function down()
     {
         Schema::table('solicitud_microorganismos', function (Blueprint $table) {
-            $table->dropForeign('fk_solicitud_microorganismos_microorganismos1');
-            $table->dropForeign('fk_solicitud_microorganismos_solicitudes1');
+            $table->dropForeign('fk_solicitud_microorganismos1');
+            $table->dropForeign('fk_solicitud_microorganismos2');
         });
     }
 }

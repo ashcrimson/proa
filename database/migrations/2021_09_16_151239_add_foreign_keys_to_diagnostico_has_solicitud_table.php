@@ -14,8 +14,8 @@ class AddForeignKeysToDiagnosticoHasSolicitudTable extends Migration
     public function up()
     {
         Schema::table('diagnostico_has_solicitud', function (Blueprint $table) {
-            $table->foreign('diagnostico_id', 'fk_diagnosticos_has_solicitudes_diagnosticos1')->references('id')->on('diagnosticos');
-            $table->foreign('solicitud_id', 'fk_diagnosticos_has_solicitudes_solicitudes1')->references('id')->on('solicitudes');
+            $table->foreign('diagnostico_id', 'fk_diagnosticos_solicitudes1')->references('id')->on('diagnosticos');
+            $table->foreign('solicitud_id', 'fk_diagnosticos_solicitudes2')->references('id')->on('solicitudes');
         });
     }
 
@@ -27,8 +27,8 @@ class AddForeignKeysToDiagnosticoHasSolicitudTable extends Migration
     public function down()
     {
         Schema::table('diagnostico_has_solicitud', function (Blueprint $table) {
-            $table->dropForeign('fk_diagnosticos_has_solicitudes_diagnosticos1');
-            $table->dropForeign('fk_diagnosticos_has_solicitudes_solicitudes1');
+            $table->dropForeign('fk_diagnosticos_solicitudes1');
+            $table->dropForeign('fk_diagnosticos_solicitudes2');
         });
     }
 }

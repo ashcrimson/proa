@@ -14,7 +14,7 @@ class CreateMedicamentoViasAdminTable extends Migration
     public function up()
     {
         Schema::create('medicamento_vias_admin', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('nombre');
             $table->timestamps();
             $table->softDeletes();

@@ -14,9 +14,9 @@ class CreateFormasFarmaceuticasTable extends Migration
     public function up()
     {
         Schema::create('formas_farmaceuticas', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('nombre')->unique('nombre_UNIQUE');
-            $table->unsignedBigInteger('tipo_id')->nullable()->index('fk_formas_farmaceuticas_forma_farmaceutica_tipo1_idx');
+            $table->id();
+            $table->string('nombre')->unique();
+            $table->unsignedBigInteger('tipo_id')->nullable()->index('fk_forma_farm_tipo1_idx');
             $table->timestamps();
             $table->softDeletes();
         });

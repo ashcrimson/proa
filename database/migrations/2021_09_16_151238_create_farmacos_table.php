@@ -14,9 +14,9 @@ class CreateFarmacosTable extends Migration
     public function up()
     {
         Schema::create('farmacos', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('nombre')->unique('nombre_UNIQUE');
-            $table->unsignedBigInteger('categoria_id')->index('fk_farmacos_farmaco_categoria1_idx');
+            $table->id();
+            $table->string('nombre')->unique();
+            $table->unsignedBigInteger('categoria_id')->index('fk_farmaco_categoria1_idx');
             $table->timestamps();
             $table->softDeletes();
         });

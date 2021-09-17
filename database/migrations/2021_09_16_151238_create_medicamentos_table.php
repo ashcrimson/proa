@@ -14,15 +14,15 @@ class CreateMedicamentosTable extends Migration
     public function up()
     {
         Schema::create('medicamentos', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('nombre');
             $table->text('indicaciones')->nullable();
             $table->text('contraindicaciones')->nullable();
             $table->text('advertencias')->nullable();
             $table->text('dosis')->nullable();
-            $table->unsignedBigInteger('via_admin')->nullable()->index('fk_medicamentos_medicamento_clasificaciones1_idx');
-            $table->unsignedBigInteger('laboratorio_id')->nullable()->index('fk_medicamentos_laboratorios1_idx');
-            $table->unsignedBigInteger('forma_id')->nullable()->index('fk_medicamentos_medicamento_presentaciones1_idx');
+            $table->unsignedBigInteger('via_admin')->nullable()->index('fk_medicamentos_via_idx');
+            $table->unsignedBigInteger('laboratorio_id')->nullable()->index('fk_medicamento_laboratorio_idx');
+            $table->unsignedBigInteger('forma_id')->nullable()->index('fk_medicamentos_forma1_idx');
             $table->tinyInteger('receta')->nullable();
             $table->decimal('cantidad_total')->nullable();
             $table->decimal('cantidad_formula')->nullable();
