@@ -15,7 +15,7 @@ class CreateSolicitudesTable extends Migration
     {
         Schema::create('solicitudes', function (Blueprint $table) {
             $table->id();
-            $table->string('codigo', 45)->nullable();
+            $table->string('codigo')->nullable();
             $table->integer('correlativo')->nullable();
             $table->unsignedBigInteger('paciente_id')->nullable()->index('fk_solicitud_paciente_idx');
             $table->unsignedBigInteger('estado_id')->nullable()->index('fk_solicitud_estado_idx');

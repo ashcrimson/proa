@@ -7,16 +7,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Solicitud
  * @package App\Models
- * @version September 16, 2021, 3:50 pm CST
+ * @version September 17, 2021, 4:28 pm CST
  *
- * @property \App\Models\Paciente $paciente
  * @property \App\Models\SolicitudEstado $estado
+ * @property \App\Models\Paciente $paciente
  * @property \App\Models\User $userCrea
  * @property \App\Models\User $userActualiza
  * @property \Illuminate\Database\Eloquent\Collection $cultivos
  * @property \Illuminate\Database\Eloquent\Collection $diagnosticos
- * @property \Illuminate\Database\Eloquent\Collection $solicitudMedicamentos
- * @property \Illuminate\Database\Eloquent\Collection $solicitudMicrooganismos
+ * @property \Illuminate\Database\Eloquent\Collection $medicamentos
+ * @property \Illuminate\Database\Eloquent\Collection $microorganismos
  * @property string $codigo
  * @property integer $correlativo
  * @property integer $paciente_id
@@ -25,8 +25,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property boolean $continuacion
  * @property string $terapia_empirica
  * @property string $terapia_especifica
- * @property boolean $fuente_infeccion_extrahospitalaria
- * @property boolean $fuente_infeccion_intrahospitalaria
+ * @property boolean $infeccion_extrahospitalaria
+ * @property boolean $infeccion_intrahospitalaria
  * @property boolean $disfuncion_renal
  * @property boolean $disfuncion_hepatica
  * @property number $creatinina
@@ -58,8 +58,8 @@ class Solicitud extends Model
         'continuacion',
         'terapia_empirica',
         'terapia_especifica',
-        'fuente_infeccion_extrahospitalaria',
-        'fuente_infeccion_intrahospitalaria',
+        'infeccion_extrahospitalaria',
+        'infeccion_intrahospitalaria',
         'disfuncion_renal',
         'disfuncion_hepatica',
         'creatinina',
@@ -84,8 +84,8 @@ class Solicitud extends Model
         'continuacion' => 'boolean',
         'terapia_empirica' => 'string',
         'terapia_especifica' => 'string',
-        'fuente_infeccion_extrahospitalaria' => 'boolean',
-        'fuente_infeccion_intrahospitalaria' => 'boolean',
+        'infeccion_extrahospitalaria' => 'boolean',
+        'infeccion_intrahospitalaria' => 'boolean',
         'disfuncion_renal' => 'boolean',
         'disfuncion_hepatica' => 'boolean',
         'creatinina' => 'decimal:2',
@@ -105,8 +105,8 @@ class Solicitud extends Model
         'continuacion' => 'nullable|boolean',
         'terapia_empirica' => 'nullable|string',
         'terapia_especifica' => 'nullable|string',
-        'fuente_infeccion_extrahospitalaria' => 'nullable|boolean',
-        'fuente_infeccion_intrahospitalaria' => 'nullable|boolean',
+        'infeccion_extrahospitalaria' => 'nullable|boolean',
+        'infeccion_intrahospitalaria' => 'nullable|boolean',
         'disfuncion_renal' => 'nullable|boolean',
         'disfuncion_hepatica' => 'nullable|boolean',
         'creatinina' => 'nullable|numeric',
@@ -117,17 +117,17 @@ class Solicitud extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function paciente()
+    public function estado()
     {
-        return $this->belongsTo(\App\Models\Paciente::class, 'paciente_id');
+        return $this->belongsTo(\App\Models\SolicitudEstado::class, 'estado_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function estado()
+    public function paciente()
     {
-        return $this->belongsTo(\App\Models\SolicitudEstado::class, 'estado_id');
+        return $this->belongsTo(\App\Models\Paciente::class, 'paciente_id');
     }
 
     /**
