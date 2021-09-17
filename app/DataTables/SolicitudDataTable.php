@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Solicitud;
+use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
@@ -24,6 +25,11 @@ class SolicitudDataTable extends DataTable
 
                  return view('solicitudes.datatables_actions',compact('solicitud','id'))->render();
              })
+             ->editColumn('paciente.nombre_completo',function (Solicitud $solicitud){
+
+                 return $solicitud->paciente->nombre_completo;
+
+             })
              ->editColumn('id',function (Solicitud $solicitud){
 
                  return $solicitud->id;
@@ -44,7 +50,7 @@ class SolicitudDataTable extends DataTable
      */
     public function query(Solicitud $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()->with(['paciente','estado','userCrea','medicamentos','microoganismos']);
     }
 
     /**
@@ -96,23 +102,19 @@ class SolicitudDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'codigo',
-            'correlativo',
-            'paciente_id',
-            'estado_id',
-            'inicio',
-            'continuacion',
-            'terapia_empirica',
-            'terapia_especifica',
-            'fuente_infeccion_extrahospitalaria',
-            'fuente_infeccion_intrahospitalaria',
-            'disfuncion_renal',
-            'disfuncion_hepatica',
-            'creatinina',
-            'peso',
-            'observaciones',
-            'user_crea',
-            'user_actualiza'
+            Column::make('medico')->name('userCrea.name')->data('user_crea.name'),
+
+            Column::make('paciente.apellido_paterno')
+                ->visible(false)->exportable(false),
+            Column::make('paciente.apellido_materno')
+                ->visible(false)->exportable(false),
+            Column::make('paciente.primer_nombre')
+                ->visible(false)->exportable(false),
+            Column::make('paciente.segundo_nombre')
+                ->visible(false)->exportable(false),
+
+            Column::make('paciente')->name('paciente.nombre_completo')->data('paciente.nombre_completo'),
+            Column::make('estado')->name('estado.nombre')->data('estado.nombre'),
         ];
     }
 

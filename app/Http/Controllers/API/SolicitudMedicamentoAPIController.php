@@ -34,6 +34,10 @@ class SolicitudMedicamentoAPIController extends AppBaseController
             $query->limit($request->get('limit'));
         }
 
+        if ($request->solicitud_id) {
+            $query->where('solicitud_id',$request->solicitud_id);
+        }
+
         $solicitudMedicamentos = $query->get();
 
         return $this->sendResponse($solicitudMedicamentos->toArray(), 'Solicitud Medicamentos retrieved successfully');

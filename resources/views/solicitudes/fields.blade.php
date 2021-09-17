@@ -40,29 +40,6 @@
             <!-- /.card-header -->
             <div class="card-body">
                 <div class="form-row">
-                    <!-- Codigo Field -->
-                    <div class="form-group col-sm-6">
-                        {!! Form::label('codigo', 'Codigo:') !!}
-                        {!! Form::text('codigo', null, ['class' => 'form-control','maxlength' => 45,'maxlength' => 45,'maxlength' => 45]) !!}
-                    </div>
-
-                    <!-- Correlativo Field -->
-                    <div class="form-group col-sm-6">
-                        {!! Form::label('correlativo', 'Correlativo:') !!}
-                        {!! Form::number('correlativo', null, ['class' => 'form-control']) !!}
-                    </div>
-
-                    <!-- Paciente Id Field -->
-                    <div class="form-group col-sm-6">
-                        {!! Form::label('paciente_id', 'Paciente Id:') !!}
-                        {!! Form::number('paciente_id', null, ['class' => 'form-control']) !!}
-                    </div>
-
-                    <!-- Estado Id Field -->
-                    <div class="form-group col-sm-6">
-                        {!! Form::label('estado_id', 'Estado Id:') !!}
-                        {!! Form::number('estado_id', null, ['class' => 'form-control']) !!}
-                    </div>
 
                     <!-- Inicio Field -->
                     <div class="form-group col-sm-6">

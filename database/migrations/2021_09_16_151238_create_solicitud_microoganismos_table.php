@@ -13,10 +13,10 @@ class CreateSolicitudMicrooganismosTable extends Migration
      */
     public function up()
     {
-        Schema::create('solicitud_microoganismos', function (Blueprint $table) {
+        Schema::create('solicitud_microorganismos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('solicitud_id')->index('fk_solicitud_microoganismos_solicitudes1_idx');
-            $table->unsignedBigInteger('microorganismo_id')->index('fk_solicitud_microoganismos_microorganismos1_idx');
+            $table->unsignedBigInteger('solicitud_id')->index('fk_solicitud_microorganismos_solicitudes1_idx');
+            $table->unsignedBigInteger('microorganismo_id')->index('fk_solicitud_microorganismos_microorganismos1_idx');
             $table->string('susceptibilidad');
             $table->timestamps();
             $table->softDeletes();
@@ -30,6 +30,6 @@ class CreateSolicitudMicrooganismosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('solicitud_microoganismos');
+        Schema::dropIfExists('solicitud_microorganismos');
     }
 }

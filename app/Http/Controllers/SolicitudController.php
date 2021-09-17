@@ -6,10 +6,13 @@ use App\DataTables\SolicitudDataTable;
 use App\Http\Requests;
 use App\Http\Requests\CreateSolicitudRequest;
 use App\Http\Requests\UpdateSolicitudRequest;
+use App\Models\Paciente;
 use App\Models\Solicitud;
 use App\Models\SolicitudEstado;
+use Exception;
 use Flash;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\DB;
 use Response;
 
 class SolicitudController extends AppBaseController
@@ -56,12 +59,34 @@ class SolicitudController extends AppBaseController
      */
     public function store(CreateSolicitudRequest $request)
     {
-        $input = $request->all();
 
-        /** @var Solicitud $solicitud */
-        $solicitud = Solicitud::create($input);
+        try {
+            DB::beginTransaction();
 
-        Flash::success('Solicitud guardado exitosamente.');
+            /**
+             * @var  Paciente $paciente
+             */
+            $paciente = $this->creaOactualizaPaciente($request);
+
+            $request->merge([
+                'user crea' => auth()->user()->id,
+                'paciente_id' => $paciente->id,
+                'estado_id' => SolicitudEstado::INGRESADA,
+            ]);
+
+            /** @var Solicitud $solicitud */
+            $solicitud = Solicitud::create($request->all());
+
+        } catch (Exception $exception) {
+            DB::rollBack();
+
+            throw new Exception($exception);
+        }
+
+        DB::commit();
+
+
+        flash()->success('Solicitud guardado exitosamente.');
 
         return redirect(route('solicitudes.index'));
     }
@@ -79,7 +104,7 @@ class SolicitudController extends AppBaseController
         $solicitud = Solicitud::find($id);
 
         if (empty($solicitud)) {
-            Flash::error('Solicitud no encontrado');
+            flash()->error('Solicitud no encontrado');
 
             return redirect(route('solicitudes.index'));
         }
@@ -100,7 +125,7 @@ class SolicitudController extends AppBaseController
         $solicitud = Solicitud::find($id);
 
         if (empty($solicitud)) {
-            Flash::error('Solicitud no encontrado');
+            flash()->error('Solicitud no encontrado');
 
             return redirect(route('solicitudes.index'));
         }
@@ -122,15 +147,38 @@ class SolicitudController extends AppBaseController
         $solicitud = Solicitud::find($id);
 
         if (empty($solicitud)) {
-            Flash::error('Solicitud no encontrado');
+            flash()->error('Solicitud no encontrado');
 
             return redirect(route('solicitudes.index'));
         }
 
-        $solicitud->fill($request->all());
-        $solicitud->save();
+        try {
+            DB::beginTransaction();
 
-        Flash::success('Solicitud actualizado con éxito.');
+            /**
+             * @var  Paciente $paciente
+             */
+            $paciente = $this->creaOactualizaPaciente($request);
+
+            $request->merge([
+                'paciente_id' => $paciente->id,
+                'estado_id' => SolicitudEstado::INGRESADA,
+            ]);
+
+            $solicitud->fill($request->all());
+            $solicitud->save();
+
+        } catch (Exception $exception) {
+            DB::rollBack();
+
+            throw new Exception($exception);
+        }
+
+        DB::commit();
+
+
+
+        flash()->success('Solicitud actualizado con éxito.');
 
         return redirect(route('solicitudes.index'));
     }
@@ -150,17 +198,50 @@ class SolicitudController extends AppBaseController
         $solicitud = Solicitud::find($id);
 
         if (empty($solicitud)) {
-            Flash::error('Solicitud no encontrado');
+            flash()->error('Solicitud no encontrado');
 
             return redirect(route('solicitudes.index'));
         }
 
         $solicitud->delete();
 
-        Flash::success('Solicitud deleted successfully.');
+        flash()->success('Solicitud deleted successfully.');
 
         return redirect(route('solicitudes.index'));
     }
+
+    public function creaOactualizaPaciente(UpdateSolicitudRequest $request)
+    {
+        $paciente = Paciente::updateOrCreate([
+            'run' => $request->run,
+            'dv_run' => $request->dv_run,
+
+        ],[
+            'run' => $request->run,
+            'fecha_nac' => $request->fecha_nac,
+            'dv_run' => $request->dv_run,
+            'apellido_paterno' => $request->apellido_paterno,
+            'apellido_materno' => $request->apellido_materno,
+            'primer_nombre' => $request->primer_nombre,
+            'segundo_nombre' => $request->segundo_nombre,
+
+            'sexo' => $request->sexo ? 'M' : 'F',
+
+            'direccion' => $request->direccion,
+            'familiar_responsable' => $request->familiar_responsable,
+            'telefono' => $request->telefono,
+            'telefono2' => $request->telefono2,
+            'prevision_id' => $request->prevision_id,
+            'clave' => $request->clave,
+            'movil_envia' => $request->movil_envia,
+
+        ]);
+
+
+
+        return $paciente;
+    }
+
 
     public function getSolicitudTemporal()
     {
@@ -174,5 +255,29 @@ class SolicitudController extends AppBaseController
         }
 
         return $sol;
+    }
+
+    public function addAttributosRema(Solicitud $solicitud)
+    {
+
+        $solicitud->setAttribute("run" ,$solicitud->paciente->run);
+        $solicitud->setAttribute("dv_run" ,$solicitud->paciente->dv_run);
+        $solicitud->setAttribute("apellido_paterno" ,$solicitud->paciente->apellido_paterno);
+        $solicitud->setAttribute("apellido_materno" ,$solicitud->paciente->apellido_materno);
+        $solicitud->setAttribute("primer_nombre" ,$solicitud->paciente->primer_nombre);
+        $solicitud->setAttribute("segundo_nombre" ,$solicitud->paciente->segundo_nombre);
+        $solicitud->setAttribute("fecha_nac" ,Carbon::parse($solicitud->paciente->fecha_nac)->format('Y-m-d'));
+        $solicitud->setAttribute("sexo" ,$solicitud->paciente->sexo == 'M' ? 1 : 0);
+
+        $solicitud->setAttribute("direccion" ,$solicitud->paciente->direccion);
+        $solicitud->setAttribute("familiar_responsable" ,$solicitud->paciente->familiar_responsable);
+        $solicitud->setAttribute("telefono" ,$solicitud->paciente->telefono);
+        $solicitud->setAttribute("telefono2" ,$solicitud->paciente->telefono2);
+        $solicitud->setAttribute("prevision_id" ,$solicitud->paciente->prevision_id);
+        $solicitud->setAttribute("clave" ,$solicitud->paciente->clave);
+        $solicitud->setAttribute("movil_envia" ,$solicitud->paciente->movil_envia);
+
+
+        return $solicitud;
     }
 }

@@ -25,13 +25,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $familiar_responsable
  * @property string $telefono
  * @property string $telefono2
+ * @property string $nombre_completo
  */
 class Paciente extends Model
 {
     use SoftDeletes;
 
     public $table = 'pacientes';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -114,5 +115,11 @@ class Paciente extends Model
     public function solicitudes()
     {
         return $this->hasMany(\App\Models\Solicitude::class, 'paciente_id');
+    }
+
+    public function getNombreCompletoAttribute()
+    {
+        $nombre = $this->primer_nombre.' '.$this->segundo_nombre.' '.$this->apellido_paterno.' '.$this->apellido_materno;
+        return str_replace('  ','',$nombre);
     }
 }

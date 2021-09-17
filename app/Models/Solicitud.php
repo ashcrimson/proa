@@ -101,10 +101,6 @@ class Solicitud extends Model
      * @var array
      */
     public static $rules = [
-        'codigo' => 'nullable|string|max:45',
-        'correlativo' => 'nullable|integer',
-        'paciente_id' => 'required',
-        'estado_id' => 'required',
         'inicio' => 'nullable|boolean',
         'continuacion' => 'nullable|boolean',
         'terapia_empirica' => 'nullable|string',
@@ -116,11 +112,6 @@ class Solicitud extends Model
         'creatinina' => 'nullable|numeric',
         'peso' => 'nullable|numeric',
         'observaciones' => 'nullable|string',
-        'user_crea' => 'required',
-        'user_actualiza' => 'required',
-        'created_at' => 'nullable',
-        'updated_at' => 'nullable',
-        'deleted_at' => 'nullable'
     ];
 
     /**
