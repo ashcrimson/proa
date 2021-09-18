@@ -254,7 +254,7 @@ function nf($numero,$cantidad_decimales=null,$separador_decimal=null,$separador_
 /**
  * Formatea los números de precios con separador de miles, separador decimales y cantidad de decimales mediante llaves de configuración
  */
-function nfp($numero,$cantidad_decimales=null,$separador_decimal=null,$separador_miles=null){
+function nfp($numero,$cantidad_decimales=null,$separadhor_decimal=null,$separador_miles=null){
 
 
     $cantidad_decimales = $cantidad_decimales ?? config('app.cantidad_decimales_precio');
@@ -262,4 +262,23 @@ function nfp($numero,$cantidad_decimales=null,$separador_decimal=null,$separador
     $separador_miles = $separador_miles ?? config('app.separador_miles');
 
     return number_format($numero,$cantidad_decimales,$separador_decimal,$separador_miles);
+}
+
+/**
+ * @param \Illuminate\Database\Eloquent\Collection $items
+ * @param $id
+ * @return null
+ */
+function validaCheched($items = null,$id){
+    if (!$items){
+        return null;
+    }
+
+
+    if ($items->contains('id',$id)){
+        return 'checked';
+    }else{
+        return null;
+    }
+
 }

@@ -138,7 +138,8 @@
                                 <div class="form-group mb-0">
                                     @foreach(\App\Models\Cultivo::all() as $cultivo)
                                         <div class="custom-control custom-checkbox custom-control-inline">
-                                            <input class="custom-control-input" id="cultivoCheck{{$cultivo->id}}" type="checkbox" name="cultivos[]" value="{{$cultivo->id}}">
+                                            <input class="custom-control-input" id="cultivoCheck{{$cultivo->id}}" type="checkbox" name="cultivos[]" value="{{$cultivo->id}}"
+                                                {{validaCheched($solicitud->cultivos ?? null,$cultivo->id)}}>
                                             <label for="cultivoCheck{{$cultivo->id}}" class="custom-control-label">
                                                 {{$cultivo->nombre}}
                                             </label>
@@ -162,7 +163,8 @@
                                 <div class="form-group mb-0">
                                     @foreach(\App\Models\Diagnostico::all() as $diag)
                                         <div class="custom-control custom-checkbox custom-control-inline">
-                                            <input class="custom-control-input" id="diagnosticoCheck{{$diag->id}}" type="checkbox" name="cultivos[]" value="{{$diag->id}}">
+                                            <input class="custom-control-input" id="diagnosticoCheck{{$diag->id}}" type="checkbox" name="diagnosticos[]" value="{{$diag->id}}"
+                                                   {{validaCheched($solicitud->diagnosticos ?? null,$diag->id)}}>
                                             <label for="diagnosticoCheck{{$diag->id}}" class="custom-control-label">
                                                 {{$diag->nombre}}
                                             </label>

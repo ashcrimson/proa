@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateSolicitudRequest;
 use App\Models\Paciente;
 use App\Models\Solicitud;
 use App\Models\SolicitudEstado;
+use Carbon\Carbon;
 use Exception;
 use Flash;
 use App\Http\Controllers\AppBaseController;
@@ -124,6 +125,8 @@ class SolicitudController extends AppBaseController
         /** @var Solicitud $solicitud */
         $solicitud = Solicitud::find($id);
 
+        $solicitud = $this->addAttributos($solicitud);
+
         if (empty($solicitud)) {
             flash()->error('Solicitud no encontrado');
 
@@ -143,6 +146,7 @@ class SolicitudController extends AppBaseController
      */
     public function update($id, UpdateSolicitudRequest $request)
     {
+
         /** @var Solicitud $solicitud */
         $solicitud = Solicitud::find($id);
 
@@ -163,10 +167,19 @@ class SolicitudController extends AppBaseController
             $request->merge([
                 'paciente_id' => $paciente->id,
                 'estado_id' => SolicitudEstado::INGRESADA,
+                'inicio' => $request->tratamiento=='inicio' ? 1 : 0,
+                'continuacion' => $request->tratamiento=='continuacion' ? 1 : 0,
+                'terapia_empirica' => $request->terapia=='terapia_empirica' ? 1 : 0,
+                'terapia_especifica' => $request->terapia=='terapia_especifica' ? 1 : 0,
+                'infeccion_extrahospitalaria' => $request->fuente_infeccion=='infeccion_extrahospitalaria' ? 1 : 0,
+                'infeccion_intrahospitalaria' => $request->fuente_infeccion=='infeccion_intrahospitalaria' ? 1 : 0,
             ]);
 
             $solicitud->fill($request->all());
             $solicitud->save();
+
+            $solicitud->diagnosticos()->sync($request->diagnosticos ?? []);
+            $solicitud->cultivos()->sync($request->cultivos ?? []);
 
         } catch (Exception $exception) {
             DB::rollBack();
@@ -257,7 +270,7 @@ class SolicitudController extends AppBaseController
         return $sol;
     }
 
-    public function addAttributosRema(Solicitud $solicitud)
+    public function addAttributos(Solicitud $solicitud)
     {
 
         $solicitud->setAttribute("run" ,$solicitud->paciente->run);
