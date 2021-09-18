@@ -125,7 +125,10 @@ class SolicitudController extends AppBaseController
         /** @var Solicitud $solicitud */
         $solicitud = Solicitud::find($id);
 
-        $solicitud = $this->addAttributos($solicitud);
+
+        if (!$solicitud->esTemporal()){
+            $solicitud = $this->addAttributos($solicitud);
+        }
 
         if (empty($solicitud)) {
             flash()->error('Solicitud no encontrado');
