@@ -138,8 +138,8 @@
                                 <div class="form-group mb-0">
                                     @foreach(\App\Models\Cultivo::all() as $cultivo)
                                         <div class="custom-control custom-checkbox custom-control-inline">
-                                            <input class="custom-control-input" type="checkbox" name="cultivos[]" value="{{$cultivo->id}}">
-                                            <label for="customCheckbox1" class="custom-control-label">
+                                            <input class="custom-control-input" id="cultivoCheck{{$cultivo->id}}" type="checkbox" name="cultivos[]" value="{{$cultivo->id}}">
+                                            <label for="cultivoCheck{{$cultivo->id}}" class="custom-control-label">
                                                 {{$cultivo->nombre}}
                                             </label>
                                         </div>
@@ -159,7 +159,16 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-
+                                <div class="form-group mb-0">
+                                    @foreach(\App\Models\Diagnostico::all() as $diag)
+                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                            <input class="custom-control-input" id="diagnosticoCheck{{$diag->id}}" type="checkbox" name="cultivos[]" value="{{$diag->id}}">
+                                            <label for="diagnosticoCheck{{$diag->id}}" class="custom-control-label">
+                                                {{$diag->nombre}}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
                             <!-- /.card-body -->
                         </div>
@@ -174,36 +183,39 @@
                             <!-- /.card-header -->
                             <div class="card-body">
 
-                                <!-- Disfuncion Renal Field -->
-                                <div class="form-group col-sm-6">
-                                    {!! Form::label('disfuncion_renal', 'Disfuncion Renal:') !!}
-                                    <label class="checkbox-inline">
-                                        {!! Form::hidden('disfuncion_renal', 0) !!}
-                                        {!! Form::checkbox('disfuncion_renal', '1', null) !!}
-                                    </label>
-                                </div>
+                                <div class="form-row">
+
+                                    <!-- Disfuncion Renal Field -->
+                                    <div class="form-group col-sm-3">
+                                        {!! Form::label('disfuncion_renal', 'Disfuncion Renal:') !!}
+                                        <label class="checkbox-inline">
+                                            {!! Form::hidden('disfuncion_renal', 0) !!}
+                                            {!! Form::checkbox('disfuncion_renal', '1', null) !!}
+                                        </label>
+                                    </div>
 
 
-                                <!-- Disfuncion Hepatica Field -->
-                                <div class="form-group col-sm-6">
-                                    {!! Form::label('disfuncion_hepatica', 'Disfuncion Hepatica:') !!}
-                                    <label class="checkbox-inline">
-                                        {!! Form::hidden('disfuncion_hepatica', 0) !!}
-                                        {!! Form::checkbox('disfuncion_hepatica', '1', null) !!}
-                                    </label>
-                                </div>
+                                    <!-- Disfuncion Hepatica Field -->
+                                    <div class="form-group col-sm-3">
+                                        {!! Form::label('disfuncion_hepatica', 'Disfuncion Hepatica:') !!}
+                                        <label class="checkbox-inline">
+                                            {!! Form::hidden('disfuncion_hepatica', 0) !!}
+                                            {!! Form::checkbox('disfuncion_hepatica', '1', null) !!}
+                                        </label>
+                                    </div>
 
 
-                                <!-- Creatinina Field -->
-                                <div class="form-group col-sm-6">
-                                    {!! Form::label('creatinina', 'Creatinina:') !!}
-                                    {!! Form::number('creatinina', null, ['class' => 'form-control']) !!}
-                                </div>
+                                    <!-- Creatinina Field -->
+                                    <div class="form-group col-sm-3">
+                                        {!! Form::label('creatinina', 'Creatinina:') !!}
+                                        {!! Form::number('creatinina', null, ['class' => 'form-control']) !!}
+                                    </div>
 
-                                <!-- Peso Field -->
-                                <div class="form-group col-sm-6">
-                                    {!! Form::label('peso', 'Peso:') !!}
-                                    {!! Form::number('peso', null, ['class' => 'form-control']) !!}
+                                    <!-- Peso Field -->
+                                    <div class="form-group col-sm-3">
+                                        {!! Form::label('peso', 'Peso:') !!}
+                                        {!! Form::number('peso', null, ['class' => 'form-control']) !!}
+                                    </div>
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -221,7 +233,7 @@
                     <!-- Observaciones Field -->
                     <div class="form-group col-sm-12 col-lg-12">
                         {!! Form::label('observaciones', 'Observaciones:') !!}
-                        {!! Form::textarea('observaciones', null, ['class' => 'form-control']) !!}
+                        {!! Form::textarea('observaciones', null, ['class' => 'form-control','rows' => 3]) !!}
                     </div>
 
 

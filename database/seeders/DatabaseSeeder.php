@@ -24,5 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MicroorganismosTableSeeder::class);
         $this->call(FarmacoCategoriasTableSeeder::class);
         $this->call(MedicamentosTableSeeder::class);
+        $this->call(CultivosTableSeeder::class);
+        $this->call(DiagnosticosTableSeeder::class);
     }
 }
