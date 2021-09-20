@@ -1,8 +1,8 @@
-<table class="table table-striped table-bordered table-sm table-hover">
+<table class="table table-bordered table-sm mb-0">
     <thead>
         <tr>
-            <td>MEDICAMENTO</td>
-            <td>susceptibilidad</td>
+            <td>Microorganismo</td>
+            <td>Susceptibilidad</td>
         </tr>
     </thead>
     <tbody>

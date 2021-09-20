@@ -173,9 +173,9 @@ class Solicitud extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function microoganismos()
+    public function microorganismos()
     {
-        return $this->hasMany(\App\Models\SolicitudMicrooganismo::class, 'solicitud_id');
+        return $this->hasMany(\App\Models\SolicitudMicroorganismo::class, 'solicitud_id');
     }
 
 

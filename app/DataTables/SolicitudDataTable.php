@@ -41,6 +41,9 @@ class SolicitudDataTable extends DataTable
            ->editColumn('antimicrobiano',function (Solicitud $solicitud){
                return view('solicitudes.partials.datatable_columna_medicamtenso',compact('solicitud'));
            })
+           ->editColumn('microorganismo',function (Solicitud $solicitud){
+               return view('solicitudes.partials.datatable_columna_microorganismos',compact('solicitud'));
+           })
              ->rawColumns(['antimicrobiano','action','id']);
 
     }
@@ -53,7 +56,7 @@ class SolicitudDataTable extends DataTable
      */
     public function query(Solicitud $model)
     {
-        return $model->newQuery()->with(['paciente','estado','userCrea','medicamentos','microoganismos']);
+        return $model->newQuery()->with(['paciente','estado','userCrea','medicamentos','microorganismos']);
     }
 
     /**
@@ -118,7 +121,9 @@ class SolicitudDataTable extends DataTable
                 ->visible(false)->exportable(false),
 
             Column::make('paciente')->name('paciente.nombre_completo')->data('paciente.nombre_completo'),
+
             Column::make('antimicrobiano')->searchable(false)->orderable(false),
+            Column::make('microorganismo')->searchable(false)->orderable(false),
             Column::make('estado')->name('estado.nombre')->data('estado.nombre'),
         ];
     }

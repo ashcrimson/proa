@@ -25,13 +25,17 @@ class SolicitudMicroorganismoAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $query = SolicitudMicroorganismo::query();
+        $query = SolicitudMicroorganismo::with('microorganismo');
 
         if ($request->get('skip')) {
             $query->skip($request->get('skip'));
         }
         if ($request->get('limit')) {
             $query->limit($request->get('limit'));
+        }
+
+        if ($request->solicitud_id) {
+            $query->where('solicitud_id',$request->solicitud_id);
         }
 
         $solicitudMicroorganismos = $query->get();

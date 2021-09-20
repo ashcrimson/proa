@@ -1,6 +1,6 @@
 
 
-{!! $dataTable->table(['width' => '100%', 'class' => 'table table-striped table-bordered']) !!}
+{!! $dataTable->table(['width' => '100%', 'class' => 'table table-bordered']) !!}
 
 @push('scripts')
     {!! $dataTable->scripts() !!}
@@ -10,7 +10,7 @@
 
             //Cuando dibuja la tabla
             dt.on( 'draw.dt', function () {
-                $(this).addClass('table-sm table-striped table-bordered table-hover');
+                $(this).addClass('table-sm table-bordered ');
                 $('[data-toggle="tooltip"]').tooltip();
             });
 
