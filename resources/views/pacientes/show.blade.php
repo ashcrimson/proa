@@ -26,46 +26,7 @@
                         @include('pacientes.show_fields')
 
 
-                        <div class="card card-secondary">
-                            <div class="card-header">
-                                <h3 class="card-title">Drogas</h3>
-
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-widget="remove"><i class="fa fa-times"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                                    </button>
-                                </div>
-                                <!-- /.card-tools -->
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-hover table-bordered table-sm ">
-                                        <thead>
-                                        <tr>
-                                            <th>id</th>
-                                            <th>Nombre Droga</th>
-                                            <th>Ver</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach($paciente->preparaciones as $prep)
-                                            <tr>
-                                                <td>{{$prep->id}}</td>
-                                                <td>
-                                                    <a href="{{ route('preparacions.show', $prep->id) }}" data-toggle="tooltip" title="Ver" class='btn btn-default btn-sm' style="font-size: .895rem;">
-                                                        <i class="fa fa-eye"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
+                      
                         <a href="{{ route('pacientes.index') }}" class="btn btn-default">
                         {{__('Back')}}
                         </a>
