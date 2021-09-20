@@ -110,3 +110,7 @@ Vue.component('v-popover', VPopover);
 import SelectMedicamento from "./components/SelectMedicamento";
 
 Vue.component('select-medicamento',SelectMedicamento);
+
+import SelectMicroorganismo from "./components/SelectMicroorganismo";
+
+Vue.component('select-microorganismo',SelectMicroorganismo);

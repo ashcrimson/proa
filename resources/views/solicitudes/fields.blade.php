@@ -227,6 +227,9 @@
                     <div class="form-group col-sm-12 col-lg-12">
                         @include('solicitudes.panel_medicamentos')
                     </div>
+                    <div class="form-group col-sm-12 col-lg-12">
+                        @include('solicitudes.panel_microorganismos')
+                    </div>
 
 
 

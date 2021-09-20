@@ -34,7 +34,11 @@ Route::group(['as'=>'api.','namespace' => 'API'], function () {
         Route::resource('solicitudes', 'SolicitudAPIController');
 
         Route::resource('solicitud_medicamentos', 'SolicitudMedicamentoAPIController');
+
+        Route::resource('solicitud_microorganismos', 'SolicitudMicroorganismoAPIController');
     });
 
 
 });
+
+
