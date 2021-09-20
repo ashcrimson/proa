@@ -176,6 +176,10 @@
                         </div>
                     </div>
 
+                    <div class="form-group col-sm-12 col-lg-12">
+                        @include('solicitudes.panel_microorganismos')
+                    </div>
+
                     <div class="form-group col-12">
                         <div class="card ">
                             <div class="card-header py-0 px-1">
@@ -227,9 +231,7 @@
                     <div class="form-group col-sm-12 col-lg-12">
                         @include('solicitudes.panel_medicamentos')
                     </div>
-                    <div class="form-group col-sm-12 col-lg-12">
-                        @include('solicitudes.panel_microorganismos')
-                    </div>
+
 
 
 
