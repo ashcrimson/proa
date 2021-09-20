@@ -103,8 +103,6 @@
                 </form>
 
 
-                @include('partials.social_links')
-
 
                 <p class="mb-1">
                     @if (Route::has('password.request'))

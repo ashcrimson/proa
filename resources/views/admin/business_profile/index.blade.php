@@ -98,7 +98,7 @@
             dropZoneEnabled: true,
             maxFileCount: 1,
             maxFileSize: 2000,
-            allowedFileExtensions: ["jpg"],
+            allowedFileExtensions: ["jpg", "png"],
             showUpload: false,
             initialPreviewAsData: true,
             initialPreviewFileType: 'pdf',
