@@ -115,28 +115,30 @@
                
                 <!-- /.card-body -->
 
+             
+
                 <div class="card-body">
-                    @foreach($solicitud->medicamentos as $detalle)
-                    <tr>
-                        
-                        <td>{{$detalle->medicamento->nombre}}</td><br>
-                        
-                    </tr>
-
-                    <tr>
-                        
-                        <td>{{$detalle->dosis}}</td><br>
-                        
-                    </tr>
-
-                    <tr>
-                        
-                        <td>{{$detalle->frecuencia}}</td><br>
-                        
-                    </tr>
-                    @endforeach
-                   
-
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered table-sm ">
+                            <thead>
+                            <tr>
+                                <th>Nombre Medicamento</th>
+                                <th>Dosis</th>
+                                <th>Frecuencia</th>
+                            </tr>
+                            </thead> 
+                            <tbody>
+                            @foreach($solicitud->medicamentos as $detalle)
+                                <tr>
+                                    <td>{{$detalle->medicamento->nombre}}</td>
+                                    <td>{{$detalle->dosis}}</td>
+                                    <td>{{$detalle->frecuencia}}</td>
+                                 
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
             </div>
