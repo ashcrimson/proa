@@ -114,7 +114,7 @@ class Paciente extends Model
      **/
     public function solicitudes()
     {
-        return $this->hasMany(\App\Models\Solicitude::class, 'paciente_id');
+        return $this->hasMany(\App\Models\Solicitud::class, 'paciente_id');
     }
 
     public function getNombreCompletoAttribute()

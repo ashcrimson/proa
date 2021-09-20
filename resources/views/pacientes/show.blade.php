@@ -28,7 +28,7 @@
 
                         <div class="card card-secondary">
                             <div class="card-header">
-                                <h3 class="card-title">Drogas</h3>
+                                <h3 class="card-title">Solicitudes</h3>
 
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-widget="remove"><i class="fa fa-times"></i>
@@ -44,17 +44,20 @@
                                     <table class="table table-hover table-bordered table-sm ">
                                         <thead>
                                         <tr>
-                                            <th>id</th>
-                                            <th>Nombre Droga</th>
+                                            <th>Medico</th>
+                                            <th>Microorganismo</th>
+                                            <th>Antibiotico</th>
                                             <th>Ver</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($paciente->preparaciones as $prep)
+                                        @foreach($paciente->solicitudes as $sol)
                                             <tr>
-                                                <td>{{$prep->id}}</td>
+                                                <td>{{$sol->userCrea->name}}</td>
+                                                <td>--</td>
+                                                <td>--</td>
                                                 <td>
-                                                    <a href="{{ route('preparacions.show', $prep->id) }}" data-toggle="tooltip" title="Ver" class='btn btn-default btn-sm' style="font-size: .895rem;">
+                                                    <a href="{{ route('solicitudes.show', $sol->id) }}" data-toggle="tooltip" title="Ver" class='btn btn-default btn-sm' style="font-size: .895rem;">
                                                         <i class="fa fa-eye"></i>
                                                     </a>
                                                 </td>
