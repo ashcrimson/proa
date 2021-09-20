@@ -54,8 +54,8 @@
                                         @foreach($paciente->solicitudes as $sol)
                                             <tr>
                                                 <td>{{$sol->userCrea->name}}</td>
-                                                <td>--</td>
-                                                <td>--</td>
+                                                <td>@include('solicitudes.partials.datatable_columna_microorganismos',['solicitud'=>$sol])</td>
+                                                <td>@include('solicitudes.partials.datatable_columna_medicamtenso',['solicitud'=>$sol])</td>
                                                 <td>
                                                     <a href="{{ route('solicitudes.show', $sol->id) }}" data-toggle="tooltip" title="Ver" class='btn btn-default btn-sm' style="font-size: .895rem;">
                                                         <i class="fa fa-eye"></i>
