@@ -83,6 +83,49 @@
                 </div>
                 <!-- /.card-body -->
 
+                <div class="card-body">
+                    @foreach($solicitud->medicamentos as $detalle)
+                    <tr>
+                        
+                        <td>{{$detalle->medicamento->nombre}}</td><br>
+                        
+                    </tr>
+                    @endforeach
+
+                </div>
+
+            </div>
+         
+        </div>
+    </div>
+
+    <div class="card-body">
+        <div class="col-12">
+            <div class="card card-outline card-info">
+                <div class="card-header">
+                    <h3 class="card-title">Medicamentos</h3>
+
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                    <!-- /.card-tools -->
+                </div>
+                <!-- /.card-header -->
+               
+                <!-- /.card-body -->
+
+                <div class="card-body">
+                    @foreach($solicitud->medicamentos as $detalle)
+                    <tr>
+                        
+                        <td>{{$detalle->medicamento->nombre}}</td><br>
+                        
+                    </tr>
+                    @endforeach
+
+                </div>
+
             </div>
             <a href="{{ route('solicitudes.index') }}" class="btn btn-default" style="margin-left: 10px;">
                 {{__('Back')}}
