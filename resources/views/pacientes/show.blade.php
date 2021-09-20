@@ -69,6 +69,7 @@
                             </div>
                             <!-- /.card-body -->
                         </div>
+
                         <a href="{{ route('pacientes.index') }}" class="btn btn-default">
                         {{__('Back')}}
                         </a>
