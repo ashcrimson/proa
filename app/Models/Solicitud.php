@@ -183,4 +183,12 @@ class Solicitud extends Model
     {
         return $this->estado_id==SolicitudEstado::TEMPORAL;
     }
+
+    public function getColor()
+    {
+        switch ($this->estado){
+            case SolicitudEstado::INGRESADA:
+            case SolicitudEstado::INGRESADA:
+        }
+    }
 }

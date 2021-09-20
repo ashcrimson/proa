@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\Scopes\ScopeSolicitud;
 use App\DataTables\SolicitudDataTable;
 use App\Http\Requests;
 use App\Http\Requests\CreateSolicitudRequest;
@@ -35,6 +36,19 @@ class SolicitudController extends AppBaseController
      */
     public function index(SolicitudDataTable $solicitudDataTable)
     {
+        $estadosDefecto = [
+            SolicitudEstado::INGRESADA,
+            SolicitudEstado::SOLICITADA,
+            SolicitudEstado::APROBADA,
+            SolicitudEstado::RECHAZADA,
+            SolicitudEstado::ANULADA,
+        ];
+
+        $scope = new ScopeSolicitud();
+        $scope->estados = request()->estados ?? $estadosDefecto;
+
+        $solicitudDataTable->addScope($scope);
+
         return $solicitudDataTable->render('solicitudes.index');
     }
 

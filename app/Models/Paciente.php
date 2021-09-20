@@ -39,6 +39,7 @@ class Paciente extends Model
 
     protected $dates = ['deleted_at'];
 
+    protected $appends = ['nombre_completo'];
 
 
     public $fillable = [
