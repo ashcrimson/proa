@@ -122,7 +122,20 @@
                         <td>{{$detalle->medicamento->nombre}}</td><br>
                         
                     </tr>
+
+                    <tr>
+                        
+                        <td>{{$detalle->dosis}}</td><br>
+                        
+                    </tr>
+
+                    <tr>
+                        
+                        <td>{{$detalle->frecuencia}}</td><br>
+                        
+                    </tr>
                     @endforeach
+                   
 
                 </div>
 
