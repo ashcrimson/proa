@@ -25,8 +25,11 @@ class Role extends \Spatie\Permission\Models\Role
     const DEVELOPER =   1;
     const SUPERADMIN =  2;
     const ADMIN =       3;
-    const TESTER =      4;
-    const USER =        5;
+    const MEDICO =      4;
+    const INFECTOLOGO = 5;
+    const QF_CLÍNICO =  6;
+    const TECNICO  =    7;
+    const ENFERMERA =   8;
 
     protected $dates = ['deleted_at'];
 

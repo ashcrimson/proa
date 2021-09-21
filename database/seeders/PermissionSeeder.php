@@ -42,6 +42,37 @@ class PermissionSeeder extends Seeder
             Permission::firstOrCreate(['name' => 'Crear usuarios']);
             Permission::firstOrCreate(['name' => 'Editar usuarios']);
             Permission::firstOrCreate(['name' => 'Eliminar usuarios']);
+
+            Permission::firstOrCreate(['name' => 'Ver Solicitudes']);
+            Permission::firstOrCreate(['name' => 'Crear Solicitudes']);
+            Permission::firstOrCreate(['name' => 'Editar Solicitudes']);
+            Permission::firstOrCreate(['name' => 'Eliminar Solicitudes']);
+            Permission::firstOrCreate(['name' => 'Aprobar Solicitudes']);
+
+            Permission::firstOrCreate(['name' => 'Ver Pacientes']);
+            Permission::firstOrCreate(['name' => 'Crear Pacientes']);
+            Permission::firstOrCreate(['name' => 'Editar Pacientes']);
+            Permission::firstOrCreate(['name' => 'Eliminar Pacientes']);
+
+            Permission::firstOrCreate(['name' => 'Ver Microorganismos']);
+            Permission::firstOrCreate(['name' => 'Crear Microorganismos']);
+            Permission::firstOrCreate(['name' => 'Editar Microorganismos']);
+            Permission::firstOrCreate(['name' => 'Eliminar Microorganismos']);
+
+            Permission::firstOrCreate(['name' => 'Ver Medicamentos']);
+            Permission::firstOrCreate(['name' => 'Crear Medicamentos']);
+            Permission::firstOrCreate(['name' => 'Editar Medicamentos']);
+            Permission::firstOrCreate(['name' => 'Eliminar Medicamentos']);
+
+            Permission::firstOrCreate(['name' => 'Ver Diagnosticos']);
+            Permission::firstOrCreate(['name' => 'Crear Diagnosticos']);
+            Permission::firstOrCreate(['name' => 'Editar Diagnosticos']);
+            Permission::firstOrCreate(['name' => 'Eliminar Diagnosticos']);
+
+            Permission::firstOrCreate(['name' => 'Ver Cultivos']);
+            Permission::firstOrCreate(['name' => 'Crear Cultivos']);
+            Permission::firstOrCreate(['name' => 'Editar Cultivos']);
+            Permission::firstOrCreate(['name' => 'Eliminar Cultivos']);
         }
 
     }

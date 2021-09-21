@@ -21,10 +21,65 @@ class RoleSeeder extends Seeder
         $role= Role::create(["name" => "Admin"]);
         $role->syncPermissions(Permission::pluck('name')->toArray());
 
-        $role = Role::create(["name" => "Tester"]);
-        $role->syncPermissions(Permission::pluck('name')->toArray());
+        $role= Role::create(["name" => "Médico"]);
+        $role->syncPermissions([
+            'Ver Solicitudes',
+            'Crear Solicitudes',
+            'Editar Solicitudes',
+            'Eliminar Solicitudes',
 
-        Role::create(["name" => "User"]);
+            'Ver Pacientes',
+            'Ver Microorganismos',
+            'Ver Medicamentos',
+            'Ver Diagnosticos',
+            'Ver Cultivos',
+        ]);
+
+        $role = Role::create(["name" => "Infectólogo"]);
+        $role->syncPermissions([
+            'Ver Solicitudes',
+            'Aprobar Solicitudes',
+
+            'Ver Pacientes',
+            'Ver Microorganismos',
+            'Ver Medicamentos',
+            'Ver Diagnosticos',
+            'Ver Cultivos',
+        ]);
+
+        $role = Role::create(["name" => "QF clínico"]);
+        $role->syncPermissions([
+            'Ver Solicitudes',
+
+            'Ver Pacientes',
+            'Ver Microorganismos',
+            'Ver Medicamentos',
+            'Ver Diagnosticos',
+            'Ver Cultivos',
+        ]);
+
+        $role = Role::create(["name" => "Técnico "]);
+        $role->syncPermissions([
+            'Ver Solicitudes',
+
+            'Ver Pacientes',
+            'Ver Microorganismos',
+            'Ver Medicamentos',
+            'Ver Diagnosticos',
+            'Ver Cultivos',
+        ]);
+
+        $role = Role::create(["name" => "Enfermera"]);
+        $role->syncPermissions([
+            'Ver Solicitudes',
+
+            'Ver Pacientes',
+            'Ver Microorganismos',
+            'Ver Medicamentos',
+            'Ver Diagnosticos',
+            'Ver Cultivos',
+        ]);
+
 
     }
 }
