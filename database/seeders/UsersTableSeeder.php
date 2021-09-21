@@ -52,24 +52,54 @@ class UsersTableSeeder extends Seeder
 
         });
 
-        User::factory(1)->create([
-            "username" => "Tester",
-            "name" => "Tester",
-            "password" => bcrypt("123")
-        ])->each(function (User $user){
-            $user->syncRoles(Role::TESTER);
-            $user->options()->sync(Option::pluck('id')->toArray());
-            $user->shortcuts()->sync([3,4,5,6]);
+        if (app()->environment()=='local'){
 
-        });
+            User::factory(1)->create([
+                "username" => "Tester",
+                "name" => "Tester",
+                "password" => bcrypt("123")
+            ])->each(function (User $user){
+                $user->syncRoles(Role::MEDICO);
+                $user->options()->sync(Option::pluck('id')->toArray());
+//            $user->shortcuts()->sync([3,4,5,6]);
 
-        User::factory(6)->create([
-            "password" => bcrypt("123")
-        ])->each(function (User $user){
-            $user->syncRoles(Role::USER);
-            $user->options()->sync(Option::pluck('id')->toArray());
-            $user->shortcuts()->sync([3,4,5,6]);
+            });
 
-        });
+            User::factory(1)->create([
+                "password" => bcrypt("123")
+            ])->each(function (User $user){
+                $user->syncRoles(Role::INFECTOLOGO);
+                $user->options()->sync(Option::pluck('id')->toArray());
+//            $user->shortcuts()->sync([3,4,5,6]);
+
+            });
+
+            User::factory(1)->create([
+                "password" => bcrypt("123")
+            ])->each(function (User $user){
+                $user->syncRoles(Role::QF_CLINICO);
+                $user->options()->sync(Option::pluck('id')->toArray());
+//            $user->shortcuts()->sync([3,4,5,6]);
+
+            });
+
+            User::factory(1)->create([
+                "password" => bcrypt("123")
+            ])->each(function (User $user){
+                $user->syncRoles(Role::TECNICO );
+                $user->options()->sync(Option::pluck('id')->toArray());
+//            $user->shortcuts()->sync([3,4,5,6]);
+
+            });
+
+            User::factory(1)->create([
+                "password" => bcrypt("123")
+            ])->each(function (User $user){
+                $user->syncRoles(Role::ENFERMERA);
+                $user->options()->sync(Option::pluck('id')->toArray());
+//            $user->shortcuts()->sync([3,4,5,6]);
+
+            });
+        }
     }
 }

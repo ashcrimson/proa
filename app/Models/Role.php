@@ -27,7 +27,7 @@ class Role extends \Spatie\Permission\Models\Role
     const ADMIN =       3;
     const MEDICO =      4;
     const INFECTOLOGO = 5;
-    const QF_CLÍNICO =  6;
+    const QF_CLINICO =  6;
     const TECNICO  =    7;
     const ENFERMERA =   8;
 
