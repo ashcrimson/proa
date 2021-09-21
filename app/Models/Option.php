@@ -2,27 +2,29 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model as Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 
 /**
  * Class Option
  * @package App\Models
- * @version November 4, 2019, 1:09 am UTC
+ * @version September 21, 2021, 3:53 pm CST
  *
- * @property \Illuminate\Database\Eloquent\Collection users
- * @property integer option_id
- * @property string nombre
- * @property string ruta
- * @property string descripcion
- * @property string icono_l
- * @property string icono_r
- * @property integer orden
+ * @property \Illuminate\Database\Eloquent\Collection $roles
+ * @property \Illuminate\Database\Eloquent\Collection $users
+ * @property integer $option_id
+ * @property string $nombre
+ * @property string $ruta
+ * @property string $descripcion
+ * @property string $icono_l
+ * @property string $icono_r
+ * @property integer $orden
+ * @property string $color
+ * @property boolean $dev
  */
 class Option extends Model
 {
-
     use SoftDeletes;
 
     public $table = 'options';
@@ -40,7 +42,9 @@ class Option extends Model
         'descripcion',
         'icono_l',
         'icono_r',
-        'orden'
+        'orden',
+        'color',
+        'dev'
     ];
 
     /**
@@ -56,7 +60,9 @@ class Option extends Model
         'descripcion' => 'string',
         'icono_l' => 'string',
         'icono_r' => 'string',
-        'orden' => 'integer'
+        'orden' => 'integer',
+        'color' => 'string',
+        'dev' => 'boolean'
     ];
 
     /**
@@ -69,6 +75,15 @@ class Option extends Model
         'ruta' => 'required',
         'icono_l' => 'required'
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     **/
+    public function roles()
+    {
+        return $this->belongsToMany(\App\Models\Role::class, 'option_role');
+    }
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
