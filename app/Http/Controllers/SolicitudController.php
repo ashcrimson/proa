@@ -340,6 +340,7 @@ class SolicitudController extends AppBaseController
 
         $scope = new ScopeSolicitudDataTable();
         $scope->estados = request()->estados ?? $estadosDefecto;
+        $scope->users = request()->users ?? null;
 
         $dataTable->addScope($scope);
 
