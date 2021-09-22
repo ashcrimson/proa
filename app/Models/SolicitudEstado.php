@@ -26,9 +26,10 @@ class SolicitudEstado extends Model
     const INGRESADA =   2;
     const SOLICITADA =  3;
     const APROBADA =    4;
-    const RECHAZADA =   5;
-    const ANULADA =     6;
-    const VENCIDA =     7;
+    const DESPACHADA =  5;
+    const RECHAZADA =   6;
+    const ANULADA =     7;
+    const VENCIDA =     8;
 
 
     protected $dates = ['deleted_at'];

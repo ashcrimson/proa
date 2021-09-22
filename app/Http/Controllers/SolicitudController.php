@@ -40,6 +40,7 @@ class SolicitudController extends AppBaseController
             SolicitudEstado::INGRESADA,
             SolicitudEstado::SOLICITADA,
             SolicitudEstado::APROBADA,
+            SolicitudEstado::DESPACHADA,
             SolicitudEstado::RECHAZADA,
             SolicitudEstado::ANULADA,
         ];

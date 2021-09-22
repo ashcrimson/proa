@@ -8,22 +8,21 @@ use Faker\Generator as Faker;
 $factory->define(Paciente::class, function (Faker $faker) {
 
     return [
-        'run' => $this->faker->word,
-        'dv_run' => $this->faker->word,
-        'apellido_paterno' => $this->faker->word,
-        'apellido_materno' => $this->faker->word,
-        'primer_nombre' => $this->faker->word,
-        'segundo_nombre' => $this->faker->word,
-        'fecha_nac' => $this->faker->word,
-        'sexo' => $this->faker->word,
-        'sigla_grado' => $this->faker->word,
-        'unid_rep_dot' => $this->faker->word,
-        'cond_alta_dot' => $this->faker->randomDigitNotNull,
-        'direccion' => $this->faker->word,
-        'familiar_responsable' => $this->faker->word,
-        'telefono' => $this->faker->word,
-        'telefono2' => $this->faker->word,
-        'created_at' => $this->faker->date('Y-m-d H:i:s'),
-        'updated_at' => $this->faker->date('Y-m-d H:i:s'),
+        'run' => rand(4444444,9999999),
+        'dv_run' => rand(1,10),
+        'apellido_paterno' => $faker->lastName,
+        'apellido_materno' => $faker->lastName,
+        'primer_nombre' => $faker->firstName,
+        'segundo_nombre' => $faker->firstName,
+        'fecha_nac' => $faker->date(),
+        'sexo' => $faker->randomElement(['M','F']),
+        'sigla_grado' => null,
+        'unid_rep_dot' => null,
+        'cond_alta_dot' => null,
+        'direccion' => $faker->address,
+        'familiar_responsable' => $faker->name,
+        'telefono' => $faker->phoneNumber,
+        'created_at' => $faker->date('Y-m-d H:i:s'),
+        'updated_at' => $faker->date('Y-m-d H:i:s')
     ];
 });
