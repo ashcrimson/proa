@@ -153,7 +153,7 @@ class Option extends Model
     {
         if (Auth::user()){
 
-            return is_null($this->option_id) || Auth::user()->options->contains('id',$this->id);
+            return is_null($this->option_id) || Auth::user()->getAllOptions()->contains('id',$this->id);
         }
 
         return false;
