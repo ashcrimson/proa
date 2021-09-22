@@ -65,7 +65,7 @@ class Role extends \Spatie\Permission\Models\Role
      **/
     public function options()
     {
-        return $this->belongsToMany(\App\Models\Option::class, 'option_role');
+        return $this->belongsToMany(\App\Models\Option::class, 'option_role')->with('children');
     }
 
 }

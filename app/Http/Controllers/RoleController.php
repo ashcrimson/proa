@@ -68,6 +68,9 @@ class RoleController extends AppBaseController
 
             $role->syncPermissions($permissions);
 
+            $opciones = $request->options ?  explode(",",$request->options) : [];
+            $role->options()->sync($opciones);
+
         } catch (Exception $exception) {
             DB::rollBack();
 
@@ -116,6 +119,10 @@ class RoleController extends AppBaseController
         /** @var Role $role */
         $role = Role::find($id);
 
+        $options = optionsParentAuthUser($role->users()->first());
+
+        return $options;
+
         if (empty($role)) {
             Flash::error('Role not found');
 
@@ -135,7 +142,6 @@ class RoleController extends AppBaseController
      */
     public function update($id, UpdateRoleRequest $request)
     {
-
         /** @var Role $role */
         $role = Role::find($id);
 
@@ -156,6 +162,9 @@ class RoleController extends AppBaseController
             $permissions = Permission::whereIn('id',$request->permissions ?? [])->get();
 
             $role->syncPermissions($permissions);
+
+            $opciones = $request->options ?  explode(",",$request->options) : [];
+            $role->options()->sync($opciones);
 
         } catch (Exception $exception) {
             DB::rollBack();

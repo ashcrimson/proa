@@ -288,7 +288,7 @@ class UserController extends AppBaseController
     public function menuStore(User $user,Request $request){
 
 
-        $opciones = explode(",",$request->options);
+        $opciones = $request->options ?  explode(",",$request->options) : [];
 
         $user->options()->sync($opciones);
 

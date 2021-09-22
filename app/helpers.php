@@ -192,10 +192,11 @@ function rutaOpcion($opcion){
 }
 
 
-function optionsParentAuthUser(){
-    $authUser = Auth::user();
+function optionsParentAuthUser($user = null){
+    $authUser = $user ?? Auth::user();
 
-    $allOptions = $authUser->options;
+//    $allOptions = $authUser->options;
+    $allOptions = $authUser->getAllOptions();
 
     $optionParent = $allOptions->filter(function ($op){
         return is_null($op->option_id);
@@ -209,7 +210,9 @@ function optionsParentAuthUser(){
 
     $options = Option::padresDe($childres)->with('children')->get();
 
-    return $optionParent->merge($options)->sortBy('orden');
+    $options = $optionParent->merge($options)->sortBy('orden');
+
+    return $options;
 
 }
 

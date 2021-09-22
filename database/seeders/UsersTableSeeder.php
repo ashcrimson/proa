@@ -55,48 +55,52 @@ class UsersTableSeeder extends Seeder
         if (app()->environment()=='local'){
 
             User::factory(1)->create([
-                "username" => "Tester",
-                "name" => "Tester",
+                "username" => "Medico",
+                "name" => "Medico",
                 "password" => bcrypt("123")
             ])->each(function (User $user){
                 $user->syncRoles(Role::MEDICO);
-                $user->options()->sync(Option::pluck('id')->toArray());
 //            $user->shortcuts()->sync([3,4,5,6]);
 
             });
 
             User::factory(1)->create([
+
+                "username" => "Infectologo",
+                "name" => "Infectologo",
                 "password" => bcrypt("123")
             ])->each(function (User $user){
                 $user->syncRoles(Role::INFECTOLOGO);
-                $user->options()->sync(Option::pluck('id')->toArray());
 //            $user->shortcuts()->sync([3,4,5,6]);
 
             });
 
             User::factory(1)->create([
+                "username" => "QF",
+                "name" => "QF",
                 "password" => bcrypt("123")
             ])->each(function (User $user){
                 $user->syncRoles(Role::QF_CLINICO);
-                $user->options()->sync(Option::pluck('id')->toArray());
 //            $user->shortcuts()->sync([3,4,5,6]);
 
             });
 
             User::factory(1)->create([
+                "username" => "Tecnico",
+                "name" => "Tecnico ",
                 "password" => bcrypt("123")
             ])->each(function (User $user){
                 $user->syncRoles(Role::TECNICO );
-                $user->options()->sync(Option::pluck('id')->toArray());
 //            $user->shortcuts()->sync([3,4,5,6]);
 
             });
 
             User::factory(1)->create([
+                "username" => "Enfermera",
+                "name" => "Enfermera",
                 "password" => bcrypt("123")
             ])->each(function (User $user){
                 $user->syncRoles(Role::ENFERMERA);
-                $user->options()->sync(Option::pluck('id')->toArray());
 //            $user->shortcuts()->sync([3,4,5,6]);
 
             });
