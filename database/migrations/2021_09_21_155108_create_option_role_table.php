@@ -14,8 +14,8 @@ class CreateOptionRoleTable extends Migration
     public function up()
     {
         Schema::create('option_role', function (Blueprint $table) {
-            $table->unsignedBigInteger('option_id')->index('fk_options_has_roles_options1_idx');
-            $table->unsignedBigInteger('role_id')->index('fk_options_has_roles_roles1_idx');
+            $table->unsignedBigInteger('option_id')->index('fk_option_role_options1_idx');
+            $table->unsignedBigInteger('role_id')->index('fk_option_role_roles1_idx');
             $table->primary(['option_id', 'role_id']);
         });
     }

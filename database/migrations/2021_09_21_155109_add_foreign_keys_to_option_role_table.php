@@ -14,8 +14,8 @@ class AddForeignKeysToOptionRoleTable extends Migration
     public function up()
     {
         Schema::table('option_role', function (Blueprint $table) {
-            $table->foreign('option_id', 'fk_options_has_roles_options1')->references('id')->on('options')->onUpdate('NO ACTION')->onDelete('NO ACTION');
-            $table->foreign('role_id', 'fk_options_has_roles_roles1')->references('id')->on('roles')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+            $table->foreign('option_id', 'fk_options_has_roles_options1')->references('id')->on('options');
+            $table->foreign('role_id', 'fk_options_has_roles_roles1')->references('id')->on('roles');
         });
     }
 
