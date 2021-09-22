@@ -66,7 +66,7 @@ Route::group(['middleware' => ['auth']], function () {
         'solicitudes' => 'solicitud'
     ]);
 
-    Route::prefix('solicitudes')->as('solicitudes.')->group(function (){
+    Route::group(['prefix' => 'solicitudes','as' => 'solicitudes.'],function (){
         Route::get('{solicitude}/ver', 'SolicitudController@show')->name('show');
         Route::get('user', 'SolicitudController@listUser')->name('user');
         Route::get('aprobar', 'SolicitudController@aprobar')->name('aprobar');
