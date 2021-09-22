@@ -62,7 +62,18 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('medicamentos', 'MedicamentoController');
 
-    Route::resource('solicitudes', 'SolicitudController');
+    Route::resource('solicitudes', 'SolicitudController')->except(['show'])->parameters([
+        'solicitudes' => 'solicitud'
+    ]);
+
+    Route::prefix('solicitudes')->as('solicitudes.')->group(function (){
+        Route::get('{solicitude}/ver', 'SolicitudController@show')->name('show');
+        Route::get('user', 'SolicitudController@listUser')->name('user');
+        Route::get('aprobar', 'SolicitudController@aprobar')->name('aprobar');
+        Route::post('aprobar', 'SolicitudController@aprobarStore')->name('aprobar.store');
+        Route::get('despachar', 'SolicitudController@despachar')->name('despachar');
+        Route::post('despachar', 'SolicitudController@despacharStore')->name('despachar.store');
+    });
 });
 
 

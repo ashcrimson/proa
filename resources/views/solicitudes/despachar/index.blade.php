@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>solicitudes</h1>
+                    <h1>Despachar Solicitudes</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-right">
@@ -43,7 +43,7 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    @include('solicitudes.form_filters')
+                    @include('solicitudes.despachar.form_filters')
                 </div>
                 <!-- /.card-body -->
             </div>

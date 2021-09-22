@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\Scopes\ScopeSolicitud;
+use App\DataTables\Scopes\ScopeSolicitudDataTable;
 use App\DataTables\SolicitudDataTable;
 use App\Http\Requests;
 use App\Http\Requests\CreateSolicitudRequest;
@@ -45,7 +45,7 @@ class SolicitudController extends AppBaseController
             SolicitudEstado::ANULADA,
         ];
 
-        $scope = new ScopeSolicitud();
+        $scope = new ScopeSolicitudDataTable();
         $scope->estados = request()->estados ?? $estadosDefecto;
 
         $solicitudDataTable->addScope($scope);
@@ -310,5 +310,63 @@ class SolicitudController extends AppBaseController
 
 
         return $solicitud;
+    }
+
+    public function listUser(SolicitudDataTable $dataTable)
+    {
+        $estadosDefecto = [
+            SolicitudEstado::INGRESADA,
+            SolicitudEstado::SOLICITADA,
+            SolicitudEstado::APROBADA,
+            SolicitudEstado::DESPACHADA,
+            SolicitudEstado::RECHAZADA,
+            SolicitudEstado::ANULADA,
+        ];
+
+        $scope = new ScopeSolicitudDataTable();
+        $scope->users = auth()->user()->id;
+        $scope->estados = request()->estados ?? $estadosDefecto;
+
+        $dataTable->addScope($scope);
+
+        return $dataTable->render('solicitudes.user.index');
+    }
+
+    public function aprobar(SolicitudDataTable $dataTable)
+    {
+        $estadosDefecto = [
+            SolicitudEstado::SOLICITADA,
+        ];
+
+        $scope = new ScopeSolicitudDataTable();
+        $scope->estados = request()->estados ?? $estadosDefecto;
+
+        $dataTable->addScope($scope);
+
+        return $dataTable->render('solicitudes.aprobar.index');
+    }
+
+    public function aprobarStore()
+    {
+
+    }
+
+    public function despachar(SolicitudDataTable $dataTable)
+    {
+        $estadosDefecto = [
+            SolicitudEstado::APROBADA,
+        ];
+
+        $scope = new ScopeSolicitudDataTable();
+        $scope->estados = request()->estados ?? $estadosDefecto;
+
+        $dataTable->addScope($scope);
+
+        return $dataTable->render('solicitudes.despachar.index');
+    }
+
+    public function despacharStore()
+    {
+
     }
 }

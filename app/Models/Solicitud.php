@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Solicitud
  * @package App\Models
- * @version September 17, 2021, 5:52 pm CST
+ * @version September 22, 2021, 4:17 pm CST
  *
  * @property \App\Models\SolicitudEstado $estado
  * @property \App\Models\Paciente $paciente
@@ -33,6 +33,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property number $peso
  * @property string $observaciones
  * @property integer $user_crea
+ * @property string|\Carbon\Carbon $fecha_solicita
+ * @property integer $user_autoriza
+ * @property string|\Carbon\Carbon $fecha_autoriza
+ * @property integer $user_despacha
+ * @property string|\Carbon\Carbon $fecha_despacha
  * @property integer $user_actualiza
  */
 class Solicitud extends Model
@@ -66,6 +71,11 @@ class Solicitud extends Model
         'peso',
         'observaciones',
         'user_crea',
+        'fecha_solicita',
+        'user_autoriza',
+        'fecha_autoriza',
+        'user_despacha',
+        'fecha_despacha',
         'user_actualiza'
     ];
 
@@ -92,6 +102,11 @@ class Solicitud extends Model
         'peso' => 'decimal:2',
         'observaciones' => 'string',
         'user_crea' => 'integer',
+        'fecha_solicita' => 'datetime',
+        'user_autoriza' => 'integer',
+        'fecha_autoriza' => 'datetime',
+        'user_despacha' => 'integer',
+        'fecha_despacha' => 'datetime',
         'user_actualiza' => 'integer'
     ];
 

@@ -31,7 +31,12 @@ class CreateSolicitudesTable extends Migration
             $table->decimal('peso')->nullable();
             $table->text('observaciones')->nullable();
             $table->unsignedBigInteger('user_crea')->index('fk_solicitud_users1_idx');
-            $table->unsignedBigInteger('user_actualiza')->nullable()->index('fk_solicitud_users2_idx');
+            $table->dateTime('fecha_solicita')->nullable();
+            $table->unsignedBigInteger('user_autoriza')->nullable()->index('fk_solicitud_users2_idx');
+            $table->dateTime('fecha_autoriza')->nullable();
+            $table->unsignedBigInteger('user_despacha')->nullable()->index('fk_solicitud_users3_idx');
+            $table->dateTime('fecha_despacha')->nullable();
+            $table->unsignedBigInteger('user_actualiza')->nullable()->index('fk_solicitud_users4_idx');
             $table->timestamps();
             $table->softDeletes();
         });

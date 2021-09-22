@@ -5,11 +5,12 @@ namespace App\DataTables\Scopes;
 use Carbon\Carbon;
 use Yajra\DataTables\Contracts\DataTableScope;
 
-class ScopeSolicitud implements DataTableScope
+class ScopeSolicitudDataTable implements DataTableScope
 {
 
 
     public $estados;
+    public $users;
     public $pacientes;
     public $medicos;
     public $del;
@@ -42,6 +43,14 @@ class ScopeSolicitud implements DataTableScope
             }
         }
 
+        if ($this->users){
+            if (is_array($this->users)){
+                $query->whereIn('user_crea',$this->users);
+            }else{
+                $query->where('user_crea',$this->users);
+            }
+        }
+
         if ($this->pacientes){
             $query->whereHas('paciente',function ($q){
 
@@ -66,7 +75,7 @@ class ScopeSolicitud implements DataTableScope
             $del = Carbon::parse($this->del);
             $al = Carbon::parse($this->al)->addDay();
 
-            $query->whereBetween('created_at',[$del,$al]);
+            $query->whereBetween('fecha_solicita',[$del,$al]);
         }
     }
 }

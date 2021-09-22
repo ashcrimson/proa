@@ -44,6 +44,9 @@ class SolicitudDataTable extends DataTable
            ->editColumn('microorganismo',function (Solicitud $solicitud){
                return view('solicitudes.partials.datatable_columna_microorganismos',compact('solicitud'));
            })
+           ->editColumn('fecha_solicita',function (Solicitud $solicitud){
+               return $solicitud->fecha_solicita->format('d/m/Y');
+           })
              ->rawColumns(['antimicrobiano','action','id']);
 
     }
@@ -108,7 +111,8 @@ class SolicitudDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id'),
+            Column::make('id')->visible(false)->exportable(false),
+            Column::make('fecha_solicita')->data('fecha_solicita')->name('fecha_solicita'),
             Column::make('medico')->name('userCrea.name')->data('user_crea.name'),
 
             Column::make('paciente.apellido_paterno')

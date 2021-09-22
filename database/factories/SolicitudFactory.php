@@ -3,6 +3,7 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Models\Solicitud;
+use Carbon\Carbon;
 use Faker\Generator as Faker;
 
 
@@ -10,8 +11,10 @@ $autoIncrement = autoIncrement();
 
 $factory->define(Solicitud::class, function (Faker $faker) use ($autoIncrement) {
 
+    $fechaSolicita = Carbon::now()->subDays(rand(5,10));
+
     return [
-        'codigo' => prefijoCeros($autoIncrement->current(),4).\Carbon\Carbon::now()->year,
+        'codigo' => prefijoCeros($autoIncrement->current(),4).Carbon::now()->year,
         'correlativo' => $autoIncrement->current(),
         'paciente_id' => \App\Models\Paciente::all()->random()->id,
         'estado_id' => \App\Models\SolicitudEstado::all()->random()->id,
@@ -25,11 +28,12 @@ $factory->define(Solicitud::class, function (Faker $faker) use ($autoIncrement) 
         'disfuncion_hepatica' => rand(0,1),
         'creatinina' => rand(50,100),
         'peso' => rand(50,100),
-        'observaciones' => $this->faker->text,
+        'observaciones' => $faker->text,
         'user_crea' => \App\Models\User::all()->random()->id,
         'user_actualiza' => \App\Models\User::all()->random()->id,
-        'created_at' => $this->faker->date('Y-m-d H:i:s'),
-        'updated_at' => $this->faker->date('Y-m-d H:i:s'),
+        'fecha_solicita' => $fechaSolicita,
+        'created_at' => $faker->date('Y-m-d H:i:s'),
+        'updated_at' => $faker->date('Y-m-d H:i:s'),
     ];
 });
 
