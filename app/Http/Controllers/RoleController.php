@@ -119,10 +119,6 @@ class RoleController extends AppBaseController
         /** @var Role $role */
         $role = Role::find($id);
 
-        $options = optionsParentAuthUser($role->users()->first());
-
-        return $options;
-
         if (empty($role)) {
             Flash::error('Role not found');
 
