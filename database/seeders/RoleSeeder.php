@@ -18,9 +18,13 @@ class RoleSeeder extends Seeder
         Role::create(["name" => "Developer"]);
         Role::create(["name" => "Superadmin"]);
 
+
         $role= Role::create(["name" => "Admin"]);
         $role->syncPermissions(Permission::pluck('name')->toArray());
 
+        /**
+         * @var Role $role
+         */
         $role= Role::create(["name" => "Médico"]);
         $role->syncPermissions([
             'Ver Solicitudes',
@@ -33,6 +37,11 @@ class RoleSeeder extends Seeder
             'Ver Medicamentos',
             'Ver Diagnosticos',
             'Ver Cultivos',
+        ]);
+        $role->options()->sync([
+            12, //solicitudes
+            13, //Nueva Solicitud
+            14, //Pacientes
         ]);
 
         $role = Role::create(["name" => "Infectólogo"]);
@@ -48,8 +57,28 @@ class RoleSeeder extends Seeder
             'Ver Diagnosticos',
             'Ver Cultivos',
         ]);
+        $role->options()->sync([
+            12, //solicitudes
+            14, //Pacientes
+        ]);
 
         $role = Role::create(["name" => "QF clínico"]);
+        $role->syncPermissions([
+            'Despachar Solicitudes',
+            'Ver Solicitudes',
+
+            'Ver Pacientes',
+            'Ver Microorganismos',
+            'Ver Medicamentos',
+            'Ver Diagnosticos',
+            'Ver Cultivos',
+        ]);
+        $role->options()->sync([
+            12, //solicitudes
+            14, //Pacientes
+        ]);
+
+        $role = Role::create(["name" => "Técnico"]);
         $role->syncPermissions([
             'Ver Solicitudes',
 
@@ -59,16 +88,9 @@ class RoleSeeder extends Seeder
             'Ver Diagnosticos',
             'Ver Cultivos',
         ]);
-
-        $role = Role::create(["name" => "Técnico "]);
-        $role->syncPermissions([
-            'Ver Solicitudes',
-
-            'Ver Pacientes',
-            'Ver Microorganismos',
-            'Ver Medicamentos',
-            'Ver Diagnosticos',
-            'Ver Cultivos',
+        $role->options()->sync([
+            12, //solicitudes
+            14, //Pacientes
         ]);
 
         $role = Role::create(["name" => "Enfermera"]);
@@ -80,6 +102,10 @@ class RoleSeeder extends Seeder
             'Ver Medicamentos',
             'Ver Diagnosticos',
             'Ver Cultivos',
+        ]);
+        $role->options()->sync([
+            12, //solicitudes
+            14, //Pacientes
         ]);
 
 

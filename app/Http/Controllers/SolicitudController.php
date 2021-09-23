@@ -8,8 +8,10 @@ use App\Http\Requests;
 use App\Http\Requests\CreateSolicitudRequest;
 use App\Http\Requests\UpdateSolicitudRequest;
 use App\Models\Paciente;
+use App\Models\Role;
 use App\Models\Solicitud;
 use App\Models\SolicitudEstado;
+use App\Models\User;
 use Carbon\Carbon;
 use Exception;
 use Flash;
@@ -22,10 +24,10 @@ class SolicitudController extends AppBaseController
 
     public function __construct()
     {
-        $this->middleware('permission:Ver solicitudes')->only(['show']);
-        $this->middleware('permission:Crear solicitudes')->only(['create','store']);
-        $this->middleware('permission:Editar solicitudes')->only(['edit','update',]);
-        $this->middleware('permission:Eliminar solicitudes')->only(['destroy']);
+        $this->middleware('permission:Ver Solicitudes')->only(['show']);
+        $this->middleware('permission:Crear Solicitudes')->only(['create','store']);
+        $this->middleware('permission:Editar Solicitudes')->only(['edit','update',]);
+        $this->middleware('permission:Eliminar Solicitudes')->only(['destroy']);
     }
 
     /**
@@ -36,7 +38,12 @@ class SolicitudController extends AppBaseController
      */
     public function index(SolicitudDataTable $solicitudDataTable)
     {
-        $estadosDefecto = [
+        /**
+         * @var User $user
+         */
+        $user = auth()->user();
+
+        $estados = [
             SolicitudEstado::INGRESADA,
             SolicitudEstado::SOLICITADA,
             SolicitudEstado::APROBADA,
@@ -46,11 +53,40 @@ class SolicitudController extends AppBaseController
         ];
 
         $scope = new ScopeSolicitudDataTable();
-        $scope->estados = request()->estados ?? $estadosDefecto;
+
+
+        if($user->hasRole(Role::MEDICO)){
+            $scope->users = auth()->user()->id;
+        }
+
+        if ($user->hasRole(Role::INFECTOLOGO)){
+            $estados = [
+                SolicitudEstado::SOLICITADA
+            ];
+        }
+
+        if ($user->hasRole(Role::QF_CLINICO)){
+            $estados = [
+                SolicitudEstado::APROBADA
+            ];
+        }
+
+        if ($user->hasRole(Role::TECNICO)){
+
+        }
+
+        if ($user->hasRole(Role::ENFERMERA)){
+
+        }
+
+
+        $scope->estados = request()->estados ?? $estados;
 
         $solicitudDataTable->addScope($scope);
 
-        return $solicitudDataTable->render('solicitudes.index');
+        $estados = SolicitudEstado::whereIn('id',$estados)->get();
+
+        return $solicitudDataTable->render('solicitudes.index',compact('estados'));
     }
 
     /**

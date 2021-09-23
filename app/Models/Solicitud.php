@@ -206,4 +206,32 @@ class Solicitud extends Model
             case SolicitudEstado::INGRESADA:
         }
     }
+
+    public function puedeEditar()
+    {
+        return in_array($this->estado_id,[
+           SolicitudEstado::INGRESADA
+        ]);
+    }
+
+    public function puedeEliminar()
+    {
+        return in_array($this->estado_id,[
+            SolicitudEstado::INGRESADA
+        ]);
+    }
+
+    public function puedeAprobar()
+    {
+        return in_array($this->estado_id,[
+            SolicitudEstado::SOLICITADA
+        ]);
+    }
+
+    public function puedeDespachar()
+    {
+        return in_array($this->estado_id,[
+            SolicitudEstado::APROBADA
+        ]);
+    }
 }
