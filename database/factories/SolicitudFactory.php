@@ -11,7 +11,7 @@ $autoIncrement = autoIncrement();
 
 $factory->define(Solicitud::class, function (Faker $faker) use ($autoIncrement) {
 
-    $fechaSolicita = Carbon::now()->subDays(rand(5,10));
+    $fechaSolicita = Carbon::now()->subDays(rand(0,4));
 
     return [
         'codigo' => prefijoCeros($autoIncrement->current(),4).Carbon::now()->year,

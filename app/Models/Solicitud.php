@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;;
 use Illuminate\Database\Eloquent\SoftDeletes;
 /**
@@ -201,9 +202,30 @@ class Solicitud extends Model
 
     public function getColor()
     {
-        switch ($this->estado){
-            case SolicitudEstado::INGRESADA:
-            case SolicitudEstado::INGRESADA:
+        switch ($this->estado_id){
+            case SolicitudEstado::SOLICITADA:
+                if ($this->fecha_solicita){
+
+                    $dif = $this->fecha_solicita->diffInHours(Carbon::now());
+
+                    if ($dif >= 24 && $dif < 48){
+                        return "#f3fa93";
+                    }elseif ($dif >= 48 && $dif < 72){
+                        return "#fae093";
+                    }elseif ($dif >= 72){
+                        return "#fab593";
+                    }
+                }
+
+                break;
+            case SolicitudEstado::APROBADA:
+                return "#9ffa93";
+                break;
+            case SolicitudEstado::RECHAZADA:
+                return "#ff7878";
+                break;
+            default:
+                return "#9ffa93";
         }
     }
 

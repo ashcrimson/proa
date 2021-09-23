@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Solicitud;
+use Carbon\Carbon;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
@@ -30,24 +31,24 @@ class SolicitudDataTable extends DataTable
                  return $solicitud->paciente->nombre_completo;
 
              })
-             ->editColumn('id',function (Solicitud $solicitud){
-
-                 return $solicitud->id;
-
-                 //se debe crear la vista modal_detalles
-                 //return view('solicitudes.modal_detalles',compact('solicitud'))->render();
-
-             })
            ->editColumn('antimicrobiano',function (Solicitud $solicitud){
                return view('solicitudes.partials.datatable_columna_medicamtenso',compact('solicitud'));
            })
            ->editColumn('microorganismo',function (Solicitud $solicitud){
                return view('solicitudes.partials.datatable_columna_microorganismos',compact('solicitud'));
            })
+           ->setRowAttr([
+               'style' => function(Solicitud $solicitud){
+                   return 'background-color: '.$solicitud->getColor().';';
+               }
+           ])
            ->editColumn('fecha_solicita',function (Solicitud $solicitud){
-               return $solicitud->fecha_solicita->format('d/m/Y');
+               return $solicitud->fecha_solicita ? $solicitud->fecha_solicita->format('d/m/Y') : '';
            })
-             ->rawColumns(['antimicrobiano','action','id']);
+           ->editColumn('horas',function (Solicitud $solicitud){
+               return $solicitud->fecha_solicita ? $solicitud->fecha_solicita->diffInHours(Carbon::now()) : '';
+           })
+             ->rawColumns(['microorganismo','antimicrobiano','action']);
 
     }
 
@@ -59,7 +60,7 @@ class SolicitudDataTable extends DataTable
      */
     public function query(Solicitud $model)
     {
-        return $model->newQuery()->with(['paciente','estado','userCrea','medicamentos','microorganismos']);
+        return $model->newQuery()->with(['paciente','estado','userCrea','medicamentos','microorganismos'])->orderBy('fecha_solicita','asc');
     }
 
     /**
@@ -111,8 +112,9 @@ class SolicitudDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id')->visible(false)->exportable(false),
+//            Column::make('id')->data('id')->name('solicitudes.id'),
             Column::make('fecha_solicita')->data('fecha_solicita')->name('fecha_solicita'),
+//            Column::make('horas')->searchable(false)->orderable(false),
             Column::make('medico')->name('userCrea.name')->data('user_crea.name'),
 
             Column::make('paciente.apellido_paterno')
