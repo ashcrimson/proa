@@ -225,7 +225,7 @@ class Solicitud extends Model
                 return "#ff7878";
                 break;
             default:
-                return "#9ffa93";
+                return "";
         }
     }
 
