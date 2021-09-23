@@ -8,10 +8,14 @@ use App\Models\Role;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\File;
+use nusoap_client;
 
 class LoginController extends Controller
 {
@@ -26,7 +30,24 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    use AuthenticatesUsers {
+        login as protected baseLogin;
+    }
+
+    protected function sendLoginResponse(Request $request)
+    {
+        $request->session()->regenerate();
+
+        $this->clearLoginAttempts($request);
+
+        if ($response = $this->authenticated($request, $this->guard()->user())) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+            ? new JsonResponse([], 204)
+            : redirect()->to($this->redirectPath());
+    }
 
     /**
      * Where to redirect users after login.
@@ -53,6 +74,70 @@ class LoginController extends Controller
 
         $this->username = $this->findUsername();
     }
+
+    public function login(Request $request)
+    {
+
+        if (config('app.login_ldpa')){
+            return $this->loginLdap($request);
+        }
+
+
+        return $this->baseLogin($request);
+
+    }
+
+
+    public function loginLdap(Request $request)
+    {
+
+        $this->validateLogin($request);
+
+        $usuario = (strstr($request->email, '@', true) . "\n");
+
+        $usuario = $request->username ?? $usuario;
+
+        $params = array(
+            "id" => $usuario,
+            "clave" => $request->password,
+        );
+
+        $client = new nusoap_client('http://172.25.16.18/bus/webservice/ws.php?wsdl');
+        $response = $client->call('autentifica_ldap', $params);
+
+
+        if ($response['resp']!=1 ){
+            return redirect()->back()->withInput()->withErrors(['username' => $response['mensaje']]);
+        }
+
+        $user = User::where('username',$request->username)->first();
+
+        if (!$user) {
+
+            $mensaje = "El usuario no esta en la base de datos";
+
+            return redirect()->back()->withInput()->withErrors(['username' => $mensaje]);
+
+//            $user = User::create([
+//                'username' => $usuario,
+//                'name' => "'".$response['nombre']."'",
+//                'email' => $request->email,
+//                'password' => bcrypt($request->password),
+//            ]);
+        }
+
+        Auth::login($user);
+
+        $request->session()->regenerate();
+
+        $this->clearLoginAttempts($request);
+
+        dd('login');
+
+        return redirect()->to($this->redirectPath());
+    }
+
+
 
     /**
      * Get the login username to be used by the controller.

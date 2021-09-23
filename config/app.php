@@ -41,6 +41,8 @@ return [
 
     'debug' => (bool) env('APP_DEBUG', false),
 
+    'login_ldpa' => (bool) env('APP_LOGIN_LDAP', true),
+
     /*
     |--------------------------------------------------------------------------
     | Application URL

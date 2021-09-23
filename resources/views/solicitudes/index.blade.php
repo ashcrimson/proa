@@ -11,6 +11,7 @@
                 <div class="col-sm-6">
                     <h1>Solicitudes</h1>
                 </div>
+                @can('Crear Solicitudes')
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-right">
                         <li class="breadcrumb-item">
@@ -22,6 +23,7 @@
                         </li>
                     </ol>
                 </div>
+                @endcan
             </div>
         </div><!-- /.container-fluid -->
     </section>

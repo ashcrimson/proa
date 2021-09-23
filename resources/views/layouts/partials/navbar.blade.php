@@ -145,7 +145,8 @@
                         <!-- Add the bg color to the header using any of the bg-* classes -->
                         <div class="widget-user-header bg-info">
                             <h3 class="widget-user-username">{{Auth::user()->name}}</h3>
-                            <h5 class="widget-user-desc">Founder & CEO</h5>
+                            <h5 class="widget-user-desc">
+                            </h5>
                         </div>
                         <div class="widget-user-image">
                             <img class="img-circle elevation-2" src="{{Auth::user()->img}}" alt="{{Auth::user()->name}}">
