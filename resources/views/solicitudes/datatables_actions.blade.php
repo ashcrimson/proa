@@ -2,7 +2,7 @@
 ------------------------------------------------------------------------>
 @if($solicitud->puedeDespachar())
     @can('Despachar Solicitudes')
-        <a href="{{ route('solicitudes.show', $solicitud->id) }}" data-toggle="tooltip" title="Despachar" class='btn btn-success btn-sm'>
+        <a href="{{ route('solicitudes.despachar', $solicitud->id) }}" data-toggle="tooltip" title="Despachar" class='btn btn-success btn-sm'>
             <i class="fa fa-boxes"></i>
         </a>
     @endcan
@@ -12,7 +12,7 @@
 ------------------------------------------------------------------------>
 @if($solicitud->puedeAprobar())
     @can('Aprobar Solicitudes')
-        <a href="{{ route('solicitudes.show', $solicitud->id) }}" data-toggle="tooltip" title="Aprobar" class='btn btn-success btn-sm'>
+        <a href="{{ route('solicitudes.aprobar', $solicitud->id) }}" data-toggle="tooltip" title="Aprobar" class='btn btn-success btn-sm'>
             <i class="fa fa-check"></i>
         </a>
     @endcan

@@ -23,13 +23,16 @@
             <!-- /.card-header -->
             <div class="card-body">
                 @include('solicitudes.show_fields')
+
+                <br>
+                <div class="row">
+                    @include('solicitudes.partials.botones')
+                </div>
+                <br>
             </div>
             <!-- /.card-body -->
         </div>
 
     </div>
-
-
-
 
 @endsection

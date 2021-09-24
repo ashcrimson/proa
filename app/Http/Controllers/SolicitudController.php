@@ -402,42 +402,39 @@ class SolicitudController extends AppBaseController
         return $dataTable->render('solicitudes.user.index');
     }
 
-    public function aprobar(SolicitudDataTable $dataTable)
+    public function aprobar(Solicitud $solicitud)
     {
-        $estadosDefecto = [
-            SolicitudEstado::SOLICITADA,
-        ];
-
-        $scope = new ScopeSolicitudDataTable();
-        $scope->estados = request()->estados ?? $estadosDefecto;
-        $scope->users = request()->users ?? null;
-
-        $dataTable->addScope($scope);
-
-        return $dataTable->render('solicitudes.aprobar.index');
+        return view('solicitudes.aprobar.aprobar',compact('solicitud'));
     }
 
-    public function aprobarStore()
+    public function aprobarStore(Solicitud $solicitud)
     {
 
+        $solicitud->estado_id= SolicitudEstado::APROBADA;
+        $solicitud->user_autoriza = auth()->user()->id;
+        $solicitud->fecha_autoriza = Carbon::now();
+        $solicitud->save();
+
+        flash('Solicitud aprobada!')->success();
+
+        return redirect(route('solicitudes.index'));
     }
 
-    public function despachar(SolicitudDataTable $dataTable)
+    public function despachar(Solicitud $solicitud)
     {
-        $estadosDefecto = [
-            SolicitudEstado::APROBADA,
-        ];
-
-        $scope = new ScopeSolicitudDataTable();
-        $scope->estados = request()->estados ?? $estadosDefecto;
-
-        $dataTable->addScope($scope);
-
-        return $dataTable->render('solicitudes.despachar.index');
+        return view('solicitudes.despachar.despachar',compact('solicitud'));
     }
 
-    public function despacharStore()
+    public function despacharStore(Solicitud $solicitud)
     {
 
+        $solicitud->estado_id= SolicitudEstado::DESPACHADA;
+        $solicitud->user_despacha = auth()->user()->id;
+        $solicitud->fecha_despacha = Carbon::now();
+        $solicitud->save();
+
+        flash('Solicitud despachada!')->success();
+
+        return redirect(route('solicitudes.index'));
     }
 }

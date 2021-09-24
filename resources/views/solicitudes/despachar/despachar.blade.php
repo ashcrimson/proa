@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title_page',__('Solicitudes'))
+@section('title_page',__('Despachar Solicitud'))
 
 @section('content')
 
@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{__('Solicitudes')}}</h1>
+                    <h1>{{__('Despachar Solicitud')}}</h1>
                 </div>
                 <div class="col-sm-6">
 
@@ -19,18 +19,20 @@
     </section>
 
     <div class="content">
-        <div class="card-body" >
-            @include('solicitudes.show_fields')
+        <div class="card">
+            <!-- /.card-header -->
+            <div class="card-body">
+                @include('solicitudes.show_fields')
 
+                <br>
+                <div class="row">
+                    @include('solicitudes.partials.botones')
+                </div>
+                <br>
+            </div>
+            <!-- /.card-body -->
         </div>
 
     </div>
-
-
-
-
-
-
-
 
 @endsection

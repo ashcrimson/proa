@@ -69,10 +69,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['prefix' => 'solicitudes','as' => 'solicitudes.'],function (){
         Route::get('{solicitude}/ver', 'SolicitudController@show')->name('show');
         Route::get('user', 'SolicitudController@listUser')->name('user');
-        Route::get('aprobar', 'SolicitudController@aprobar')->name('aprobar');
-        Route::post('aprobar', 'SolicitudController@aprobarStore')->name('aprobar.store');
-        Route::get('despachar', 'SolicitudController@despachar')->name('despachar');
-        Route::post('despachar', 'SolicitudController@despacharStore')->name('despachar.store');
+
+        Route::get('aprobar/{solicitud}', 'SolicitudController@aprobar')->name('aprobar');
+        Route::post('aprobar/{solicitud}', 'SolicitudController@aprobarStore')->name('aprobar.store');
+
+        Route::get('despachar/{solicitud}', 'SolicitudController@despachar')->name('despachar');
+        Route::post('despachar/{solicitud}', 'SolicitudController@despacharStore')->name('despachar.store');
     });
 });
 
