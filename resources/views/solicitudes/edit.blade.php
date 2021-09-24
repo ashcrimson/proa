@@ -36,14 +36,27 @@
                             @include('solicitudes.fields')
 
                             <!-- Submit Field -->
-                            <div class="form-group col-sm-12 text-right">
-                                <a href="{!! route('solicitudes.index') !!}" class="btn btn-outline-secondary">
+                            <div class="form-group col-sm-10 text-right pt-4">
+
+                                <a href="{!! route('solicitudes.index') !!}" class="btn btn-outline-secondary mr-3">
                                     Cancelar
                                 </a>
                                 &nbsp;
-                                <button type="submit" class="btn btn-outline-success">
-                                    <i class="fa fa-floppy-o"></i> Guardar
+                                <button type="submit" class="btn btn-outline-success mr-3">
+                                    <i class="fa fa-save"></i> Guardar
                                 </button>
+
+                                <button type="submit" class="btn btn-outline-primary mr-3" name="enviar" value="1">
+                                    <i class="fa fa-send-o"></i> Guardar Y Enviar
+                                </button>
+
+
+                            </div>
+
+
+                            <div class="form-group col-sm-2">
+                                {!! Form::label('contrasena', 'Contraseña:') !!}
+                                <input type="password" class="form-control" id="password" name="password">
                             </div>
                         </div>
 
@@ -54,3 +67,18 @@
     </div>
 
 @endsection
+
+
+@push('scripts')
+<script>
+    $(function () {
+        $("#ojt").select2({
+            placeholder: 'Seleccione uno...',
+            language: "es",
+            maximumSelectionLength: 1,
+            allowClear: true
+        });
+    })
+</script>
+@endpush
+

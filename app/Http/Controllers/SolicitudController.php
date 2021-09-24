@@ -17,6 +17,7 @@ use Exception;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Response;
 
 class SolicitudController extends AppBaseController
@@ -210,6 +211,23 @@ class SolicitudController extends AppBaseController
             return redirect(route('solicitudes.index'));
         }
 
+        $estado = SolicitudEstado::INGRESADA;
+
+        if ($request->enviar){
+            $estado = SolicitudEstado::SOLICITADA;
+            $request->validate([
+                'password' => 'required'
+            ]);
+
+            $chekPass = Hash::check($request->password,auth()->user()->getAuthPassword());
+
+
+            if (!$chekPass){
+                return back()->withInput()->withErrors(['password' => "La contraseña es incorrecta"]);
+            }
+
+        }
+
         try {
             DB::beginTransaction();
 
@@ -220,13 +238,15 @@ class SolicitudController extends AppBaseController
 
             $request->merge([
                 'paciente_id' => $paciente->id,
-                'estado_id' => SolicitudEstado::INGRESADA,
+                'estado_id' => $estado,
                 'inicio' => $request->tratamiento=='inicio' ? 1 : 0,
                 'continuacion' => $request->tratamiento=='continuacion' ? 1 : 0,
                 'terapia_empirica' => $request->terapia=='terapia_empirica' ? 1 : 0,
                 'terapia_especifica' => $request->terapia=='terapia_especifica' ? 1 : 0,
                 'infeccion_extrahospitalaria' => $request->fuente_infeccion=='infeccion_extrahospitalaria' ? 1 : 0,
                 'infeccion_intrahospitalaria' => $request->fuente_infeccion=='infeccion_intrahospitalaria' ? 1 : 0,
+                'fecha_solicita' => $request->enviar ? Carbon::now() : null,
+
             ]);
 
             $solicitud->fill($request->all());
@@ -234,6 +254,8 @@ class SolicitudController extends AppBaseController
 
             $solicitud->diagnosticos()->sync($request->diagnosticos ?? []);
             $solicitud->cultivos()->sync($request->cultivos ?? []);
+
+
 
         } catch (Exception $exception) {
             DB::rollBack();
