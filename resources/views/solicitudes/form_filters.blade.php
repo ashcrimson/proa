@@ -77,7 +77,7 @@
                 estados : @json($estados ?? []),
                 estado: null,
 
-                users : @json(\App\Models\User::role(\App\Models\Role::MEDICO)->get() ?? []),
+                users : @json(\App\Models\User::role([\App\Models\Role::MEDICO,\App\Models\Role::INFECTOLOGO])->get() ?? []),
                 user: null,
 
 

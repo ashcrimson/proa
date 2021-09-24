@@ -55,6 +55,7 @@ class SolicitudController extends AppBaseController
 
         $scope = new ScopeSolicitudDataTable();
 
+        $scope->users = request()->users ?? null;
 
         if($user->hasRole(Role::MEDICO)){
             $scope->users = auth()->user()->id;
@@ -62,11 +63,17 @@ class SolicitudController extends AppBaseController
 
         if ($user->hasRole(Role::INFECTOLOGO)){
             $estados = [
-                SolicitudEstado::SOLICITADA
+                SolicitudEstado::INGRESADA,
+                SolicitudEstado::SOLICITADA,
+                SolicitudEstado::APROBADA,
+                SolicitudEstado::DESPACHADA,
+                SolicitudEstado::RECHAZADA,
+                SolicitudEstado::ANULADA,
             ];
         }
 
         if ($user->hasRole(Role::QF_CLINICO)){
+
             $estados = [
                 SolicitudEstado::APROBADA
             ];
@@ -224,6 +231,10 @@ class SolicitudController extends AppBaseController
 
             if (!$chekPass){
                 return back()->withInput()->withErrors(['password' => "La contraseña es incorrecta"]);
+            }
+
+            if (auth()->user()->hasRole(Role::INFECTOLOGO)){
+                $estado = SolicitudEstado::APROBADA;
             }
 
         }
