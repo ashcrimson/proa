@@ -181,61 +181,12 @@
                     </div>
 
                     <div class="form-group col-12">
-                        <div class="card ">
-                            <div class="card-header py-0 px-1">
-                                <h3 class="card-title">Disfunción</h3>
-
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-
-                                <div class="form-row">
-
-                                    <!-- Disfuncion Renal Field -->
-                                    <div class="form-group col-sm-3">
-                                        {!! Form::label('disfuncion_renal', 'Disfuncion Renal:') !!}
-                                        <label class="checkbox-inline">
-                                            {!! Form::hidden('disfuncion_renal', 0) !!}
-                                            {!! Form::checkbox('disfuncion_renal', '1', null) !!}
-                                        </label>
-                                    </div>
-
-
-                                    <!-- Disfuncion Hepatica Field -->
-                                    <div class="form-group col-sm-3">
-                                        {!! Form::label('disfuncion_hepatica', 'Disfuncion Hepatica:') !!}
-                                        <label class="checkbox-inline">
-                                            {!! Form::hidden('disfuncion_hepatica', 0) !!}
-                                            {!! Form::checkbox('disfuncion_hepatica', '1', null) !!}
-                                        </label>
-                                    </div>
-
-
-                                    <!-- Creatinina Field -->
-                                    <div class="form-group col-sm-3">
-                                        {!! Form::label('creatinina', 'Creatinina:') !!}
-                                        {!! Form::number('creatinina', null, ['class' => 'form-control']) !!}
-                                    </div>
-
-                                    <!-- Peso Field -->
-                                    <div class="form-group col-sm-3">
-                                        {!! Form::label('peso', 'Peso:') !!}
-                                        {!! Form::number('peso', null, ['class' => 'form-control']) !!}
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
+                        @include('solicitudes.panel_disfuncion')
                     </div>
 
                     <div class="form-group col-sm-12 col-lg-12">
                         @include('solicitudes.panel_medicamentos')
                     </div>
-
-
-
-
-
 
                     <!-- Observaciones Field -->
                     <div class="form-group col-sm-12 col-lg-12">

@@ -212,6 +212,7 @@ class SolicitudController extends AppBaseController
         /** @var Solicitud $solicitud */
         $solicitud = Solicitud::find($id);
 
+
         if (empty($solicitud)) {
             flash()->error('Solicitud no encontrado');
 

@@ -6,11 +6,15 @@
         </tr>
     </thead>
     <tbody>
-    @foreach($detalles as $det)
+    @forelse($detalles as $det)
         <tr>
             <td>{{$det->microorganismo->nombre}}</td>
             <td>{{$det->susceptibilidad}}</td>
         </tr>
-    @endforeach
+    @empty
+        <tr class="text-center">
+            <td colspan="20">Ningun registro agregado</td>
+        </tr>
+    @endforelse
     </tbody>
 </table>
