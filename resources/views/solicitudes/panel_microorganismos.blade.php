@@ -4,81 +4,84 @@
 
         <div class="card-tools">
 
-            <button type="button" class="btn btn-tool" @click="!dialog" data-widget="collapse"><i class="fa fa-minus"></i>
+            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fa fa-minus"></i>
             </button>
         </div>
         <!-- /.card-tools -->
     </div>
 
-    <div class="row">
+    <div class="card-body p-0">
 
-        <div class="col-12 p-3">
+        <div class="row">
 
-            <div class="form-row">
+            <div class="col-12 p-3">
 
-
-                <div class="form-group col-sm-12">
-                    <select-microorganismo
-                        :items="microorganismos"
-                        label="Microorganismo"
-                        v-model="microorganismo" >
-
-                    </select-microorganismo>
-                </div>
-
-                <div class="form-group col-sm-12" style="padding: 0px; margin: 0px"></div>
-
-                <div class="form-group col-sm-8">
-                    <label for="vol">Susceptibilidad:</label>
-                    <input class="form-control" type="text" v-model="editedItem.susceptibilidad">
-                </div>
+                <div class="form-row">
 
 
-                <div class="form-group col-sm-2">
-                    <label for="peep">&nbsp;</label>
-                    <div>
-                        <button type="button" class="btn btn-success" @click.prevent="save()">
-                            <i class="fa fa-save" v-show="!loading"></i>
-                            <i class="fa fa-sync fa-spin" v-show="loading"></i>
-                            <span v-text="textButtonSubmint"></span>
-                        </button>
+                    <div class="form-group col-sm-12">
+                        <select-microorganismo
+                            :items="microorganismos"
+                            label="Microorganismo"
+                            v-model="microorganismo" >
+
+                        </select-microorganismo>
                     </div>
-                </div>
 
+                    <div class="form-group col-sm-12" style="padding: 0px; margin: 0px"></div>
+
+                    <div class="form-group col-sm-8">
+                        <label for="vol">Susceptibilidad:</label>
+                        <input class="form-control" type="text" v-model="editedItem.susceptibilidad">
+                    </div>
+
+
+                    <div class="form-group col-sm-2">
+                        <label for="peep">&nbsp;</label>
+                        <div>
+                            <button type="button" class="btn btn-success" @click.prevent="save()">
+                                <i class="fa fa-save" v-show="!loading"></i>
+                                <i class="fa fa-sync fa-spin" v-show="loading"></i>
+                                <span v-text="textButtonSubmint"></span>
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
 
             </div>
-
         </div>
-    </div>
 
-    <div class="table-responsive mb-0">
-        <table class="table table-bordered table-sm table-striped mb-0">
-            <thead>
-            <tr>
-                <th>Microorganismo</th>
-                <th>Susceptibilidad</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-if="solicitud_microorganismos.length == 0">
-                <td colspan="10" class="text-center">Ningún Registro agregado</td>
-            </tr>
-            <tr v-for="det in solicitud_microorganismos">
-                <td v-text="det.microorganismo.nombre"></td>
-                <td v-text="det.susceptibilidad"></td>
-                <td  class="text-nowrap">
-                    <button type="button" @click="editItem(det)" class="btn btn-sm btn-outline-info" v-tooltip="'Editar'"  >
-                        <i class="fa fa-edit"></i>
-                    </button>
+        <div class="table-responsive mb-0">
+            <table class="table table-bordered table-sm table-striped mb-0">
+                <thead>
+                <tr>
+                    <th>Microorganismo</th>
+                    <th>Susceptibilidad</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-if="solicitud_microorganismos.length == 0">
+                    <td colspan="10" class="text-center">Ningún Registro agregado</td>
+                </tr>
+                <tr v-for="det in solicitud_microorganismos">
+                    <td v-text="det.microorganismo.nombre"></td>
+                    <td v-text="det.susceptibilidad"></td>
+                    <td  class="text-nowrap">
+                        <button type="button" @click="editItem(det)" class="btn btn-sm btn-outline-info" v-tooltip="'Editar'"  >
+                            <i class="fa fa-edit"></i>
+                        </button>
 
-                    <button type="button" @click="deleteItem(det)"  class='btn btn-outline-danger btn-sm' v-tooltip="'Eliminar'" >
-                        <i class="fa fa-trash-alt"></i>
-                    </button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+                        <button type="button" @click="deleteItem(det)"  class='btn btn-outline-danger btn-sm' v-tooltip="'Eliminar'" >
+                            <i class="fa fa-trash-alt"></i>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 

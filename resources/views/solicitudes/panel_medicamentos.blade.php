@@ -1,80 +1,83 @@
 <div class="card " id="panel_medicamentos">
+
     <div class="card-header py-0 px-1">
         <h3 class="card-title">Antibiótico Solicitado</h3>
 
         <div class="card-tools">
 
-            <button type="button" class="btn btn-tool" @click="!dialog" data-widget="collapse"><i class="fa fa-minus"></i>
+            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fa fa-minus"></i>
             </button>
         </div>
         <!-- /.card-tools -->
     </div>
 
-    <div class="row">
 
-        <div class="col-12 p-3">
+    <div class="card-body p-0">
+        <div class="row">
 
-            <div class="form-row">
+            <div class="col-12 p-3">
 
-
-                <div class="form-group col-sm-8">
-                    <select-medicamento
-                        :items="medicamentos"
-                        label="Medicamento"
-                        v-model="medicamento" >
-
-                    </select-medicamento>
-                </div>
-
-                <div class="form-group col-sm-12" style="padding: 0px; margin: 0px"></div>
-
-                <div class="form-group col-sm-3">
-                    <label for="vol">Dosis:</label>
-                    <input class="form-control" type="text" v-model="editedItem.dosis">
-                </div>
-
-                <div class="form-group col-sm-3">
-                    <label for="vol">Frecuencia:</label>
-                    <input class="form-control" type="text" v-model="editedItem.frecuencia">
-                </div>
+                <div class="form-row">
 
 
-                <div class="form-group col-sm-3">
-                    <label for="peep">Periodo:</label>
-                    <input class="form-control" type="text" v-model="editedItem.periodo">
-                </div>
+                    <div class="form-group col-sm-8">
+                        <select-medicamento
+                            :items="medicamentos"
+                            label="Medicamento"
+                            v-model="medicamento" >
 
-                <div class="form-group col-sm-3">
-                    <label for="peep">&nbsp;</label>
-                    <div>
-                        <button type="button" class="btn btn-success" @click.prevent="save()">
-                            <i class="fa fa-save" v-show="!loading"></i>
-                            <i class="fa fa-sync fa-spin" v-show="loading"></i>
-                            <span v-text="textButtonSubmint"></span>
-                        </button>
+                        </select-medicamento>
                     </div>
-                </div>
 
+                    <div class="form-group col-sm-12" style="padding: 0px; margin: 0px"></div>
+
+                    <div class="form-group col-sm-3">
+                        <label for="vol">Dosis:</label>
+                        <input class="form-control" type="text" v-model="editedItem.dosis">
+                    </div>
+
+                    <div class="form-group col-sm-3">
+                        <label for="vol">Frecuencia:</label>
+                        <input class="form-control" type="text" v-model="editedItem.frecuencia">
+                    </div>
+
+
+                    <div class="form-group col-sm-3">
+                        <label for="peep">Periodo:</label>
+                        <input class="form-control" type="text" v-model="editedItem.periodo">
+                    </div>
+
+                    <div class="form-group col-sm-3">
+                        <label for="peep">&nbsp;</label>
+                        <div>
+                            <button type="button" class="btn btn-success" @click.prevent="save()">
+                                <i class="fa fa-save" v-show="!loading"></i>
+                                <i class="fa fa-sync fa-spin" v-show="loading"></i>
+                                <span v-text="textButtonSubmint"></span>
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
 
             </div>
-
         </div>
-    </div>
 
-    <div class="table-responsive mb-0">
-        <table class="table table-bordered table-sm table-striped mb-0">
-            <thead>
-            <tr>
-                <th>Antibiotico</th>
-                <th>dosis</th>
-                <th>frecuencia</th>
-                <th>periodo</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
+        <div class="table-responsive mb-0">
+            <table class="table table-bordered table-sm table-striped mb-0">
+                <thead>
+                <tr>
+                    <th>Antibiotico</th>
+                    <th>dosis</th>
+                    <th>frecuencia</th>
+                    <th>periodo</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
                 <tr v-if="solicitud_medicamentos.length == 0">
-                        <td colspan="10" class="text-center">Ningún Registro agregado</td>
+                    <td colspan="10" class="text-center">Ningún Registro agregado</td>
                 </tr>
                 <tr v-for="det in solicitud_medicamentos">
                     <td v-text="det.medicamento.nombre"></td>
@@ -91,12 +94,15 @@
                         </button>
                     </td>
                 </tr>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 
+
 </div>
+
 
 
 

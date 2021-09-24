@@ -36,7 +36,7 @@
                     <h3 class="card-title py-1">Filtrar por fecha de ingreso</h3>
 
                     <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fa fa-minus"></i>
                         </button>
                     </div>
                     <!-- /.card-tools -->

@@ -117,6 +117,14 @@ class Solicitud extends Model
      * @var array
      */
     public static $rules = [
+        'run' => 'required|string|max:255',
+        'dv_run' => 'required|string|max:255',
+
+        'apellido_paterno' => 'required|string|max:255',
+        'apellido_materno' => 'nullable|string|max:255',
+        'primer_nombre' => 'required|string|max:255',
+        'segundo_nombre' => 'nullable|string|max:255',
+
         'inicio' => 'nullable|boolean',
         'continuacion' => 'nullable|boolean',
         'terapia_empirica' => 'nullable|boolean',

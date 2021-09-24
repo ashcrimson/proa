@@ -38,7 +38,7 @@
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-widget="remove"><i class="fa fa-times"></i>
                         </button>
-                        <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fa fa-minus"></i>
                         </button>
                     </div>
                     <!-- /.card-tools -->

@@ -36,7 +36,7 @@
                             @include('solicitudes.fields')
 
                             <!-- Submit Field -->
-                            <div class="form-group col-sm-10 text-right pt-4">
+                            <div class="form-group col-sm-8 text-right ">
 
                                 <a href="{!! route('solicitudes.index') !!}" class="btn btn-outline-secondary mr-3">
                                     Cancelar
@@ -46,18 +46,23 @@
                                     <i class="fa fa-save"></i> Guardar
                                 </button>
 
-                                <button type="submit" class="btn btn-outline-primary mr-3" name="enviar" value="1">
-                                    <i class="fa fa-send-o"></i> Guardar Y Enviar
-                                </button>
 
 
                             </div>
 
+                            <div class="form-group col-sm-4 text-right ">
 
-                            <div class="form-group col-sm-2">
-                                {!! Form::label('contrasena', 'Contraseña:') !!}
-                                <input type="password" class="form-control" id="password" name="password">
+
+                                <div class="input-group mb-3">
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-outline-primary mr-3" name="enviar" value="1">
+                                            <i class="fa fa-paper-plane"></i> Guardar Y Enviar
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
 
                    {!! Form::close() !!}
@@ -69,16 +74,4 @@
 @endsection
 
 
-@push('scripts')
-<script>
-    $(function () {
-        $("#ojt").select2({
-            placeholder: 'Seleccione uno...',
-            language: "es",
-            maximumSelectionLength: 1,
-            allowClear: true
-        });
-    })
-</script>
-@endpush
 

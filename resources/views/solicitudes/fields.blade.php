@@ -7,7 +7,7 @@
                 <h3 class="card-title">Datos Paciente</h3>
 
                 <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fa fa-minus"></i>
                     </button>
                 </div>
                 <!-- /.card-tools -->
@@ -32,7 +32,7 @@
                 <h3 class="card-title">Datos Registro</h3>
 
                 <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fa fa-minus"></i>
                     </button>
                 </div>
                 <!-- /.card-tools -->
