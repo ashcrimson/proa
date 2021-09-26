@@ -72,6 +72,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('aprobar/{solicitud}', 'SolicitudController@aprobar')->name('aprobar');
         Route::post('aprobar/{solicitud}', 'SolicitudController@aprobarStore')->name('aprobar.store');
+        Route::post('rechazar/{solicitud}', 'SolicitudController@rechazarStore')->name('rechazar.store');
 
         Route::get('despachar/{solicitud}', 'SolicitudController@despachar')->name('despachar');
         Route::post('despachar/{solicitud}', 'SolicitudController@despacharStore')->name('despachar.store');

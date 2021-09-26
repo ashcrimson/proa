@@ -407,10 +407,25 @@ class SolicitudController extends AppBaseController
         return view('solicitudes.aprobar.aprobar',compact('solicitud'));
     }
 
+
+
+    public function rechazarStore(Solicitud $solicitud)
+    {
+
+        $solicitud->estado_id= SolicitudEstado::RECHAZADA;
+        $solicitud->user_actualiza = auth()->user()->id;
+        $solicitud->save();
+
+        flash('Solicitud rechazada!')->success();
+
+        return redirect(route('solicitudes.index'));
+    }
+
     public function aprobarStore(Solicitud $solicitud)
     {
 
         $solicitud->estado_id= SolicitudEstado::APROBADA;
+        $solicitud->user_actualiza = auth()->user()->id;
         $solicitud->user_autoriza = auth()->user()->id;
         $solicitud->fecha_autoriza = Carbon::now();
         $solicitud->save();
@@ -429,6 +444,7 @@ class SolicitudController extends AppBaseController
     {
 
         $solicitud->estado_id= SolicitudEstado::DESPACHADA;
+        $solicitud->user_actualiza = auth()->user()->id;
         $solicitud->user_despacha = auth()->user()->id;
         $solicitud->fecha_despacha = Carbon::now();
         $solicitud->save();

@@ -126,7 +126,8 @@ class SolicitudDataTable extends DataTable
             Column::make('paciente.segundo_nombre')
                 ->visible(false)->exportable(false),
 
-            Column::make('paciente')->name('paciente.nombre_completo')->data('paciente.nombre_completo'),
+            Column::make('paciente')->name('paciente.nombre_completo')->data('paciente.nombre_completo')
+                ->searchable(false)->orderable(false),
 
             Column::make('antimicrobiano')->searchable(false)->orderable(false),
             Column::make('microorganismo')->searchable(false)->orderable(false),
