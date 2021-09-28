@@ -115,7 +115,7 @@ class SolicitudDataTable extends DataTable
     protected function getColumns()
     {
         return [
-//            Column::make('id')->data('id')->name('solicitudes.id'),
+            Column::make('id')->data('id')->name('solicitudes.id'),
 //            Column::make('horas')->searchable(false)->orderable(false),
             Column::make('medico')->name('userCrea.name')->data('user_crea.name'),
 

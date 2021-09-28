@@ -1,6 +1,12 @@
 
 
-<div class="col-12 text-right pl-3">
+<div class="col-6 text-left pl-3 text-lg">
+    Estado:
+    <span class="badge badge-info">
+        {{$solicitud->estado->nombre}}
+    </span>
+</div>
+<div class="col-6 text-right pl-3">
     <a href="{!! route('solicitudes.index') !!}" class="btn btn-outline-secondary mr-3">
         {{__('Back')}}
     </a>
