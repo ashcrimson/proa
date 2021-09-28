@@ -48,6 +48,7 @@ class RoleSeeder extends Seeder
         $role->syncPermissions([
             'Ver Solicitudes',
             'Aprobar Solicitudes',
+            'Rechazar Solicitudes',
             'Crear Solicitudes',
             'Editar Solicitudes',
 
