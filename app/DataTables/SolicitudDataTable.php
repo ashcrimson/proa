@@ -48,6 +48,9 @@ class SolicitudDataTable extends DataTable
            ->editColumn('horas',function (Solicitud $solicitud){
                return $solicitud->fecha_solicita ? $solicitud->fecha_solicita->diffInHours(Carbon::now()) : '';
            })
+           ->editColumn('fecha_despacha',function (Solicitud $solicitud){
+               return $solicitud->fecha_despacha ? $solicitud->fecha_despacha->format('d/m/Y') : '';
+           })
              ->rawColumns(['microorganismo','antimicrobiano','action']);
 
     }
@@ -113,7 +116,6 @@ class SolicitudDataTable extends DataTable
     {
         return [
 //            Column::make('id')->data('id')->name('solicitudes.id'),
-            Column::make('fecha_solicita')->data('fecha_solicita')->name('fecha_solicita'),
 //            Column::make('horas')->searchable(false)->orderable(false),
             Column::make('medico')->name('userCrea.name')->data('user_crea.name'),
 
@@ -129,8 +131,14 @@ class SolicitudDataTable extends DataTable
             Column::make('paciente')->name('paciente.nombre_completo')->data('paciente.nombre_completo')
                 ->searchable(false)->orderable(false),
 
+            Column::make('run')->name('paciente.run')->data('paciente.run')
+                ->searchable(false)->orderable(false),
+
             Column::make('antimicrobiano')->searchable(false)->orderable(false),
             Column::make('microorganismo')->searchable(false)->orderable(false),
+            Column::make('fecha_solicita')->data('fecha_solicita')->name('fecha_solicita'),
+            Column::make('fecha_despacha')->data('fecha_despacha')->name('fecha_despacha'),
+
             Column::make('estado')->name('estado.nombre')->data('estado.nombre'),
         ];
     }
