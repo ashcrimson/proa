@@ -52,13 +52,13 @@
             <!-- Creatinina Field -->
             <div class="form-group col-sm-2">
                 {!! Form::label('creatinina', 'Creatinina:') !!}
-                <input type="text" class="form-control" name="creatinina" v-model="creatinina" :readonly="readonly">
+                <input type="number" step="any" class="form-control" name="creatinina" v-model="creatinina" :readonly="readonly">
             </div>
 
             <!-- Peso Field -->
             <div class="form-group col-sm-2">
                 {!! Form::label('peso', 'Peso:') !!}
-                <input type="text" class="form-control" name="peso" v-model="peso" :readonly="readonly">
+                <input type="number" step="any" class="form-control" name="peso" v-model="peso" :readonly="readonly">
             </div>
 
             <div class="form-group col-sm-2">

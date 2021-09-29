@@ -145,10 +145,9 @@
                                         </label>
                                     </div>
                                 @endforeach
-                                    <div class="mt-2">
-
-                                        <input type="text" name="otro_cultivo" id="otro_cultivo" class="form-control" placeholder="Describa" style="display: none">
-                                    </div>
+                                <div class="mt-2">
+                                    {!! Form::text('otro_cultivo', null, ['id' => 'otro_cultivo','class' => 'form-control']) !!}
+                                </div>
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -175,7 +174,8 @@
                                     </div>
                                 @endforeach
                                 <div class="mt-2">
-                                    <input type="text" name="otro_diagnostico" id="otro_diagnostico" class="form-control" placeholder="Describa" style="display: none">
+
+                                        {!! Form::text('otro_diagnostico', null, ['id' => 'otro_diagnostico','class' => 'form-control']) !!}
                                 </div>
                             </div>
                         </div>
@@ -212,9 +212,8 @@
 <script>
     $(function () {
 
-        $("#cultivoCheck{{\App\Models\Cultivo::OTRO}}").change(function (){
-
-            let checked = $(this).is(":checked");
+        function validaOtroCultivo(){
+            let checked = $("#cultivoCheck{{\App\Models\Cultivo::OTRO}}").is(":checked");
             console.log('cambio check otro cultivo',checked);
 
             if (checked){
@@ -222,12 +221,18 @@
             }else {
                 $("#otro_cultivo").hide()
             }
+        }
+        validaOtroCultivo();
 
+        $("#cultivoCheck{{\App\Models\Cultivo::OTRO}}").change(function (){
+
+            validaOtroCultivo();
 
         });
 
-        $("#diagnosticoCheck{{\App\Models\Diagnostico::OTRO}}").change(function (){
-            let checked = $(this).is(":checked");
+
+        function validaOtroDiagnostico(){
+            let checked = $("#diagnosticoCheck{{\App\Models\Diagnostico::OTRO}}").is(":checked");
             console.log('cambio check otro diagnostico',checked);
 
             if (checked){
@@ -235,6 +240,14 @@
             }else {
                 $("#otro_diagnostico").hide()
             }
+        }
+
+        validaOtroDiagnostico();
+
+
+        $("#diagnosticoCheck{{\App\Models\Diagnostico::OTRO}}").change(function (){
+
+            validaOtroDiagnostico();
         });
     })
 </script>

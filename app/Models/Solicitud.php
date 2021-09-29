@@ -32,6 +32,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property boolean $disfuncion_hepatica
  * @property number $creatinina
  * @property number $peso
+ * @property string $otro_cultivo
+ * @property string $otro_diagnostico
  * @property string $observaciones
  * @property integer $user_crea
  * @property string|\Carbon\Carbon $fecha_solicita
@@ -70,6 +72,8 @@ class Solicitud extends Model
         'disfuncion_hepatica',
         'creatinina',
         'peso',
+        'otro_cultivo',
+        'otro_diagnostico',
         'observaciones',
         'user_crea',
         'fecha_solicita',
@@ -101,6 +105,8 @@ class Solicitud extends Model
         'disfuncion_hepatica' => 'boolean',
         'creatinina' => 'decimal:2',
         'peso' => 'decimal:2',
+        'otro_cultivo' => 'string',
+        'otro_diagnostico' => 'string',
         'observaciones' => 'string',
         'user_crea' => 'integer',
         'fecha_solicita' => 'datetime',

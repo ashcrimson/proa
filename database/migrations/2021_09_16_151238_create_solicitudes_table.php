@@ -29,6 +29,8 @@ class CreateSolicitudesTable extends Migration
             $table->tinyInteger('disfuncion_hepatica')->nullable();
             $table->decimal('creatinina')->nullable();
             $table->decimal('peso')->nullable();
+            $table->string('otro_cultivo')->nullable();
+            $table->string('otro_diagnostico')->nullable();
             $table->text('observaciones')->nullable();
             $table->unsignedBigInteger('user_crea')->index('fk_solicitud_users1_idx');
             $table->dateTime('fecha_solicita')->nullable();

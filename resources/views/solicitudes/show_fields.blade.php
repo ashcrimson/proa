@@ -141,6 +141,10 @@
                                         </label>
                                     </div>
                                 @endforeach
+                                <div class="mt-2">
+
+                                    {!! Form::text('otro_cultivo', $solicitud->otro_cultivo, ['id' => 'otro_cultivo','class' => 'form-control','readonly']) !!}
+                                </div>
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -166,6 +170,10 @@
                                         </label>
                                     </div>
                                 @endforeach
+                                <div class="mt-2">
+
+                                    {!! Form::text('otro_diagnostico', $solicitud->otro_diagnostico, ['id' => 'otro_diagnostico','class' => 'form-control','readonly']) !!}
+                                </div>
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -238,3 +246,39 @@
 
 
 
+
+@push('scripts')
+    <script>
+        $(function () {
+
+            function validaOtroCultivo(){
+                let checked = $("#cultivoCheck{{\App\Models\Cultivo::OTRO}}").is(":checked");
+                console.log('cambio check otro cultivo',checked);
+
+                if (checked){
+                    $("#otro_cultivo").show()
+                }else {
+                    $("#otro_cultivo").hide()
+                }
+            }
+            validaOtroCultivo();
+
+
+
+            function validaOtroDiagnostico(){
+                let checked = $("#diagnosticoCheck{{\App\Models\Diagnostico::OTRO}}").is(":checked");
+                console.log('cambio check otro diagnostico',checked);
+
+                if (checked){
+                    $("#otro_diagnostico").show()
+                }else {
+                    $("#otro_diagnostico").hide()
+                }
+            }
+
+            validaOtroDiagnostico();
+
+
+        })
+    </script>
+@endpush
