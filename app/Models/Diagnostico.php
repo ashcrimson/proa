@@ -17,9 +17,11 @@ class Diagnostico extends Model
     use SoftDeletes;
 
     public $table = 'diagnosticos';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
+
+    const OTRO = 12;
 
 
     protected $dates = ['deleted_at'];
