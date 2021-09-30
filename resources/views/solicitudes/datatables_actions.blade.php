@@ -1,12 +1,12 @@
 <!--            validar sí en el estado que esta puede despachar
 ------------------------------------------------------------------------>
-@if($solicitud->puedeDespachar())
+<!-- @if($solicitud->puedeDespachar())
     @can('Despachar Solicitudes')
         <a href="{{ route('solicitudes.despachar', $solicitud->id) }}" data-toggle="tooltip" title="Despachar" class='btn btn-success btn-sm'>
             <i class="fa fa-boxes"></i>
         </a>
     @endcan
-@endif
+@endif -->
 
 <!--            validar sí en el estado que esta puede aprobar
 ------------------------------------------------------------------------>
@@ -17,6 +17,18 @@
         </a>
     @endcan
 @endif
+
+@if($solicitud->puedeAprobar())
+        @can('Rechazar Solicitudes')
+            <form action="{{ route('solicitudes.rechazar.store', $solicitud->id) }}"  method="post" style="display: inline">
+                @csrf
+
+                <button type="submit"  class='btn btn-danger btn-sm'>
+                    <i class="fa fa-ban"></i> Rechazar
+                </button>&nbsp;
+            </form>
+        @endcan
+    @endif
 
 @can('Ver Solicitudes')
     <a href="{{ route('solicitudes.show', $solicitud->id) }}" data-toggle="tooltip" title="Ver" class='btn btn-default btn-sm'>

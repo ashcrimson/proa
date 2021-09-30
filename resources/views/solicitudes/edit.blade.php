@@ -65,7 +65,7 @@
 {{--                                        <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña">--}}
                                         <div class="input-group-append">
                                             <button type="submit" class="btn btn-outline-primary mr-3" name="regresar" value="1">
-                                                <i class="fa fa-paper-plane"></i> Guardar Y Regresar
+                                                <i class="fa fa-paper-plane"></i> Guardar Y Corregir
                                             </button>
                                         </div>
                                     </div>

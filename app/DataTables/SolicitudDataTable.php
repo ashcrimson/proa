@@ -137,7 +137,7 @@ class SolicitudDataTable extends DataTable
             Column::make('antimicrobiano')->searchable(false)->orderable(false),
             Column::make('microorganismo')->searchable(false)->orderable(false),
             Column::make('fecha_solicita')->data('fecha_solicita')->name('fecha_solicita'),
-            Column::make('fecha_despacha')->data('fecha_despacha')->name('fecha_despacha'),
+           
 
             Column::make('estado')->name('estado.nombre')->data('estado.nombre'),
         ];
