@@ -3,6 +3,7 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Models\Solicitud;
+use App\Models\SolicitudEstado;
 use Carbon\Carbon;
 use Faker\Generator as Faker;
 
@@ -13,11 +14,19 @@ $factory->define(Solicitud::class, function (Faker $faker) use ($autoIncrement) 
 
     $fechaSolicita = Carbon::now()->subDays(rand(0,4));
 
+    $estados = [
+        SolicitudEstado::INGRESADA,
+        SolicitudEstado::SOLICITADA,
+        SolicitudEstado::APROBADA,
+        SolicitudEstado::DESPACHADA,
+        SolicitudEstado::RECHAZADA,
+    ];
+
     return [
         'codigo' => prefijoCeros($autoIncrement->current(),4).Carbon::now()->year,
         'correlativo' => $autoIncrement->current(),
         'paciente_id' => \App\Models\Paciente::all()->random()->id,
-        'estado_id' => \App\Models\SolicitudEstado::all()->random()->id,
+        'estado_id' => $faker->randomElement($estados),
         'inicio' => rand(0,1),
         'continuacion' => rand(0,1),
         'terapia_empirica' => rand(0,1),
