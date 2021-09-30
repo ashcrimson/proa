@@ -49,6 +49,7 @@ class RoleSeeder extends Seeder
             'Ver Solicitudes',
             'Aprobar Solicitudes',
             'Rechazar Solicitudes',
+            'Editar Solicitud Rechazada',
             'Crear Solicitudes',
             'Editar Solicitudes',
 

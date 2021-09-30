@@ -27,6 +27,7 @@ class SolicitudEstadosTableSeeder extends Seeder
         factory(SolicitudEstado::class,1)->create(['nombre' => 'Rechazada']);
         factory(SolicitudEstado::class,1)->create(['nombre' => 'Anulada']);
         factory(SolicitudEstado::class,1)->create(['nombre' => 'Vencida']);
+        factory(SolicitudEstado::class,1)->create(['nombre' => 'PARA REGRESAR']);
 
 
 

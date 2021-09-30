@@ -30,6 +30,7 @@ class SolicitudEstado extends Model
     const RECHAZADA =   6;
     const ANULADA =     7;
     const VENCIDA =     8;
+    const PARA_REGRESAR =     9;
 
 
     protected $dates = ['deleted_at'];

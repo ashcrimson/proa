@@ -51,6 +51,7 @@ class SolicitudController extends AppBaseController
             SolicitudEstado::DESPACHADA,
             SolicitudEstado::RECHAZADA,
             SolicitudEstado::ANULADA,
+            SolicitudEstado::PARA_REGRESAR,
         ];
 
         $scope = new ScopeSolicitudDataTable();
@@ -69,6 +70,7 @@ class SolicitudController extends AppBaseController
                 SolicitudEstado::DESPACHADA,
                 SolicitudEstado::RECHAZADA,
                 SolicitudEstado::ANULADA,
+                SolicitudEstado::PARA_REGRESAR,
             ];
         }
 
@@ -238,6 +240,10 @@ class SolicitudController extends AppBaseController
                 $estado = SolicitudEstado::APROBADA;
             }
 
+        }
+
+        if ($request->regresar){
+            $estado = SolicitudEstado::INGRESADA;
         }
 
         try {
@@ -453,4 +459,25 @@ class SolicitudController extends AppBaseController
 
         return redirect(route('solicitudes.index'));
     }
+
+    public function clonar(Solicitud $solicitud)
+    {
+        try {
+            DB::beginTransaction();
+
+            $nueva = $solicitud->clonar();
+
+        } catch (Exception $exception) {
+            DB::rollBack();
+
+            throw new Exception($exception);
+        }
+
+        DB::commit();
+
+        flash("Solicitud clonada para regresar!")->success();
+
+        return redirect(route('solicitudes.edit',$nueva->id));
+    }
+
 }

@@ -31,6 +31,7 @@ class CreateSolicitudesTable extends Migration
             $table->decimal('peso')->nullable();
             $table->string('otro_cultivo')->nullable();
             $table->string('otro_diagnostico')->nullable();
+            $table->unsignedBigInteger('clon')->nullable();
             $table->text('observaciones')->nullable();
             $table->unsignedBigInteger('user_crea')->index('fk_solicitud_users1_idx');
             $table->dateTime('fecha_solicita')->nullable();

@@ -31,6 +31,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property boolean $disfuncion_renal
  * @property boolean $disfuncion_hepatica
  * @property number $creatinina
+ * @property integer $clon
  * @property number $peso
  * @property string $otro_cultivo
  * @property string $otro_diagnostico
@@ -71,6 +72,7 @@ class Solicitud extends Model
         'disfuncion_renal',
         'disfuncion_hepatica',
         'creatinina',
+        'clon',
         'peso',
         'otro_cultivo',
         'otro_diagnostico',
@@ -246,7 +248,8 @@ class Solicitud extends Model
     public function puedeEditar()
     {
         return in_array($this->estado_id,[
-           SolicitudEstado::INGRESADA
+           SolicitudEstado::INGRESADA,
+           SolicitudEstado::PARA_REGRESAR
         ]);
     }
 
@@ -269,5 +272,46 @@ class Solicitud extends Model
         return in_array($this->estado_id,[
             SolicitudEstado::APROBADA
         ]);
+    }
+
+    public function puedeClonar()
+    {
+        $enEstadoRechazada = in_array($this->estado_id,[
+                SolicitudEstado::RECHAZADA
+            ]);
+
+        return $enEstadoRechazada && is_null($this->clon);
+    }
+
+    public function puedeRegresar()
+    {
+        return in_array($this->estado_id,[
+            SolicitudEstado::PARA_REGRESAR
+        ]);
+    }
+
+    /**
+     * @return Solicitud
+     */
+    public function clonar()
+    {
+        /**
+         * @var Solicitud $nueva
+         */
+        $nueva = self::create($this->toArray());
+
+        $nueva->cultivos()->sync($this->cultivos->pluck('id'));
+        $nueva->diagnosticos()->sync($this->diagnosticos->pluck('id'));
+
+        $nueva->medicamentos()->saveMany($this->medicamentos);
+        $nueva->microorganismos()->saveMany($this->microorganismos);
+        $nueva->estado_id = SolicitudEstado::PARA_REGRESAR;
+        $nueva->save();
+
+        //guarda el id de la nueva solicitud en la antigua
+        $this->clon = $nueva->id;
+        $this->save();
+
+        return $nueva;
     }
 }

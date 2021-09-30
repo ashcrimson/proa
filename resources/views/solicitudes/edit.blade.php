@@ -33,25 +33,46 @@
                    {!! Form::model($solicitud, ['route' => ['solicitudes.update', $solicitud->id], 'method' => 'patch','class' => 'wait-on-submit']) !!}
                         <div class="form-row">
 
+
                             @include('solicitudes.fields')
 
-                            <!-- Submit Field -->
-                            <div class="form-group col-sm-8 text-right ">
-
-                                <a href="{!! route('solicitudes.index') !!}" class="btn btn-outline-secondary mr-3">
-                                    Cancelar
-                                </a>
-                                &nbsp;
-                                <button type="submit" class="btn btn-outline-success mr-3">
-                                    <i class="fa fa-save"></i> Guardar
-                                </button>
-
-
-
+                            <div class="col-4 text-left pl-4 text-lg">
+                                Estado:
+                                <span class="badge badge-info">
+                                    {{$solicitud->estado->nombre}}
+                                </span>
                             </div>
 
-                            <div class="form-group col-sm-4 text-right ">
+                            <!-- Submit Field -->
+                                <div class="form-group col-sm-4 text-right ">
 
+                                    <a href="{!! route('solicitudes.index') !!}" class="btn btn-outline-secondary mr-3">
+                                        Cancelar
+                                    </a>
+                                    &nbsp;
+                                    <button type="submit" class="btn btn-outline-success mr-3">
+                                        <i class="fa fa-save"></i> Guardar
+                                    </button>
+
+                                </div>
+
+                            @if($solicitud->puedeRegresar())
+
+
+                                <div class="form-group col-sm-4 text-right ">
+
+                                    <div class="input-group mb-3">
+{{--                                        <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña">--}}
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn btn-outline-primary mr-3" name="regresar" value="1">
+                                                <i class="fa fa-paper-plane"></i> Guardar Y Regresar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
+
+                                <div class="form-group col-sm-4 text-right ">
 
                                 <div class="input-group mb-3">
                                     <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña">
@@ -62,7 +83,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                            @endif
                         </div>
 
                    {!! Form::close() !!}

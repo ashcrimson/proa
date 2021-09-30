@@ -50,6 +50,7 @@ class PermissionSeeder extends Seeder
             Permission::firstOrCreate(['name' => 'Aprobar Solicitudes']);
             Permission::firstOrCreate(['name' => 'Despachar Solicitudes']);
             Permission::firstOrCreate(['name' => 'Rechazar Solicitudes']);
+            Permission::firstOrCreate(['name' => 'Editar Solicitud Rechazada']);
 
             Permission::firstOrCreate(['name' => 'Ver Pacientes']);
             Permission::firstOrCreate(['name' => 'Crear Pacientes']);
