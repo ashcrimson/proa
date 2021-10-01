@@ -14,17 +14,17 @@
 
     <!--            validar sí en el estado que esta puede despachar
     ------------------------------------------------------------------------>
-    @if($solicitud->puedeAprobar())
-        @can('Rechazar Solicitudes')
-            <form action="{{ route('solicitudes.rechazar.store', $solicitud->id) }}" class="mr-3" method="post" style="display: inline">
-                @csrf
+{{--    @if($solicitud->puedeAprobar())--}}
+{{--        @can('Rechazar Solicitudes')--}}
+{{--            <form action="{{ route('solicitudes.rechazar.store', $solicitud->id) }}" class="mr-3" method="post" style="display: inline">--}}
+{{--                @csrf--}}
 
-                <button type="submit"  class='btn btn-danger'>
-                    <i class="fa fa-ban"></i> Rechazar
-                </button>&nbsp;
-            </form>
-        @endcan
-    @endif
+{{--                <button type="submit"  class='btn btn-danger'>--}}
+{{--                    <i class="fa fa-ban"></i> Rechazar--}}
+{{--                </button>&nbsp;--}}
+{{--            </form>--}}
+{{--        @endcan--}}
+{{--    @endif--}}
 
 
     <!--            validar sí en el estado que esta puede despachar
