@@ -76,9 +76,7 @@ class SolicitudController extends AppBaseController
 
         if ($user->hasRole(Role::QF_CLINICO)){
 
-            $estados = [
-                SolicitudEstado::APROBADA
-            ];
+
         }
 
         if ($user->hasRole(Role::TECNICO)){
@@ -210,6 +208,7 @@ class SolicitudController extends AppBaseController
      */
     public function update($id, UpdateSolicitudRequest $request)
     {
+
 
         /** @var Solicitud $solicitud */
         $solicitud = Solicitud::find($id);

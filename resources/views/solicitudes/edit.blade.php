@@ -77,7 +77,7 @@
                                 <div class="input-group mb-3">
                                     <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña">
                                     <div class="input-group-append">
-                                        <button type="submit" class="btn btn-outline-primary mr-3" name="enviar" value="1">
+                                        <button type="submit" class="btn btn-outline-primary mr-3" id="btnEnviar" name="enviar" value="1">
                                             <i class="fa fa-paper-plane"></i> Guardar Y Enviar
                                         </button>
                                     </div>
@@ -93,6 +93,20 @@
     </div>
 
 @endsection
+
+@push('scripts')
+<script>
+    $(function () {
+        $("#password").keypress(function (e) {
+            if (e.keyCode == 13) {
+                e.preventDefault();
+                $("#btnEnviar").focus().click();
+                return;
+            }
+        });
+    })
+</script>
+@endpush
 
 
 
