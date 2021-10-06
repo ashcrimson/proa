@@ -314,4 +314,16 @@ class Solicitud extends Model
 
         return $nueva;
     }
+
+    public function scopeIngresadasDelUser($query,$user = null)
+    {
+
+        $user = $user ?? auth()->user()->id ?? request()->user_id;
+
+        $query->where(function ($query) use ($user){
+            $query->where('user_crea',$user)
+                ->where('estado_id',SolicitudEstado::INGRESADA);
+        });
+
+    }
 }

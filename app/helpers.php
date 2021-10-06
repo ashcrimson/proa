@@ -289,3 +289,11 @@ function validaCheched($items = null,$id){
 function prefijoCeros($numero,$cantidadCeros){
     return str_pad($numero,$cantidadCeros,"0",STR_PAD_LEFT);
 }
+
+function removeElementByValueArray($array,$value){
+    foreach (array_keys($array, $value, true) as $key) {
+        unset($array[$key]);
+    }
+
+    return $array;
+}

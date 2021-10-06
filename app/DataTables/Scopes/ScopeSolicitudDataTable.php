@@ -2,6 +2,7 @@
 
 namespace App\DataTables\Scopes;
 
+use App\Models\SolicitudEstado;
 use Carbon\Carbon;
 use Yajra\DataTables\Contracts\DataTableScope;
 
@@ -35,13 +36,6 @@ class ScopeSolicitudDataTable implements DataTableScope
      */
     public function apply($query)
     {
-        if ($this->estados){
-            if (is_array($this->estados)){
-                $query->whereIn('estado_id',$this->estados);
-            }else{
-                $query->where('estado_id',$this->estados);
-            }
-        }
 
         if ($this->users){
             if (is_array($this->users)){
@@ -50,6 +44,35 @@ class ScopeSolicitudDataTable implements DataTableScope
                 $query->where('user_crea',$this->users);
             }
         }
+
+        if ($this->estados){
+
+            if (is_array($this->estados)){
+
+
+                $estaEstadoIngresada = in_array(SolicitudEstado::INGRESADA,$this->estados);
+
+                //Cuando esta el esado ingresado se debe quitar par filtrar por el usuario
+                if ($estaEstadoIngresada){
+
+                    $this->estados = removeElementByValueArray($this->estados,SolicitudEstado::INGRESADA);
+
+                    $query->ingresadasDelUser()
+                        ->orWhereIn('estado_id',$this->estados);
+                }else{
+                    $query->whereIn('estado_id',$this->estados);
+                }
+            }else{
+
+                if ($this->estados==SolicitudEstado::INGRESADA){
+                    $query->ingresadasDelUser();
+                }else{
+
+                    $query->where('estado_id',$this->estados);
+                }
+            }
+        }
+
 
         if ($this->pacientes){
             $query->whereHas('paciente',function ($q){
