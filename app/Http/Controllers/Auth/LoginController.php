@@ -132,8 +132,6 @@ class LoginController extends Controller
 
         $this->clearLoginAttempts($request);
 
-        dd('login');
-
         return redirect()->to($this->redirectPath());
     }
 
