@@ -100,22 +100,25 @@
             },
             computed: {
                 vfg () {
-                    let edad = parseFloat(this.edad);
+                    let edad = parseFloat(vmPacienteFields.edad);
                     let peso = parseFloat(this.peso);
                     let creatinina = parseFloat(this.creatinina);
 
+
+                    let sexo = vmPacienteFields.sexo===true ? 'M' : 'F';
+
+                    let total = 0;
+
                     if(edad > 0 && peso > 0 && creatinina > 0){
-                        return (140 - edad) * (peso/72) * creatinina;
+                        total = (140 - edad) * (peso/72) * creatinina;
                     }
 
-                    return  0;
+                    if (sexo==="F"){
+                        console.log('mujer')
+                        total = total * 0.85;
+                    }
 
-                },
-                edad(){
-
-                    let edad = $("#fecha_nac").val();
-
-                    return 50;
+                    return  total;
 
                 }
             },

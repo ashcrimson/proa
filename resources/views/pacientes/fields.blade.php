@@ -58,15 +58,30 @@
     <!-- Fecha Nac Field -->
     <div class="form-group col-sm-3">
         {!! Form::label('fecha_nac', 'Fecha Nac:') !!}
-        {!! Form::date('fecha_nac', null, ['id' => 'fecha_nac','class' => 'form-control','id'=>'fecha_nac']) !!}
+        {!! Form::date('fecha_nac', null, ['v-model' => 'fecha_nac','id' => 'fecha_nac','class' => 'form-control','id'=>'fecha_nac']) !!}
     </div>
 
 
     <div class="form-group col-sm-3">
-        {!! Form::label('sexo', 'Sexo:') !!}<br>
-        <input type="checkbox" data-toggle="toggle" data-size="normal" data-on="M" data-off="F" data-style="ios" name="sexo" id="sexo"
-               value="1"
-            {{($rema->sexo ?? null)=="M" || ($paciente->sexo ?? null)=="M"  ? 'checked' : '' }}>
+        <label for="">Edad</label>
+        <input type="text" class="form-control" readonly v-model="edad" value="0">
+    </div>
+
+
+    <div class="form-group col-sm-2">
+        <label for="">Sexo:</label>
+        <div class="text-lg">
+
+            <toggle-button :sync="true"
+                           :labels="{checked: 'M', unchecked: 'F'}"
+                           v-model="sexo"
+                           :width="75"
+                           :height="35"
+                           :font-size="16"
+            ></toggle-button>
+
+            <input type="hidden" name="sexo" :value="sexo ? 1 : 0">
+        </div>
     </div>
 
 
@@ -103,10 +118,14 @@
         el: '#paciente-fields',
         name: 'paciente-fields',
         created() {
-
+            this.calcularEdad(this.fecha_nac);
         },
         data: {
             loading : false,
+            fecha_nac : @json($rema->fecha_nac ?? old('fecha_nac') ?? null),
+            sexo : @json($rema->sexo ?? old('sexo') ?? null),
+            edad : 0,
+
         },
         methods: {
             async getDatosPaciente(){
@@ -138,14 +157,14 @@
                         $("#apellido_materno").val(paciente.apellido_materno);
                         $("#primer_nombre").val(paciente.primer_nombre);
                         $("#segundo_nombre").val(paciente.segundo_nombre);
-                        $("#fecha_nac").val(paciente.fecha_nac);
+                        this.fecha_nac = paciente.fecha_nac;
 
                         if (paciente.sexo=='M'){
-                            $('#sexo').bootstrapToggle('on')
+                            this.sexo= true;
                         }else {
-
-                            $("#sexo").bootstrapToggle('off');
+                            this.sexo= true;
                         }
+
                         $("#telefono").val(paciente.telefono);
                         $("#direccion").val(paciente.direccion);
                         $("#familiar_responsable").val(paciente.familiar_responsable);
@@ -159,8 +178,22 @@
                     alertWarning('Rut No Encontrado');
                     this.loading = false;
                 }
+            },
+            calcularEdad(fecha){
+                if (fecha){
+                    var years = moment().diff(fecha, 'years',false);
+                    this.edad = years;
+                }
+            }
+        },
+        watch:{
+            fecha_nac (fecha){
+                if (fecha){
+                    this.calcularEdad(fecha)
+                }
             }
         }
+
     });
 </script>
 @endpush
