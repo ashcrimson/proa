@@ -126,60 +126,76 @@
                 </div>
 
 
-                <div class="form-group col-12">
-                    <div class="card ">
-                        <div class="card-header py-0 px-1">
-                            <h3 class="card-title">Cultivos tomados</h3>
+                <div id="cultivosYdiagnosticos">
 
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body p-2">
+                    <div class="form-group col-12">
+                        <div class="card ">
+                            <div class="card-header py-0 px-1">
+                                <h3 class="card-title">Cultivos tomados</h3>
+
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body p-2">
                                 <!-- checkbox -->
-                            <div class="form-group mb-0">
-                                @foreach(\App\Models\Cultivo::all() as $cultivo)
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input class="custom-control-input" id="cultivoCheck{{$cultivo->id}}" type="checkbox" name="cultivos[]" value="{{$cultivo->id}}"
-                                            {{validaCheched($solicitud->cultivos ?? null,$cultivo->id)}}>
-                                        <label for="cultivoCheck{{$cultivo->id}}" class="custom-control-label">
-                                            {{$cultivo->nombre}}
-                                        </label>
+                                <div class="form-group mb-0">
+                                    @foreach(\App\Models\Cultivo::all() as $cultivo)
+                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                            <input class="custom-control-input"
+                                                   v-model="cultivos_seleccionados"
+                                                   id="cultivoCheck{{$cultivo->id}}"
+                                                   type="checkbox"
+                                                   name="cultivos[]"
+                                                   value="{{$cultivo->id}}"
+                                                   :required="requiredCultivos"
+                                            >
+                                            <label for="cultivoCheck{{$cultivo->id}}" class="custom-control-label">
+                                                {{$cultivo->nombre}}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                    <div class="mt-2">
+                                        {!! Form::text('otro_cultivo', null, ['id' => 'otro_cultivo','class' => 'form-control']) !!}
                                     </div>
-                                @endforeach
-                                <div class="mt-2">
-                                    {!! Form::text('otro_cultivo', null, ['id' => 'otro_cultivo','class' => 'form-control']) !!}
                                 </div>
                             </div>
+                            <!-- /.card-body -->
                         </div>
-                        <!-- /.card-body -->
                     </div>
-                </div>
+
+                    <div class="form-group col-12">
 
 
-                <div class="form-group col-12">
-                    <div class="card ">
-                        <div class="card-header py-0 px-1">
-                            <h3 class="card-title">Diagnostico o sitio de la infección</h3>
+                        <div class="card ">
+                            <div class="card-header py-0 px-1">
+                                <h3 class="card-title">Diagnostico o sitio de la infección</h3>
 
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                            <div class="form-group mb-0">
-                                @foreach(\App\Models\Diagnostico::all() as $diag)
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input class="custom-control-input" id="diagnosticoCheck{{$diag->id}}" type="checkbox" name="diagnosticos[]" value="{{$diag->id}}"
-                                               {{validaCheched($solicitud->diagnosticos ?? null,$diag->id)}}>
-                                        <label for="diagnosticoCheck{{$diag->id}}" class="custom-control-label">
-                                            {{$diag->nombre}}
-                                        </label>
-                                    </div>
-                                @endforeach
-                                <div class="mt-2">
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="form-group mb-0">
+                                    @foreach(\App\Models\Diagnostico::all() as $diag)
+                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                            <input class="custom-control-input"
+                                                   v-model="diagnosticos_seleccionados"
+                                                   id="diagnosticoCheck{{$diag->id}}"
+                                                   type="checkbox"
+                                                   name="diagnosticos[]"
+                                                   value="{{$diag->id}}"
+                                                   :required="requiredDiagnosticos"
+                                                >
+                                            <label for="diagnosticoCheck{{$diag->id}}" class="custom-control-label">
+                                                {{$diag->nombre}}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                    <div class="mt-2">
 
                                         {!! Form::text('otro_diagnostico', null, ['id' => 'otro_diagnostico','class' => 'form-control']) !!}
+                                    </div>
                                 </div>
                             </div>
+                            <!-- /.card-body -->
                         </div>
-                        <!-- /.card-body -->
                     </div>
                 </div>
 
@@ -210,6 +226,40 @@
 
 @push('scripts')
 <script>
+
+    let CamposCultivosYDiganosticos  = new Vue({
+        el: '#cultivosYdiagnosticos',
+        name: '#cultivosYdiagnosticos',
+        mounted() {
+            console.log('Instancia vue montada');
+        },
+        created() {
+            console.log('Instancia vue creada');
+        },
+        data: {
+            cultivos: @json(\App\Models\Cultivo::all()),
+            cultivos_seleccionados: @json($solicitud->cultivos ?? []),
+
+            diagnosticos: @json(\App\Models\Diagnostico::all()),
+            diagnosticos_seleccionados: @json($solicitud->diagnosticos ?? [])
+        },
+        methods: {
+            getDatos(){
+                console.log('Metodo Get Datos');
+            }
+        },
+        computed:{
+            requiredCultivos(){
+
+                return this.cultivos_seleccionados.length == 0 ? true : false;
+            },
+            requiredDiagnosticos(){
+
+                return this.diagnosticos_seleccionados.length == 0 ? true : false;
+            }
+        }
+    });
+
     $(function () {
 
         function validaOtroCultivo(){
@@ -249,6 +299,7 @@
 
             validaOtroDiagnostico();
         });
+
     })
 </script>
 @endpush
