@@ -238,10 +238,10 @@
         },
         data: {
             cultivos: @json(\App\Models\Cultivo::all()),
-            cultivos_seleccionados: @json($solicitud->cultivos ?? []),
+            cultivos_seleccionados: @json($solicitud ? $solicitud->cultivos->pluck('id')->toArray() : []),
 
             diagnosticos: @json(\App\Models\Diagnostico::all()),
-            diagnosticos_seleccionados: @json($solicitud->diagnosticos ?? [])
+            diagnosticos_seleccionados: @json($solicitud ? $solicitud->diagnosticos->pluck('id')->toArray() : [])
         },
         methods: {
             getDatos(){
