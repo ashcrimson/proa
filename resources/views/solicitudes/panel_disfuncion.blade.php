@@ -141,32 +141,57 @@
 
                     let total = 0;
 
-                    if(edad > 0 && peso > 0 && creatinina < 0.7){
-                        // total = (140 - edad) * (peso/72) * creatinina;
-                        
-                        // creatinina=creatinina*72;
-                        // peso=peso/creatinina;
-                        // total=140-edad;
-                        creatinina= creatinina/0.7;
-                        total = 144*creatinina;
+                    if(sexo === 'F'){
+
+                        if(edad > 0 && peso > 0 && creatinina < 0.7){
+                            // total = (140 - edad) * (peso/72) * creatinina;
+                      
+                            creatinina= creatinina/0.7;
+                            creatinina=pow(creatinina,-0.329);
+                            edad = pow(0.993,edad);
+                            total = 144*creatinina;
+                            total = total*0.993*edad;
+                        }
+
+                        if(edad > 0 && peso > 0 && creatinina > 0.7){
+                            // total = (140 - edad) * (peso/72) * creatinina;
+                           
+                            creatinina= creatinina/0.7;
+                            creatinina=pow(creatinina,-1.209);
+                            edad = pow(0.993,edad);
+                            total = 144*creatinina;
+                            total = total*0.993*edad;
+                        }
+
+
+                        return  total;
                     }
 
-                    if(edad > 0 && peso > 0 && creatinina > 0.7){
-                        // total = (140 - edad) * (peso/72) * creatinina;
-                        
-                        // creatinina=creatinina*72;
-                        // peso=peso/creatinina;
-                        // total=140-edad;
-                        // total=total*peso;
-                        total = 144*creatinina;
-                    }
+                    if(sexo === 'M'){
 
-                    if (sexo==="F"){
-                        console.log('mujer')
-                        total = total * 0.85;
-                    }
+                        if(edad > 0 && peso > 0 && creatinina < 0.9){
+                          
+                            creatinina= creatinina/0.9;
+                            // creatinina=pow(creatinina,-0.329);
+                            total = 144*creatinina;
+                            total = total*0.993;
+                        }
 
-                    return  total;
+                        if(edad > 0 && peso > 0 && creatinina > 0.9){
+                            // total = (140 - edad) * (peso/72) * creatinina;
+                            
+                            // creatinina=creatinina*72;
+                            // peso=peso/creatinina;
+                            // total=140-edad;
+                            // total=total*peso;
+                            creatinina= creatinina/0.9;
+                            total = 144*creatinina;
+                            total = total*0.993;
+                        }
+
+
+                        return  total;
+                    }
 
                 }
 
