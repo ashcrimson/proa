@@ -202,6 +202,7 @@ class PacienteController extends AppBaseController
             }
 
             $paciente->setAttribute('ultima_preparacion',$ultimaSolicitud);
+            $paciente->setAttribute('fecha_nac',fechaEn($paciente->fecha_nac));
             $paciente->setAttribute('sexo',$paciente->sexo ? 'M' : 'F');
 
             return  $this->sendResponse($paciente,"Paciente");
