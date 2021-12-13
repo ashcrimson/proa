@@ -73,7 +73,7 @@ class Paciente extends Model
         'apellido_materno' => 'string',
         'primer_nombre' => 'string',
         'segundo_nombre' => 'string',
-        'fecha_nac' => 'date',
+        'fecha_nac' => 'datetime:Y-m-d',
         'sexo' => 'string',
         'sigla_grado' => 'string',
         'unid_rep_dot' => 'string',
