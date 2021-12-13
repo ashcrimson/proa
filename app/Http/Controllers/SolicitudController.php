@@ -372,7 +372,7 @@ class SolicitudController extends AppBaseController
         $solicitud->setAttribute("apellido_materno" ,$solicitud->paciente->apellido_materno);
         $solicitud->setAttribute("primer_nombre" ,$solicitud->paciente->primer_nombre);
         $solicitud->setAttribute("segundo_nombre" ,$solicitud->paciente->segundo_nombre);
-        $solicitud->setAttribute("fecha_nac" ,Carbon::parse($solicitud->paciente->fecha_nac)->format('Y-m-d'));
+        $solicitud->setAttribute("fecha_nac" ,fechaEn($solicitud->paciente->fecha_nac));
         $solicitud->setAttribute("sexo" ,$solicitud->paciente->sexo == 'M' ? 1 : 0);
 
         $solicitud->setAttribute("direccion" ,$solicitud->paciente->direccion);

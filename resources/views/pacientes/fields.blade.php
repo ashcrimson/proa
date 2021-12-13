@@ -122,8 +122,8 @@
         },
         data: {
             loading : false,
-            fecha_nac : @json($rema->fecha_nac ?? old('fecha_nac') ?? null),
-            sexo : @json($rema->sexo ?? old('sexo') ?? null),
+            fecha_nac : @json($solicitud->fecha_nac ?? old('fecha_nac') ?? null),
+            sexo : @json($solicitud->sexo ?? old('sexo') ?? null),
             edad : 0,
 
         },
