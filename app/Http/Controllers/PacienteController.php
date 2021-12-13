@@ -188,20 +188,22 @@ class PacienteController extends AppBaseController
              */
             $ultimaSolicitud = $paciente->solicitudes->last();
 
-            $ultimaSolicitud->load([
-                'estado',
-                'userCrea',
-                'userActualiza',
-                'cultivos',
-                'diagnosticos',
-                'medicamentos',
-                'microorganismos',
-            ]);
+            if ($ultimaSolicitud){
+                $ultimaSolicitud->load([
+                    'estado',
+                    'userCrea',
+                    'userActualiza',
+                    'cultivos',
+                    'diagnosticos',
+                    'medicamentos',
+                    'microorganismos',
+                ]);
 
-
+            }
 
             $paciente->setAttribute('ultima_preparacion',$ultimaSolicitud);
             $paciente->setAttribute('sexo',$paciente->sexo ? 'M' : 'F');
+
             return  $this->sendResponse($paciente,"Paciente");
         }
         else{
