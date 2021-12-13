@@ -65,6 +65,11 @@
                 {!! Form::label('peso', 'VFG:') !!}
                 <input type="text" class="form-control" readonly :value="vfg">
             </div>
+
+            <div class="form-group col-sm-2">
+                {!! Form::label('peso', 'FG:') !!}
+                <input type="text" class="form-control" readonly :value="fg">
+            </div>
         </div>
     </div>
     <!-- /.card-body -->
@@ -110,7 +115,50 @@
                     let total = 0;
 
                     if(edad > 0 && peso > 0 && creatinina > 0){
-                        total = (140 - edad) * (peso/72) * creatinina;
+                        // total = (140 - edad) * (peso/72) * creatinina;
+                        
+                        creatinina=creatinina*72;
+                        peso=peso/creatinina;
+                        total=140-edad;
+                        total=total*peso;
+                    }
+
+                    if (sexo==="F"){
+                        console.log('mujer')
+                        total = total * 0.85;
+                    }
+
+                    return  total;
+
+                },
+                fg () {
+                    let edad = parseFloat(vmPacienteFields.edad);
+                    let peso = parseFloat(this.peso);
+                    let creatinina = parseFloat(this.creatinina);
+
+
+                    let sexo = vmPacienteFields.sexo===true ? 'M' : 'F';
+
+                    let total = 0;
+
+                    if(edad > 0 && peso > 0 && creatinina < 0.7){
+                        // total = (140 - edad) * (peso/72) * creatinina;
+                        
+                        // creatinina=creatinina*72;
+                        // peso=peso/creatinina;
+                        // total=140-edad;
+                        creatinina= creatinina/0.7;
+                        total = 144*creatinina;
+                    }
+
+                    if(edad > 0 && peso > 0 && creatinina > 0.7){
+                        // total = (140 - edad) * (peso/72) * creatinina;
+                        
+                        // creatinina=creatinina*72;
+                        // peso=peso/creatinina;
+                        // total=140-edad;
+                        // total=total*peso;
+                        total = 144*creatinina;
                     }
 
                     if (sexo==="F"){
@@ -121,6 +169,8 @@
                     return  total;
 
                 }
+
+
             },
         });
 

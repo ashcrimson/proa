@@ -24,6 +24,7 @@
                             :items="microorganismos"
                             label="Microorganismo"
                             v-model="microorganismo"
+
                         >
 
                         </select-microorganismo>
@@ -110,11 +111,11 @@
                 microorganismo: null,
                 editedItem: {
                     id : 0,
-                    solicitud_id: @json($solicitud->id),
+                    solicitud_id: @json($solicitud->id ?? 0),
                 },
                 defaultItem: {
                     id : 0,
-                    solicitud_id: @json($solicitud->id),
+                    solicitud_id: @json($solicitud->id ?? 0),
 
                 },
                 itemElimina: {

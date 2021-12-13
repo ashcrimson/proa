@@ -87,23 +87,23 @@
 
 
     <!-- telefono Field -->
-    <div class="form-group col-sm-3">
+    <!-- <div class="form-group col-sm-3">
         {!! Form::label('telefono', 'Telefono:') !!}
         {!! Form::text('telefono', null, ['id' => 'telefono','class' => 'form-control','maxlength' => 255]) !!}
-    </div>
+    </div> -->
 
     <!-- Direccion Field -->
-    <div class="form-group col-sm-12">
+    <!-- <div class="form-group col-sm-12">
         {!! Form::label('direccion', 'Dirección:') !!}
         {!! Form::text('direccion', null, ['id' => 'direccion','class' => 'form-control','maxlength' => 255]) !!}
-    </div>
+    </div> -->
 
 
     <!-- familiar_responsable Field -->
-    <div class="form-group col-sm-12">
+    <!-- <div class="form-group col-sm-12">
         {!! Form::label('familiar_responsable', 'Familiar Responsable:') !!}
         {!! Form::text('familiar_responsable', null, ['id' => 'familiar_responsable','class' => 'form-control','maxlength' => 255]) !!}
-    </div>
+    </div> -->
 
 
 </div>
