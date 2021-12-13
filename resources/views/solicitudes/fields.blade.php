@@ -300,6 +300,33 @@
             validaOtroDiagnostico();
         });
 
+        $("#form-solicitud").submit(function (e){
+
+            if (!vmPanelMedicamentos.hayAntibioticos){
+                e.preventDefault();
+                alert('Debe agregar al menos un antibiótico');
+                return;
+            }
+
+            if (!vmPanelMicroorganismos.hayMicroorganismos){
+                e.preventDefault();
+                alert('Debe agregar al menos un microorganismo');
+                return;
+
+            }
+
+
+            Swal.fire({
+                title: 'Espera por favor...',
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+                timerProgressBar: true,
+            });
+
+            Swal.showLoading();
+
+        })
+
     })
 </script>
 @endpush

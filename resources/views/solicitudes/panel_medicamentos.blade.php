@@ -111,7 +111,7 @@
 <script>
 
 
-    var vmItem = new Vue({
+    var vmPanelMedicamentos = new Vue({
         el: '#panel_medicamentos',
         name: '#panel_medicamentos',
         created: function() {
@@ -234,6 +234,10 @@
             }
         },
         computed: {
+
+            hayAntibioticos(){
+                return this.solicitud_medicamentos.length > 0;
+            },
             modalFormTitle () {
                 return this.editedItem.id === 0 ? 'Nuevo Detalle' : 'Editar Detalle'
             },

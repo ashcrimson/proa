@@ -52,13 +52,13 @@
             <!-- Creatinina Field -->
             <div class="form-group col-sm-2">
                 {!! Form::label('creatinina', 'Creatinina:') !!}
-                <input type="number" step="any" class="form-control" name="creatinina" v-model="creatinina" :readonly="readonly">
+                <input type="number" step="any" class="form-control" name="creatinina" v-model="creatinina" :required="disfuncion_hepatica" :readonly="readonly">
             </div>
 
             <!-- Peso Field -->
             <div class="form-group col-sm-2">
                 {!! Form::label('peso', 'Peso:') !!}
-                <input type="number" step="any" class="form-control" name="peso" v-model="peso" :readonly="readonly">
+                <input type="number" step="any" class="form-control" name="peso" v-model="peso" :required="disfuncion_hepatica" :readonly="readonly">
             </div>
 
             <div class="form-group col-sm-2">
@@ -89,8 +89,8 @@
 
                 disfuncion_renal: @json($solicitud->disfuncion_renal ?? false),
                 disfuncion_hepatica: @json($solicitud->disfuncion_hepatica ?? false),
-                creatinina : @json($solicitud->creatinina ?? 0),
-                peso : @json($solicitud->peso ?? 0),
+                creatinina : @json($solicitud->creatinina ?? null),
+                peso : @json($solicitud->peso ?? null),
 
                 readonly: @json($readonly ?? false)
 

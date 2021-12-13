@@ -23,7 +23,8 @@
                         <select-microorganismo
                             :items="microorganismos"
                             label="Microorganismo"
-                            v-model="microorganismo" >
+                            v-model="microorganismo"
+                        >
 
                         </select-microorganismo>
                     </div>
@@ -94,7 +95,7 @@
     <script>
 
 
-        var vmItem = new Vue({
+        var vmPanelMicroorganismos = new Vue({
             el: '#panel_microorganismos',
             name: '#panel_microorganismos',
             created: function() {
@@ -217,6 +218,10 @@
                 }
             },
             computed: {
+
+                hayMicroorganismos(){
+                    return this.solicitud_microorganismos.length > 0;
+                },
                 modalFormTitle () {
                     return this.editedItem.id === 0 ? 'Nuevo Detalle' : 'Editar Detalle'
                 },
