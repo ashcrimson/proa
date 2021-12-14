@@ -242,7 +242,7 @@ class SolicitudController extends AppBaseController
         }
 
         if ($request->regresar){
-            $estado = SolicitudEstado::INGRESADA;
+            $estado = SolicitudEstado::APROBADA;
         }
 
         try {
