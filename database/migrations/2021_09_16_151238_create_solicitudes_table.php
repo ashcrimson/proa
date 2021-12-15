@@ -40,6 +40,8 @@ class CreateSolicitudesTable extends Migration
             $table->unsignedBigInteger('user_despacha')->nullable()->index('fk_solicitud_users3_idx');
             $table->dateTime('fecha_despacha')->nullable();
             $table->unsignedBigInteger('user_actualiza')->nullable()->index('fk_solicitud_users4_idx');
+            $table->date('fecha_inicio_tratamiento')->nullable();
+            $table->date('fecha_fin_tratamiento')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

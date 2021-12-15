@@ -66,6 +66,8 @@ Route::group(['middleware' => ['auth']], function () {
         'solicitudes' => 'solicitud'
     ]);
 
+    Route::get('enfermeria/solicitudes',"SolicitudController@solicitudesEnfermera")->name('enfermeria.solicitudes');
+
     Route::group(['prefix' => 'solicitudes','as' => 'solicitudes.'],function (){
         Route::get('{solicitude}/ver', 'SolicitudController@show')->name('show');
         Route::get('user', 'SolicitudController@listUser')->name('user');

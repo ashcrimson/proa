@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\Scopes\ScopeSolicitudDataTable;
 use App\DataTables\SolicitudDataTable;
+use App\DataTables\SolicitudEnfermeraDataTable;
 use App\Http\Requests;
 use App\Http\Requests\CreateSolicitudRequest;
 use App\Http\Requests\UpdateSolicitudRequest;
@@ -44,26 +45,27 @@ class SolicitudController extends AppBaseController
          */
         $user = auth()->user();
 
-        $estados = [
-            SolicitudEstado::INGRESADA,
-            SolicitudEstado::SOLICITADA,
-            SolicitudEstado::APROBADA,
-            SolicitudEstado::DESPACHADA,
-            SolicitudEstado::RECHAZADA,
-            SolicitudEstado::ANULADA,
-            SolicitudEstado::PARA_REGRESAR,
-        ];
-
         $scope = new ScopeSolicitudDataTable();
 
         $scope->users = request()->users ?? null;
 
         if($user->hasRole(Role::MEDICO)){
+
+            $estadosPuedeVer = [
+                SolicitudEstado::INGRESADA,
+                SolicitudEstado::SOLICITADA,
+                SolicitudEstado::APROBADA,
+                SolicitudEstado::DESPACHADA,
+                SolicitudEstado::RECHAZADA,
+                SolicitudEstado::ANULADA,
+                SolicitudEstado::PARA_REGRESAR,
+            ];
+
             $scope->users = auth()->user()->id;
         }
 
         if ($user->hasRole(Role::INFECTOLOGO)){
-            $estados = [
+            $estadosPuedeVer = [
                 SolicitudEstado::INGRESADA,
                 SolicitudEstado::SOLICITADA,
                 SolicitudEstado::APROBADA,
@@ -76,25 +78,69 @@ class SolicitudController extends AppBaseController
 
         if ($user->hasRole(Role::QF_CLINICO)){
 
-
+            $estadosPuedeVer = [
+                SolicitudEstado::INGRESADA,
+                SolicitudEstado::SOLICITADA,
+                SolicitudEstado::APROBADA,
+                SolicitudEstado::DESPACHADA,
+                SolicitudEstado::RECHAZADA,
+                SolicitudEstado::ANULADA,
+                SolicitudEstado::PARA_REGRESAR,
+            ];
         }
 
         if ($user->hasRole(Role::TECNICO)){
-
+            $estadosPuedeVer = [
+                SolicitudEstado::INGRESADA,
+                SolicitudEstado::SOLICITADA,
+                SolicitudEstado::APROBADA,
+                SolicitudEstado::DESPACHADA,
+                SolicitudEstado::RECHAZADA,
+                SolicitudEstado::ANULADA,
+                SolicitudEstado::PARA_REGRESAR,
+            ];
         }
 
         if ($user->hasRole(Role::ENFERMERA)){
-
+            return redirect(route('enfermeria.solicitudes'));
         }
 
 
-        $scope->estados = request()->estados ?? $estados;
+        $scope->estados = request()->estados ?? $estadosPuedeVer;
 
         $solicitudDataTable->addScope($scope);
 
-        $estados = SolicitudEstado::whereIn('id',$estados)->get();
+        $estados = SolicitudEstado::whereIn('id',$estadosPuedeVer)->get();
 
         return $solicitudDataTable->render('solicitudes.index',compact('estados'));
+    }
+
+    public function solicitudesEnfermera(SolicitudEnfermeraDataTable $dataTable)
+    {
+
+        $scope = new ScopeSolicitudDataTable();
+
+        $scope->users = request()->users ?? null;
+
+        $estadosPuedeVer = [
+            SolicitudEstado::INGRESADA,
+            SolicitudEstado::SOLICITADA,
+            SolicitudEstado::APROBADA,
+            SolicitudEstado::DESPACHADA,
+            SolicitudEstado::RECHAZADA,
+            SolicitudEstado::ANULADA,
+            SolicitudEstado::VENCIDA,
+            SolicitudEstado::PARA_REGRESAR,
+        ];
+
+
+        $scope->estados = request()->estados ?? $estadosPuedeVer;
+
+        $dataTable->addScope($scope);
+
+        $estados = SolicitudEstado::whereIn('id',$estadosPuedeVer)->get();
+
+        return $dataTable->render('solicitudes.enfermeria.index',compact('estados'));
     }
 
     /**
