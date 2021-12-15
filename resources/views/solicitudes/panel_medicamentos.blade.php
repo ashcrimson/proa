@@ -44,7 +44,7 @@
 
                     <div class="form-group col-sm-3">
                         <label for="peep">Periodo:</label>
-                        <input class="form-control" type="text" v-model="editedItem.periodo">
+                        <input class="form-control" type="number" v-model="editedItem.periodo">
                     </div>
 
                     <div class="form-group col-sm-3">
