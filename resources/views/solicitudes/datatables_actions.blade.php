@@ -24,7 +24,7 @@
                 @csrf
 
                 <button type="submit"  class='btn btn-danger btn-sm'>
-                    <i class="fa fa-ban"></i> Rechazar
+                    <i class="fa fa-ban"></i> 
                 </button>&nbsp;
             </form>
         @endcan

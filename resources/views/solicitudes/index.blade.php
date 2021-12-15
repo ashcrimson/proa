@@ -33,7 +33,7 @@
 
             <div class="card card-outline card-success">
                 <div class="card-header py-0 px-2">
-                    <h3 class="card-title">filtros</h3>
+                    <h3 class="card-title">Filtros</h3>
 
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-widget="remove"><i class="fa fa-times"></i>
