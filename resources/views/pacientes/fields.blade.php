@@ -123,7 +123,7 @@
         data: {
             loading : false,
             fecha_nac : @json($solicitud->fecha_nac ?? old('fecha_nac') ?? null),
-            sexo : @json($solicitud->sexo ?? old('sexo') ?? null),
+            sexo : @json(boolval($solicitud->sexo ?? old('sexo') ?? false)),
             edad : 0,
 
         },

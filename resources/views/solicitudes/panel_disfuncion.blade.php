@@ -92,8 +92,8 @@
             },
             data: {
 
-                disfuncion_renal: @json($solicitud->disfuncion_renal ?? false),
-                disfuncion_hepatica: @json($solicitud->disfuncion_hepatica ?? false),
+                disfuncion_renal: @json($solicitud->disfuncion_renal ? true :false),
+                disfuncion_hepatica: @json($solicitud->disfuncion_hepatica ? true : false),
                 creatinina : @json($solicitud->creatinina ?? null),
                 peso : @json($solicitud->peso ?? null),
 
@@ -116,7 +116,7 @@
 
                     if(edad > 0 && peso > 0 && creatinina > 0){
                         // total = (140 - edad) * (peso/72) * creatinina;
-                        
+
                         creatinina=creatinina*72;
                         peso=peso/creatinina;
                         total=140-edad;
@@ -145,20 +145,20 @@
 
                         if(edad > 0 && peso > 0 && creatinina < 0.7){
                             // total = (140 - edad) * (peso/72) * creatinina;
-                      
+
                             creatinina= creatinina/0.7;
-                            creatinina=pow(creatinina,-0.329);
-                            edad = pow(0.993,edad);
+                            creatinina=Math.pow(creatinina,-0.329);
+                            edad = Math.pow(0.993,edad);
                             total = 144*creatinina;
                             total = total*0.993*edad;
                         }
 
                         if(edad > 0 && peso > 0 && creatinina > 0.7){
                             // total = (140 - edad) * (peso/72) * creatinina;
-                           
+
                             creatinina= creatinina/0.7;
-                            creatinina=pow(creatinina,-1.209);
-                            edad = pow(0.993,edad);
+                            creatinina=Math.pow(creatinina,-1.209);
+                            edad = Math.pow(0.993,edad);
                             total = 144*creatinina;
                             total = total*0.993*edad;
                         }
@@ -170,16 +170,16 @@
                     if(sexo === 'M'){
 
                         if(edad > 0 && peso > 0 && creatinina < 0.9){
-                          
+
                             creatinina= creatinina/0.9;
-                            // creatinina=pow(creatinina,-0.329);
+                            // creatinina=Math.pow(creatinina,-0.329);
                             total = 144*creatinina;
                             total = total*0.993;
                         }
 
                         if(edad > 0 && peso > 0 && creatinina > 0.9){
                             // total = (140 - edad) * (peso/72) * creatinina;
-                            
+
                             // creatinina=creatinina*72;
                             // peso=peso/creatinina;
                             // total=140-edad;

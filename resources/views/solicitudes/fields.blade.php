@@ -302,18 +302,23 @@
 
         $("#form-solicitud").submit(function (e){
 
+            if ($("#terapia_especifica").is(":checked")){
+
+                if (!vmPanelMicroorganismos.hayMicroorganismos){
+                    e.preventDefault();
+                    alert('Debe agregar al menos un microorganismo');
+                    return;
+
+                }
+            }
+
             if (!vmPanelMedicamentos.hayAntibioticos){
                 e.preventDefault();
                 alert('Debe agregar al menos un antibiótico');
                 return;
             }
 
-            if (!vmPanelMicroorganismos.hayMicroorganismos){
-                e.preventDefault();
-                alert('Debe agregar al menos un microorganismo');
-                return;
 
-            }
 
 
             Swal.fire({
