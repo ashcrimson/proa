@@ -87,6 +87,30 @@ class LoginController extends Controller
 
     }
 
+    public function loginPortal($email,Request $request)
+    {
+
+
+        $user = User::where('email',$email)->first();
+
+
+        if (!$user) {
+
+            $mensaje = "El usuario no esta en la base de datos";
+
+            return redirect()->back()->withInput()->withErrors(['username' => $mensaje]);
+
+        }
+
+        Auth::login($user);
+
+        $request->session()->regenerate();
+
+        $this->clearLoginAttempts($request);
+
+        return redirect()->to($this->redirectPath());
+    }
+
 
     public function loginLdap(Request $request)
     {

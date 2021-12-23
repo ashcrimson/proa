@@ -7,6 +7,9 @@ Auth::routes(['verify' => true]);
 Route::get('login/{driver}', 'Auth\LoginController@redirectToProvider')->name('social_auth');
 Route::get('login/{driver}/callback', 'Auth\LoginController@handleProviderCallback');
 
+Route::get('porta/login/{email}','Auth\LoginController@loginPortal')->name('login.portal');
+
+
 Route::group(['middleware' => ['auth']], function () {
 
 
