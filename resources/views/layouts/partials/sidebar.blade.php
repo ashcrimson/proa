@@ -1,3 +1,4 @@
+
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar elevation-4 sidebar-dark-primary">
     <!-- Brand Logo -->
@@ -18,7 +19,7 @@
                 <a href="{{route('profile')}}" class="d-block">{{ Auth::user()->name }} </a>
             </div>
         </div>
-
+        
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column nav-compact nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
@@ -36,4 +37,5 @@
         <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
+  
 </aside>

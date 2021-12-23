@@ -31,6 +31,11 @@ class SolicitudDataTable extends DataTable
                  return $solicitud->paciente->nombre_completo;
 
              })
+             ->editColumn('paciente.rut_completo',function (Solicitud $solicitud){
+
+                 return $solicitud->paciente->rut_completo;
+
+             })
            ->editColumn('antimicrobiano',function (Solicitud $solicitud){
                return view('solicitudes.partials.datatable_columna_medicamtenso',compact('solicitud'));
            })
@@ -132,7 +137,7 @@ class SolicitudDataTable extends DataTable
             Column::make('paciente')->name('paciente.nombre_completo')->data('paciente.nombre_completo')
                 ->searchable(false)->orderable(false),
 
-            Column::make('run')->name('paciente.run')->data('paciente.run')
+            Column::make('run')->name('paciente.rut_completo')->data('paciente.rut_completo')
                 ->searchable(false)->orderable(false),
 
             Column::make('antimicrobiano')->searchable(false)->orderable(false),
