@@ -35,11 +35,11 @@
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
-@if (auth()->user()->isDev())
+
 
     @include('layouts.partials.navbar')
     @include('layouts.partials.sidebar')
-@endif
+
 
 
     <!-- Content Wrapper. Contains page content -->
