@@ -17,6 +17,7 @@ use Carbon\Carbon;
 use Exception;
 use Flash;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Response;
@@ -48,6 +49,21 @@ class SolicitudController extends AppBaseController
         $scope = new ScopeSolicitudDataTable();
 
         $scope->users = request()->users ?? null;
+
+
+        if($user->hasRole(Role::DEVELOPER)){
+
+            $estadosPuedeVer = [
+                SolicitudEstado::INGRESADA,
+                SolicitudEstado::SOLICITADA,
+                SolicitudEstado::APROBADA,
+                SolicitudEstado::DESPACHADA,
+                SolicitudEstado::RECHAZADA,
+                SolicitudEstado::ANULADA,
+                SolicitudEstado::PARA_REGRESAR,
+            ];
+
+        }
 
         if($user->hasRole(Role::MEDICO)){
 
@@ -148,11 +164,23 @@ class SolicitudController extends AppBaseController
      *
      * @return Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        /**
+         * @var Solicitud $solicitud
+         */
         $solicitud = $this->getSolicitudTemporal();
 
-        return redirect(route('solicitudes.edit',$solicitud->id));
+        if ($request->rut){
+            return redirect(route('solicitudes.edit',$solicitud->id).'?rut='.$request->rut);
+
+        }else{
+            return redirect(route('solicitudes.edit',$solicitud->id));
+
+        }
+
+
+
 
     }
 
