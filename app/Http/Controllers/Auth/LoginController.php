@@ -108,7 +108,13 @@ class LoginController extends Controller
 
         $this->clearLoginAttempts($request);
 
-        return redirect()->to($this->redirectPath());
+        if ($request->rut){
+            return redirect(route('solicitudes.create').'?rut='.$request->rut);
+        }else{
+            return redirect()->to($this->redirectPath());
+
+        }
+
     }
 
 
