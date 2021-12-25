@@ -129,5 +129,10 @@ class User extends Authenticatable implements  MustVerifyEmail,HasMedia
         return $allOptions;
     }
 
+    public function isDev()
+   {
+       return $this->hasRole('Developer');
+   } 
+
 
 }

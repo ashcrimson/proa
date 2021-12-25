@@ -229,7 +229,9 @@ class Solicitud extends Model
                     }elseif ($dif >= 48 && $dif < 72){
                         return "#fae093";
                     }elseif ($dif >= 72){
-                        return "#fab593";
+                        $this->estado_id = SolicitudEstado::VENCIDA;
+                        $this->save();
+                        return "yellow";
                     }
                 }
 

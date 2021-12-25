@@ -123,4 +123,9 @@ class Paciente extends Model
         $nombre = $this->primer_nombre.' '.$this->segundo_nombre.' '.$this->apellido_paterno.' '.$this->apellido_materno;
         return str_replace('  ','',$nombre);
     }
+
+    public function getRutCompletoAttribute()
+    {
+        return $this->run.'-'.$this->dv_run;
+    }
 }

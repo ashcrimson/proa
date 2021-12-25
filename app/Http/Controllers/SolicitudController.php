@@ -75,6 +75,7 @@ class SolicitudController extends AppBaseController
                 SolicitudEstado::RECHAZADA,
                 SolicitudEstado::ANULADA,
                 SolicitudEstado::PARA_REGRESAR,
+                SolicitudEstado::VENCIDA,
             ];
 
             $scope->users = auth()->user()->id;
@@ -89,6 +90,7 @@ class SolicitudController extends AppBaseController
                 SolicitudEstado::RECHAZADA,
                 SolicitudEstado::ANULADA,
                 SolicitudEstado::PARA_REGRESAR,
+                SolicitudEstado::VENCIDA,
             ];
         }
 
@@ -102,6 +104,7 @@ class SolicitudController extends AppBaseController
                 SolicitudEstado::RECHAZADA,
                 SolicitudEstado::ANULADA,
                 SolicitudEstado::PARA_REGRESAR,
+                SolicitudEstado::VENCIDA,
             ];
         }
 
