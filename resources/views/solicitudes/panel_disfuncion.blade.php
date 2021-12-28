@@ -147,19 +147,17 @@
 
                         if(edad > 0 && peso > 0 && creatinina < 0.7){
                             
-                            creatinina= creatinina/0.7;
-                            creatinina=Math.pow(creatinina,-0.329);
                             edad = Math.pow(0.993,edad);
-                            total = 144*creatinina*edad;
+                            creatinina= creatinina/0.7;
+                            total=Math.pow(creatinina,-0.329)*144*edad;
                             total = total.toFixed(2);
                         }
 
                         if(edad > 0 && peso > 0 && creatinina > 0.7){
                             
-                            creatinina= creatinina/0.7;
-                            creatinina=Math.pow(creatinina,-1.209);
                             edad = Math.pow(0.993,edad);
-                            total = 144*creatinina*edad;
+                            creatinina= creatinina/0.7;
+                            total=Math.pow(creatinina,-1.209)*144*edad;
                             total = total.toFixed(2);
                         }
 
@@ -170,20 +168,18 @@
                     if(sexo === 'M'){
 
                         if(edad > 0 && peso > 0 && creatinina < 0.9){
-
-                            creatinina= creatinina/0.9;
-                            creatinina=Math.pow(creatinina,-0.411);
+                            
                             edad = Math.pow(0.993,edad);
-                            total = 141*creatinina*edad;
+                            creatinina= creatinina/0.9;
+                            total=Math.pow(creatinina,-0.411)*141*edad;
                             total = total.toFixed(2);
                         }
 
                         if(edad > 0 && peso > 0 && creatinina > 0.9){
                             
-                            creatinina= creatinina/0.9;
-                            creatinina=Math.pow(creatinina,-1.209);
                             edad = Math.pow(0.993,edad);
-                            total = 141*creatinina*edad;
+                            creatinina= creatinina/0.9;
+                            total=Math.pow(creatinina,-1.209)*141*edad;
                             total = total.toFixed(2);
                         }
 

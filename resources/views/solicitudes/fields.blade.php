@@ -53,7 +53,7 @@
                             <div class="form-group mb-0">
                                 <div class="custom-control custom-radio">
                                     <input type="hidden" name="inicio" value="0">
-                                  <input class="custom-control-input" type="radio" id="inicio" name="tratamiento" value="inicio"
+                                  <input class="custom-control-input" type="radio" id="inicio" name="tratamiento" value="inicio" required
                                       {{($solicitud->inicio ?? 0) ? 'checked' : ''}}>
                                   <label for="inicio" class="custom-control-label">Inicio</label>
                                 </div>
@@ -79,7 +79,7 @@
                             <div class="form-group mb-0">
                                 <div class="custom-control custom-radio">
                                     <input type="hidden" name="terapia_empirica" value="0">
-                                    <input class="custom-control-input" type="radio" id="terapia_empirica" name="terapia" value="terapia_empirica"
+                                    <input class="custom-control-input" type="radio" id="terapia_empirica" name="terapia" value="terapia_empirica" required 
                                         {{($solicitud->terapia_empirica ?? 0) ? 'checked' : ''}}>
                                     <label for="terapia_empirica" class="custom-control-label">Terapia Empirica</label>
                                 </div>
@@ -107,7 +107,7 @@
                             <div class="form-group mb-0">
                                 <div class="custom-control custom-radio">
                                     <input type="hidden" name="infeccion_extrahospitalaria" value="0">
-                                    <input class="custom-control-input" type="radio" id="infeccion_extrahospitalaria" name="fuente_infeccion" value="infeccion_extrahospitalaria"
+                                    <input class="custom-control-input" type="radio" id="infeccion_extrahospitalaria" name="fuente_infeccion" value="infeccion_extrahospitalaria" required 
                                         {{($solicitud->infeccion_extrahospitalaria ?? 0) ? 'checked' : ''}}>
                                     <label for="infeccion_extrahospitalaria" class="custom-control-label">Infección Extrahospitalaria</label>
 
