@@ -165,7 +165,7 @@
                         if (paciente.sexo=='M'){
                             this.sexo= true;
                         }else {
-                            this.sexo= true;
+                            this.sexo= false;
                         }
 
                         $("#telefono").val(paciente.telefono);
