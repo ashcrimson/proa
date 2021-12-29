@@ -62,12 +62,12 @@
             </div>
 
             <div class="form-group col-sm-2">
-                {!! Form::label('peso', 'VFG:') !!}
+                {!! Form::label('vfg', 'Cockcroft y Gault:') !!}
                 <input type="text" class="form-control" readonly :value="vfg">
             </div>
 
             <div class="form-group col-sm-2">
-                {!! Form::label('peso', 'FG:') !!}
+                {!! Form::label('fg', 'CKD-EPI:') !!}
                 <input type="text" class="form-control" readonly :value="fg">
             </div>
         </div>
