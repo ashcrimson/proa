@@ -83,7 +83,6 @@ class SolicitudController extends AppBaseController
 
         if ($user->hasRole(Role::INFECTOLOGO)){
             $estadosPuedeVer = [
-                SolicitudEstado::INGRESADA,
                 SolicitudEstado::SOLICITADA,
                 SolicitudEstado::APROBADA,
                 SolicitudEstado::DESPACHADA,
@@ -299,6 +298,7 @@ class SolicitudController extends AppBaseController
 
         $estado = SolicitudEstado::INGRESADA;
 
+
         if ($request->enviar){
             $estado = SolicitudEstado::SOLICITADA;
             $request->validate([
@@ -316,10 +316,17 @@ class SolicitudController extends AppBaseController
                 $estado = SolicitudEstado::APROBADA;
             }
 
+
+            $request->merge(['fecha_solicita' => Carbon::now()]);
+
         }
 
         if ($request->regresar){
-            $estado = SolicitudEstado::APROBADA;
+
+            if ($solicitud->estado_id==SolicitudEstado::PARA_REGRESAR){
+                $estado = SolicitudEstado::APROBADA;
+            }
+
         }
 
         try {
@@ -330,6 +337,7 @@ class SolicitudController extends AppBaseController
              */
             $paciente = $this->creaOactualizaPaciente($request);
 
+
             $request->merge([
                 'paciente_id' => $paciente->id,
                 'estado_id' => $estado,
@@ -339,8 +347,6 @@ class SolicitudController extends AppBaseController
                 'terapia_especifica' => $request->terapia=='terapia_especifica' ? 1 : 0,
                 'infeccion_extrahospitalaria' => $request->fuente_infeccion=='infeccion_extrahospitalaria' ? 1 : 0,
                 'infeccion_intrahospitalaria' => $request->fuente_infeccion=='infeccion_intrahospitalaria' ? 1 : 0,
-                'fecha_solicita' => $request->enviar ? Carbon::now() : null,
-
             ]);
 
             $solicitud->fill($request->all());

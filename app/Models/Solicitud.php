@@ -83,7 +83,9 @@ class Solicitud extends Model
         'fecha_autoriza',
         'user_despacha',
         'fecha_despacha',
-        'user_actualiza'
+        'user_actualiza',
+        'created_at',
+        'updated_at'
     ];
 
     /**
@@ -300,13 +302,23 @@ class Solicitud extends Model
         /**
          * @var Solicitud $nueva
          */
-        $nueva = self::create($this->toArray());
+        $nueva = new Solicitud($this->toArray());
 
-        $nueva->cultivos()->sync($this->cultivos->pluck('id'));
-        $nueva->diagnosticos()->sync($this->diagnosticos->pluck('id'));
+        $nueva->save();
+        $nueva->cultivos()->sync($this->cultivos->pluck('id')->toArray());
+        $nueva->diagnosticos()->sync($this->diagnosticos->pluck('id')->toArray());
 
-        $nueva->medicamentos()->saveMany($this->medicamentos);
-        $nueva->microorganismos()->saveMany($this->microorganismos);
+        $medicamentos = [];
+        foreach ($this->medicamentos as $index => $medicamento) {
+            $medicamentos[] = $medicamento;
+        }
+        $nueva->medicamentos()->saveMany($medicamentos);
+
+        $microorganismos = [];
+        foreach ($this->microorganismos as $index => $microorganismo) {
+            $microorganismos[] = $microorganismo;
+        }
+        $nueva->microorganismos()->saveMany($microorganismos);
         $nueva->estado_id = SolicitudEstado::PARA_REGRESAR;
         $nueva->save();
 
