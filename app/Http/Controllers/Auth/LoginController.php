@@ -10,7 +10,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth; 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Socialite\Facades\Socialite;
@@ -33,7 +33,7 @@ class LoginController extends Controller
     use AuthenticatesUsers {
         login as protected baseLogin;
     }
-   
+
     protected function sendLoginResponse(Request $request)
     {
         $request->session()->regenerate();
@@ -70,8 +70,8 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-       
-        $this->middleware('guest')->except('logout');
+
+        $this->middleware('guest')->except(['logout','loginPortal']);
 
         $this->username = $this->findUsername();
         //print_r($this->guard());
@@ -81,14 +81,14 @@ class LoginController extends Controller
     public function login(Request $request)
     {
 
-    
-       
+
+
         if (config('app.login_ldpa')){
             return $this->loginLdap($request);
         }
 
 
-        
+
 
         return $this->baseLogin($request);
 
@@ -96,8 +96,8 @@ class LoginController extends Controller
 
     public function loginPortal($email,Request $request)
     {
-      
-          
+
+
         $user = User::where('email',$email)->first();
 
 
@@ -110,16 +110,16 @@ class LoginController extends Controller
         }
 
         Auth::login($user);
-        
+
         $request->session()->regenerate();
 
         $this->clearLoginAttempts($request);
-            
+
         if ($request->rut){
-            
+
             return redirect(route('solicitudes.create').'?rut='.$request->rut);
         }else{
-           
+
             return redirect()->to($this->redirectPath());
 
         }
@@ -184,14 +184,14 @@ class LoginController extends Controller
     public function findUsername()
     {
         $login = request()->input('login');
-        
+
         $fieldType = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
         request()->merge([$fieldType => $login]);
 
         return $fieldType;
     }
- 
+
 
     /**
      * Get username property.
@@ -209,7 +209,7 @@ class LoginController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function redirectToProvider (string $driver) {
-        
+
         return Socialite::driver($driver)->redirect();
     }
 
@@ -220,7 +220,7 @@ class LoginController extends Controller
      */
     public function handleProviderCallback(string $driver)
     {
-        
+
         if( ! request()->has('code') || request()->has('denied')) {
             flash( __("Inicio de sesión cancelado"))->error()->important();
             return redirect('login');
