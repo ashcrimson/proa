@@ -9,10 +9,10 @@ use App\Http\Requests;
 use App\Http\Requests\CreatePacienteRequest;
 use App\Http\Requests\UpdatePacienteRequest;
 use App\Models\Paciente;
-use App\Models\Preparacion;
+use App\Models\Preparacion; 
 use App\Models\Solicitud;
 use Carbon\Carbon;
-use Exception;
+use Exception;  
 use Flash;
 use Illuminate\Http\Request;
 use nusoap_client;
@@ -214,11 +214,17 @@ class PacienteController extends AppBaseController
             try {
 
 
-
                 $params = array('run' => $request->run);
                 $client = new nusoap_client('http://172.25.16.18/bus/webservice/ws.php?wsdl');
                 $client->response_timeout = 5;
                 $response = $client->call('buscarDetallePersona', $params);
+
+
+                $client = new nusoap_client('http://172.25.16.18/bus/webservice/ws.php?wsdl');
+                $client->response_timeout = 5;
+                $response2 = $client->call('GetPacHospFecha', $params);
+
+                dd($response, $response2);
 
                 return $this->sendResponse($response,"Paciente");
 

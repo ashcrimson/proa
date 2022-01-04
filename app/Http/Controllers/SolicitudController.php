@@ -20,6 +20,7 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use nusoap_client;
 use Response;
 
 class SolicitudController extends AppBaseController
@@ -48,7 +49,7 @@ class SolicitudController extends AppBaseController
 
         $scope = new ScopeSolicitudDataTable();
 
-        $scope->users = request()->users ?? null;
+        $scope->users = request()->users ?? null; 
 
 
         if($user->hasRole(Role::DEVELOPER)){
@@ -305,11 +306,16 @@ class SolicitudController extends AppBaseController
                 'password' => 'required'
             ]);
 
-            $chekPass = Hash::check($request->password,auth()->user()->getAuthPassword());
+            $params = array('email' => auth()->user()->email, "pin" => $request->password);
+            $client = new nusoap_client('http://172.25.16.18/bus/webservice/ws.php?wsdl');
+            $client->response_timeout = 5;
+           $chekPass = $client->call('ValidaPin', $params);  
+            
+            // $chekPass = Hash::check($request->password,auth()->user()->getAuthPassword());
 
 
             if (!$chekPass){
-                return back()->withInput()->withErrors(['password' => "La contraseña es incorrecta"]);
+                return back()->withInput()->withErrors(['password' => "El pin es incorrecto"]);
             }
 
             if (auth()->user()->hasRole(Role::INFECTOLOGO)){

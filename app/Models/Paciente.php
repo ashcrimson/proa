@@ -57,7 +57,8 @@ class Paciente extends Model
         'direccion',
         'familiar_responsable',
         'telefono',
-        'telefono2'
+        'telefono2',
+        'descserv'
     ];
 
     /**

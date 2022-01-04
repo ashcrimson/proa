@@ -62,7 +62,7 @@
             </div>
 
             <div class="form-group col-sm-2">
-                {!! Form::label('vfg', 'Cockcroft y Gault:') !!}
+                {!! Form::label('vfg', 'Cockcroft y Gault:') !!} 
                 <input type="text" class="form-control" readonly :value="vfg">
             </div>
 
@@ -130,7 +130,7 @@
                         total = total.toFixed(2);
                     }
 
-                    return  total;
+                    return  total + ' ml/min';
 
                 },
                 fg () {
@@ -162,7 +162,7 @@
                         }
 
 
-                        return  total;
+                        return  total + ' ml/min';
                     }
 
                     if(sexo === 'M'){
@@ -184,7 +184,7 @@
                         }
 
 
-                        return  total;
+                        return  total + ' ml/min';
                     }
 
                 }

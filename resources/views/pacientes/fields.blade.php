@@ -55,6 +55,12 @@
         {!! Form::text('apellido_materno', null, ['id' => 'apellido_materno','class' => 'form-control','maxlength' => 255]) !!}
     </div>
 
+    <!-- Apellido Materno Field -->
+    <div class="form-group col-sm-3">
+        {!! Form::label('descserv', 'Descripción Servicio:') !!}
+        {!! Form::text('descserv', null, ['id' => 'descserv','class' => 'form-control','maxlength' => 255]) !!}
+    </div>
+
     <!-- Fecha Nac Field -->
     <div class="form-group col-sm-3">
         {!! Form::label('fecha_nac', 'Fecha Nac:') !!}
@@ -160,6 +166,7 @@
                         $("#apellido_materno").val(paciente.apellido_materno);
                         $("#primer_nombre").val(paciente.primer_nombre);
                         $("#segundo_nombre").val(paciente.segundo_nombre);
+                        $("#descserv").val(paciente.descserv);
                         this.fecha_nac = paciente.fecha_nac;
 
                         if (paciente.sexo=='M'){

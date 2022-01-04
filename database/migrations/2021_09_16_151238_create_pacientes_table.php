@@ -30,6 +30,7 @@ class CreatePacientesTable extends Migration
             $table->string('familiar_responsable')->nullable();
             $table->string('telefono')->nullable();
             $table->string('telefono2')->nullable();
+            $table->string('descserv')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
