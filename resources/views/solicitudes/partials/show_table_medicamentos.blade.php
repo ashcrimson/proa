@@ -11,8 +11,8 @@
     @forelse($detalles as $det)
         <tr>
             <td>{{$det->medicamento->nombre}}</td>
-            <td>{{$det->dosis}}</td>
-            <td>{{$det->frecuencia}}</td>
+            <td>{{$det->dosis_valor}}/{{$det->dosis_unidad}}</td>
+            <td>{{$det->frecuencia_valor}}/{{$det->frecuencia_unidad}}</td>
             <td>{{$det->periodo}}</td>
         </tr>
     @empty

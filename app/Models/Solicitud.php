@@ -310,13 +310,13 @@ class Solicitud extends Model
 
         $medicamentos = [];
         foreach ($this->medicamentos as $index => $medicamento) {
-            $medicamentos[] = $medicamento;
+            $medicamentos[] = new SolicitudMedicamento($medicamento->toArray());
         }
         $nueva->medicamentos()->saveMany($medicamentos);
 
         $microorganismos = [];
         foreach ($this->microorganismos as $index => $microorganismo) {
-            $microorganismos[] = $microorganismo;
+            $microorganismos[] = new SolicitudMicroorganismo($microorganismo->toArray());
         }
         $nueva->microorganismos()->saveMany($microorganismos);
         $nueva->estado_id = SolicitudEstado::PARA_REGRESAR;

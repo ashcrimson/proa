@@ -33,7 +33,7 @@
 
                     <div class="form-group col-sm-3">
                         <label for="vol">Dosis Valor:</label>
-                        <input class="form-control" type="text" v-model="editedItem.dosis_valor">
+                        <input class="form-control" type="number" v-model="editedItem.dosis_valor">
                     </div>
 
 
