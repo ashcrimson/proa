@@ -53,7 +53,7 @@ class SolicitudDataTable extends DataTable
            ->editColumn('created_at',function (Solicitud $solicitud){
                return $solicitud->created_at ? $solicitud->created_at->format('d/m/Y') : '';
            })
-           
+
            ->editColumn('fecha_despacha',function (Solicitud $solicitud){
                return $solicitud->fecha_despacha ? $solicitud->fecha_despacha->format('d/m/Y') : '';
            })
@@ -137,6 +137,9 @@ class SolicitudDataTable extends DataTable
             Column::make('paciente')->name('paciente.nombre_completo')->data('paciente.nombre_completo')
                 ->searchable(false)->orderable(false),
 
+
+            Column::make('descserv')->name('paciente.descserv')->data('paciente.descserv'),
+
             Column::make('run')->name('paciente.rut_completo')->data('paciente.rut_completo')
                 ->searchable(false)->orderable(false),
 
@@ -144,7 +147,7 @@ class SolicitudDataTable extends DataTable
             Column::make('microorganismo')->searchable(false)->orderable(false),
             Column::make('fecha_ingreso')->data('created_at')->name('creado'),
             Column::make('fecha_solicitud')->data('fecha_solicita')->name('fecha_solicita'),
-           
+
 
             Column::make('estado')->name('estado.nombre')->data('estado.nombre'),
         ];
