@@ -75,7 +75,7 @@
                                 <div class="form-group col-sm-4 text-right ">
 
                                 <div class="input-group mb-3">
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña">
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Ingrese PIN">
                                     <div class="input-group-append">
                                         <button type="submit" class="btn btn-outline-primary mr-3" id="btnEnviar" name="enviar" value="1">
                                             <i class="fa fa-paper-plane"></i> Guardar Y Enviar

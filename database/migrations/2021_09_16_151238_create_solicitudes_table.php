@@ -9,7 +9,7 @@ class CreateSolicitudesTable extends Migration
     /**
      * Run the migrations.
      *
-     * @return void
+     * @return void 
      */
     public function up()
     {
@@ -42,6 +42,7 @@ class CreateSolicitudesTable extends Migration
             $table->unsignedBigInteger('user_actualiza')->nullable()->index('fk_solicitud_users4_idx');
             $table->date('fecha_inicio_tratamiento')->nullable();
             $table->date('fecha_fin_tratamiento')->nullable();
+            $table->string('descserv')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

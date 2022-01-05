@@ -197,7 +197,7 @@ class PacienteController extends AppBaseController
                     'diagnosticos',
                     'medicamentos',
                     'microorganismos',
-                ]);
+                ]); 
 
             }
 
@@ -209,7 +209,7 @@ class PacienteController extends AppBaseController
         }
         else{
 
-//            dd('consulta api');
+//            dd('consulta api'); 
 
             try {
 
@@ -222,11 +222,15 @@ class PacienteController extends AppBaseController
 
                 $client = new nusoap_client('http://172.25.16.18/bus/webservice/ws.php?wsdl');
                 $client->response_timeout = 5;
-                $response2 = $client->call('GetPacHospFecha', $params);
+                $response2 = $client->call('GetPacHospRunFicha', $params);
 
-                dd($response, $response2);
 
-                return $this->sendResponse($response,"Paciente");
+                $response3 = array_merge($response, $response2[0]);
+
+                //dd($response, $response2,$response3);
+
+
+                return $this->sendResponse($response3,"Paciente");
 
             } catch (Exception $exception) {
 

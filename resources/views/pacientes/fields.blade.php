@@ -58,7 +58,7 @@
     <!-- Apellido Materno Field -->
     <div class="form-group col-sm-3">
         {!! Form::label('descserv', 'Descripción Servicio:') !!}
-        {!! Form::text('descserv', null, ['id' => 'descserv','class' => 'form-control','maxlength' => 255]) !!}
+        {!! Form::text('codserv', null, ['id' => 'codserv','class' => 'form-control','maxlength' => 255]) !!}
     </div>
 
     <!-- Fecha Nac Field -->

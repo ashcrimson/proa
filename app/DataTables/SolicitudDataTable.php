@@ -138,7 +138,7 @@ class SolicitudDataTable extends DataTable
                 ->searchable(false)->orderable(false),
 
 
-            Column::make('descserv')->name('paciente.descserv')->data('paciente.descserv'),
+            Column::make('descserv')->name('descserv')->data('descserv'),
 
             Column::make('run')->name('paciente.rut_completo')->data('paciente.rut_completo')
                 ->searchable(false)->orderable(false),

@@ -79,6 +79,7 @@ class Solicitud extends Model
         'observaciones',
         'user_crea',
         'fecha_solicita',
+        'descserv',
         'user_autoriza',
         'fecha_autoriza',
         'user_despacha',

@@ -1,3 +1,9 @@
+<style>
+    .form-control{
+        height: calc(2.5rem + 2px);
+    }
+</style>
+
 <div class="card " id="panel_medicamentos">
 
     <div class="card-header py-0 px-1">
@@ -31,25 +37,25 @@
 
                     <div class="form-group col-sm-12" style="padding: 0px; margin: 0px"></div>
 
-                    <div class="form-group col-sm-3">
+                    <div class="form-group col-sm-2">
                         <label for="vol">Dosis Valor:</label>
                         <input class="form-control" type="number" v-model="editedItem.dosis_valor">
                     </div>
 
 
-                    <div class="form-group col-sm-3">
+                    <div class="form-group col-sm-2">
                         <label for="vol">Dosis Unidad:</label>
                         <multiselect v-model="editedItem.dosis_unidad" :options="dosis_unidades"  placeholder="Seleccione uno...">
                         </multiselect>
                     </div>
 
-                    <div class="form-group col-sm-3">
+                    <div class="form-group col-sm-2">
                         <label for="vol">Frecuencia Valor:</label>
                         <multiselect v-model="editedItem.frecuencia_valor" :options="[1,2,4,5,6,7,8,9,10,11,13,14,15,16,17,18,19,20,21,22,23,24]" placeholder="Seleccione uno...">
                         </multiselect>
                     </div>
 
-                    <div class="form-group col-sm-3">
+                    <div class="form-group col-sm-2">
                         <label for="vol">Frecuencia Unidad:</label>
                         <multiselect v-model="editedItem.frecuencia_unidad" :options="['horas','dias']"  placeholder="Seleccione uno...">
                         </multiselect>
