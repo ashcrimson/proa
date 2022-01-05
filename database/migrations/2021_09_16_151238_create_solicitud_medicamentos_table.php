@@ -17,8 +17,10 @@ class CreateSolicitudMedicamentosTable extends Migration
             $table->id();
             $table->unsignedBigInteger('solicitud_id')->index('fk_solicitud_medicamentos_idx1');
             $table->unsignedBigInteger('medicamento_id')->index('fk_solicitud_medicamentos_idx2');
-            $table->string('dosis');
-            $table->string('frecuencia')->nullable();
+            $table->decimal('dosis_valor');
+            $table->string('dosis_unidad');
+            $table->integer('frecuencia_valor')->nullable();
+            $table->string('frecuencia_unidad')->nullable();
             $table->string('periodo')->nullable();
             $table->timestamps();
             $table->softDeletes();

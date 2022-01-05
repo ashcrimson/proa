@@ -7,14 +7,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class SolicitudMedicamento
  * @package App\Models
- * @version September 16, 2021, 5:24 pm CST
+ * @version January 4, 2022, 11:46 pm -03
  *
  * @property \App\Models\Medicamento $medicamento
- * @property \App\Models\Solicitude $solicitud
+ * @property \App\Models\Solicitud $solicitud
  * @property integer $solicitud_id
  * @property integer $medicamento_id
- * @property string $dosis
- * @property string $frecuencia
+ * @property number $dosis_valor
+ * @property string $dosis_unidad
+ * @property integer $frecuencia_valor
+ * @property string $frecuencia_unidad
  * @property string $periodo
  */
 class SolicitudMedicamento extends Model
@@ -34,9 +36,11 @@ class SolicitudMedicamento extends Model
     public $fillable = [
         'solicitud_id',
         'medicamento_id',
-        'dosis',
-        'frecuencia',
-        'periodo',
+        'dosis_valor',
+        'dosis_unidad',
+        'frecuencia_valor',
+        'frecuencia_unidad',
+        'periodo'
     ];
 
     /**
@@ -48,8 +52,10 @@ class SolicitudMedicamento extends Model
         'id' => 'integer',
         'solicitud_id' => 'integer',
         'medicamento_id' => 'integer',
-        'dosis' => 'string',
-        'frecuencia' => 'string',
+        'dosis_valor' => 'decimal:2',
+        'dosis_unidad' => 'string',
+        'frecuencia_valor' => 'integer',
+        'frecuencia_unidad' => 'string',
         'periodo' => 'string'
     ];
 
@@ -61,8 +67,10 @@ class SolicitudMedicamento extends Model
     public static $rules = [
         'solicitud_id' => 'required',
         'medicamento_id' => 'required',
-        'dosis' => 'required|string|max:255',
-        'frecuencia' => 'nullable|string|max:255',
+        'dosis_valor' => 'required|numeric',
+        'dosis_unidad' => 'required|string|max:255',
+        'frecuencia_valor' => 'nullable|integer',
+        'frecuencia_unidad' => 'nullable|string|max:255',
         'periodo' => 'nullable|string|max:255',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
