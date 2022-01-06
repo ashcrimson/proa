@@ -50,6 +50,7 @@ class SolicitudDataTable extends DataTable
            ->editColumn('fecha_solicita',function (Solicitud $solicitud){
                return $solicitud->fecha_solicita ? $solicitud->fecha_solicita->format('d/m/Y') : '';
            })
+          
            ->editColumn('created_at',function (Solicitud $solicitud){
                return $solicitud->created_at ? $solicitud->created_at->format('d/m/Y') : '';
            })
