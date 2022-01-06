@@ -85,6 +85,8 @@ class Solicitud extends Model
         'user_despacha',
         'fecha_despacha',
         'user_actualiza',
+        'fecha_inicio_tratamiento',
+        'fecha_fin_tratamiento',
         'created_at',
         'updated_at'
     ];
@@ -115,6 +117,7 @@ class Solicitud extends Model
         'observaciones' => 'string',
         'user_crea' => 'integer',
         'fecha_solicita' => 'datetime',
+
         'user_autoriza' => 'integer',
         'fecha_autoriza' => 'datetime',
         'user_despacha' => 'integer',
