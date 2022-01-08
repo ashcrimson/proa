@@ -69,7 +69,12 @@ class SolicitudDataTable extends DataTable
      */
     public function query(Solicitud $model)
     {
-        return $model->newQuery()->with(['paciente','estado','userCrea','medicamentos','microorganismos'])->orderBy('fecha_solicita','asc');
+        return $model->newQuery()
+            ->with(['paciente','estado','userCrea','medicamentos','microorganismos'])
+            ->join('solicitud_estados','solicitud_estados.id','=','solicitudes.estado_id')
+            ->select('solicitudes.*','solicitud_estados.orden')
+            ->orderBy('orden','asc')
+            ->orderBy('fecha_solicita','asc');
     }
 
     /**

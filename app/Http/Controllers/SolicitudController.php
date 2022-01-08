@@ -49,18 +49,20 @@ class SolicitudController extends AppBaseController
 
         $scope = new ScopeSolicitudDataTable();
 
-        $scope->users = request()->users ?? null; 
+        $scope->users = request()->users ?? null;
 
 
         if($user->hasRole(Role::DEVELOPER)){
 
             $estadosPuedeVer = [
+                SolicitudEstado::TEMPORAL,
                 SolicitudEstado::INGRESADA,
                 SolicitudEstado::SOLICITADA,
                 SolicitudEstado::APROBADA,
                 SolicitudEstado::DESPACHADA,
                 SolicitudEstado::RECHAZADA,
                 SolicitudEstado::ANULADA,
+                SolicitudEstado::VENCIDA,
                 SolicitudEstado::PARA_REGRESAR,
             ];
 
@@ -309,8 +311,8 @@ class SolicitudController extends AppBaseController
             $params = array('email' => auth()->user()->email, "pin" => $request->password);
             $client = new nusoap_client('http://172.25.16.18/bus/webservice/ws.php?wsdl');
             $client->response_timeout = 5;
-           $chekPass = $client->call('ValidaPin', $params);  
-            
+           $chekPass = $client->call('ValidaPin', $params);
+
             // $chekPass = Hash::check($request->password,auth()->user()->getAuthPassword());
 
 
