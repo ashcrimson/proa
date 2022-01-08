@@ -50,6 +50,7 @@ class SolicitudDataTable extends DataTable
            ->editColumn('fecha_solicita',function (Solicitud $solicitud){
                return $solicitud->fecha_solicita ? $solicitud->fecha_solicita->format('d/m/Y') : '';
            })
+          
            ->editColumn('created_at',function (Solicitud $solicitud){
                return $solicitud->created_at ? $solicitud->created_at->format('d/m/Y') : '';
            })
@@ -126,7 +127,7 @@ class SolicitudDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id')->data('id')->name('solicitudes.id'),
+            Column::make('id')->data('id')->name('solicitudes.id')->visible(false),
 //            Column::make('horas')->searchable(false)->orderable(false),
             Column::make('medico')->name('userCrea.name')->data('user_crea.name'),
 
@@ -150,10 +151,10 @@ class SolicitudDataTable extends DataTable
 
             Column::make('antimicrobiano')->searchable(false)->orderable(false),
             Column::make('microorganismo')->searchable(false)->orderable(false),
-            Column::make('fecha_ingreso')->data('created_at')->name('creado'),
+            Column::make('fecha_ingreso')->data('created_at')->name('creado')->visible(false),
             Column::make('fecha_solicitud')->data('fecha_solicita')->name('fecha_solicita'),
-
-
+            Column::make('fecha_inicio_tratamiento')->data('fecha_inicio_tratamiento')->name('fecha_inicio_tratamiento'),
+            Column::make('fecha_fin_tratamiento')->data('fecha_fin_tratamiento')->name('fecha_fin_tratamiento'),
             Column::make('estado')->name('estado.nombre')->data('estado.nombre'),
         ];
     }

@@ -211,9 +211,11 @@ class SolicitudController extends AppBaseController
                 'user crea' => auth()->user()->id,
                 'paciente_id' => $paciente->id,
                 'estado_id' => SolicitudEstado::INGRESADA,
+                'fecha_inicio_tratamiento' => 'fecha_solicita'
             ]);
 
             /** @var Solicitud $solicitud */
+
             $solicitud = Solicitud::create($request->all());
 
         } catch (Exception $exception) {
@@ -311,7 +313,7 @@ class SolicitudController extends AppBaseController
             $params = array('email' => auth()->user()->email, "pin" => $request->password);
             $client = new nusoap_client('http://172.25.16.18/bus/webservice/ws.php?wsdl');
             $client->response_timeout = 5;
-           $chekPass = $client->call('ValidaPin', $params);
+            $chekPass = $client->call('ValidaPin', $params);
 
             // $chekPass = Hash::check($request->password,auth()->user()->getAuthPassword());
 
@@ -326,6 +328,8 @@ class SolicitudController extends AppBaseController
 
 
             $request->merge(['fecha_solicita' => Carbon::now()]);
+            $request->merge(['fecha_inicio_tratamiento' => Carbon::now()->addDay()]);
+            $request->merge(['fecha_fin_tratamiento' => Carbon::now()->addDays(7)]);
 
         }
 

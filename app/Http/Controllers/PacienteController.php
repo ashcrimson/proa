@@ -225,7 +225,7 @@ class PacienteController extends AppBaseController
                 $response2 = $client->call('GetPacHospRunFicha', $params);
 
 
-                $response3 = array_merge($response, $response2[0]);
+                $response3 = array_merge($response, $response2[0] ?? []);
 
                 //dd($response, $response2,$response3);
 
