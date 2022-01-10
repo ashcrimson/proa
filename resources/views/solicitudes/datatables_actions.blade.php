@@ -23,8 +23,8 @@
             <form action="{{ route('solicitudes.rechazar.store', $solicitud->id) }}"  method="post" style="display: inline">
                 @csrf
 
-                <button type="submit"  class='btn btn-danger btn-sm'>
-                    <i class="fa fa-ban"></i> 
+                <button type="submit"  class='btn btn-danger btn-sm' data-toggle="tooltip" title="Rechazar">
+                    <i class="fa fa-ban"></i>
                 </button>&nbsp;
             </form>
         @endcan

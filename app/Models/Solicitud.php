@@ -250,6 +250,10 @@ class Solicitud extends Model
             case SolicitudEstado::RECHAZADA:
                 return "#ff7878";
                 break;
+
+            case SolicitudEstado::VENCIDA:
+                return "yellow";
+                break;
             default:
                 return "";
         }
@@ -273,7 +277,8 @@ class Solicitud extends Model
     public function puedeAprobar()
     {
         return in_array($this->estado_id,[
-            SolicitudEstado::SOLICITADA
+            SolicitudEstado::SOLICITADA,
+            SolicitudEstado::VENCIDA,
         ]);
     }
 

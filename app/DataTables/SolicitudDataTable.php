@@ -159,9 +159,13 @@ class SolicitudDataTable extends DataTable
             Column::make('run')->name('paciente.rut_completo')->data('paciente.rut_completo')
                 ->searchable(false)->orderable(false),
 
+
+            Column::make('rut')->name('paciente.run')->data('paciente.run')
+                ->visible(false),
+
             Column::make('antimicrobiano')->searchable(false)->orderable(false),
             Column::make('microorganismo')->searchable(false)->orderable(false),
-            Column::make('fecha_ingreso')->data('created_at')->name('creado')->visible(false),
+            Column::make('fecha_ingreso')->data('created_at')->name('created_at')->visible(false),
             Column::make('fecha_solicitud')->data('fecha_solicita')->name('fecha_solicita'),
             Column::make('fecha_inicio_tratamiento')->data('fecha_inicio_tratamiento')->name('fecha_inicio_tratamiento'),
             Column::make('fecha_fin_tratamiento')->data('fecha_fin_tratamiento')->name('fecha_fin_tratamiento'),
