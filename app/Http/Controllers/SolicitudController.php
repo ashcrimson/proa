@@ -450,12 +450,15 @@ class SolicitudController extends AppBaseController
     {
         $sol = Solicitud::where('user_crea',auth()->user()->id)->where('estado_id',SolicitudEstado::TEMPORAL)->first();
 
-        if (!$sol){
-            $sol = Solicitud::create([
-                'user_crea' => auth()->user()->id,
-                'estado_id' => SolicitudEstado::TEMPORAL,
-            ]);
+        if ($sol){
+            $sol->delete();
         }
+
+        $sol = Solicitud::create([
+            'user_crea' => auth()->user()->id,
+            'estado_id' => SolicitudEstado::TEMPORAL,
+        ]);
+
 
         return $sol;
     }
