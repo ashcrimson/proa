@@ -92,7 +92,6 @@ class SolicitudController extends AppBaseController
                 SolicitudEstado::RECHAZADA,
                 SolicitudEstado::ANULADA,
                 SolicitudEstado::PARA_REGRESAR,
-                SolicitudEstado::VENCIDA,
             ];
         }
 
