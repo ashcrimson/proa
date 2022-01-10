@@ -50,9 +50,11 @@
                                         Cancelar
                                     </a>
                                     &nbsp;
+                                    @if($solicitud->estado_id!=\App\Models\SolicitudEstado::PARA_REGRESAR)
                                     <button type="submit" class="btn btn-outline-success mr-3">
                                         <i class="fa fa-save"></i> Guardar
                                     </button>
+                                    @endif
 
                                 </div>
 
