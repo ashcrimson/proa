@@ -55,20 +55,17 @@ class SolicitudDataTable extends DataTable
                return $solicitud->created_at ? $solicitud->created_at->format('d/m/Y') : '';
            })
 
-           ->editColumn('fecha_despacha',function (Solicitud $solicitud){
-               return $solicitud->fecha_despacha ? $solicitud->fecha_despacha->format('d/m/Y') : '';
-           })
-           ->editColumn('fecha_inicio_tratamiento',function (Solicitud $solicitud){
-               return $solicitud->fecha_solicita ? $solicitud->fecha_solicita->addDay()->format('d/m/Y') : '';
-           })
-
            ->editColumn('fecha_inicio_tratamiento',function (Solicitud $solicitud){
                return $solicitud->fecha_inicio_tratamiento ? $solicitud->fecha_inicio_tratamiento->format('d/m/Y') : '';
            })
            ->editColumn('fecha_fin_tratamiento',function (Solicitud $solicitud){
                return $solicitud->fecha_fin_tratamiento ? $solicitud->fecha_fin_tratamiento->format('d/m/Y') : '';
            })
-             ->rawColumns(['microorganismo','antimicrobiano','action']);
+           ->editColumn('id',function (Solicitud $solicitud){
+               $id = $solicitud->id;
+               return view('solicitudes.columna_id',compact('solicitud','id'));
+           })
+             ->rawColumns(['microorganismo','antimicrobiano','action','id']);
 
     }
 
@@ -118,7 +115,7 @@ class SolicitudDataTable extends DataTable
                 'language' => ['url' => asset('js/SpanishDataTables.json')],
                 //'scrollX' => false,
                 'responsive' => true,
-                'stateSave' => true,
+//                'stateSave' => true,
                 'buttons' => [
                     //['extend' => 'create', 'text' => '<i class="fa fa-plus"></i> <span class="d-none d-sm-inline">Crear</span>'],
                     ['extend' => 'print', 'text' => '<i class="fa fa-print"></i> <span class="d-none d-sm-inline">Imprimir</span>'],
@@ -137,9 +134,11 @@ class SolicitudDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id')->data('id')->name('solicitudes.id')->visible(false),
-//            Column::make('horas')->searchable(false)->orderable(false),
+
+
+            Column::make('id'),
             Column::make('medico')->name('userCrea.name')->data('user_crea.name'),
+
 
             Column::make('paciente.apellido_paterno')
                 ->visible(false)->exportable(false),
