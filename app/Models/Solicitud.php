@@ -117,6 +117,8 @@ class Solicitud extends Model
         'observaciones' => 'string',
         'user_crea' => 'integer',
         'fecha_solicita' => 'datetime',
+        'fecha_inicio_tratamiento' => 'datetime',
+        'fecha_fin_tratamiento' => 'datetime',
 
         'user_autoriza' => 'integer',
         'fecha_autoriza' => 'datetime',
@@ -344,4 +346,5 @@ class Solicitud extends Model
         });
 
     }
+
 }

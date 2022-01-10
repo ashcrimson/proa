@@ -326,10 +326,13 @@ class SolicitudController extends AppBaseController
                 $estado = SolicitudEstado::APROBADA;
             }
 
+            $periodo = $solicitud->medicamentos->first()->periodo;
 
-            $request->merge(['fecha_solicita' => Carbon::now()]);
-            $request->merge(['fecha_inicio_tratamiento' => Carbon::now()->addDay()]);
-            $request->merge(['fecha_fin_tratamiento' => Carbon::now()->addDays(7)]);
+            $request->merge([
+                'fecha_solicita' => Carbon::now(),
+                'fecha_inicio_tratamiento' => Carbon::now()->addDay(),
+                'fecha_fin_tratamiento' => Carbon::now()->addDays($periodo)
+            ]);
 
         }
 

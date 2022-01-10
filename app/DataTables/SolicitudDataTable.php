@@ -50,13 +50,23 @@ class SolicitudDataTable extends DataTable
            ->editColumn('fecha_solicita',function (Solicitud $solicitud){
                return $solicitud->fecha_solicita ? $solicitud->fecha_solicita->format('d/m/Y') : '';
            })
-          
+
            ->editColumn('created_at',function (Solicitud $solicitud){
                return $solicitud->created_at ? $solicitud->created_at->format('d/m/Y') : '';
            })
 
            ->editColumn('fecha_despacha',function (Solicitud $solicitud){
                return $solicitud->fecha_despacha ? $solicitud->fecha_despacha->format('d/m/Y') : '';
+           })
+           ->editColumn('fecha_inicio_tratamiento',function (Solicitud $solicitud){
+               return $solicitud->fecha_solicita ? $solicitud->fecha_solicita->addDay()->format('d/m/Y') : '';
+           })
+
+           ->editColumn('fecha_inicio_tratamiento',function (Solicitud $solicitud){
+               return $solicitud->fecha_inicio_tratamiento ? $solicitud->fecha_inicio_tratamiento->format('d/m/Y') : '';
+           })
+           ->editColumn('fecha_fin_tratamiento',function (Solicitud $solicitud){
+               return $solicitud->fecha_fin_tratamiento ? $solicitud->fecha_fin_tratamiento->format('d/m/Y') : '';
            })
              ->rawColumns(['microorganismo','antimicrobiano','action']);
 
