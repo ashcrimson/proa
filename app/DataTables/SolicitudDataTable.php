@@ -61,11 +61,11 @@ class SolicitudDataTable extends DataTable
            ->editColumn('fecha_fin_tratamiento',function (Solicitud $solicitud){
                return $solicitud->fecha_fin_tratamiento ? $solicitud->fecha_fin_tratamiento->format('d/m/Y') : '';
            })
-           ->editColumn('id',function (Solicitud $solicitud){
-               $id = $solicitud->id;
-               return view('solicitudes.columna_id',compact('solicitud','id'));
-           })
-             ->rawColumns(['microorganismo','antimicrobiano','action','id']);
+//           ->editColumn('id',function (Solicitud $solicitud){
+//               $id = $solicitud->id;
+//               return view('solicitudes.columna_id',compact('solicitud','id'));
+//           })
+             ->rawColumns(['microorganismo','antimicrobiano','action']);
 
     }
 
@@ -113,9 +113,9 @@ class SolicitudDataTable extends DataTable
                                     >',
                 'order'   => [[0, 'desc']],
                 'language' => ['url' => asset('js/SpanishDataTables.json')],
-                //'scrollX' => false,
-                'responsive' => true,
-//                'stateSave' => true,
+                'scrollX' => true,
+//                'responsive' => true,
+                'stateSave' => true,
                 'buttons' => [
                     //['extend' => 'create', 'text' => '<i class="fa fa-plus"></i> <span class="d-none d-sm-inline">Crear</span>'],
                     ['extend' => 'print', 'text' => '<i class="fa fa-print"></i> <span class="d-none d-sm-inline">Imprimir</span>'],
@@ -136,7 +136,6 @@ class SolicitudDataTable extends DataTable
         return [
 
 
-            Column::make('id'),
             Column::make('medico')->name('userCrea.name')->data('user_crea.name'),
 
 
