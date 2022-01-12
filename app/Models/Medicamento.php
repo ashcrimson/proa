@@ -45,6 +45,7 @@ class Medicamento extends Model
 
     public $fillable = [
         'nombre',
+        'codigo',
         'indicaciones',
         'contraindicaciones',
         'advertencias',

@@ -1,3 +1,9 @@
+<style>
+    .fa-2x {
+        font-size: 1.2em;
+        margin-top: 10px;
+    }
+</style>
 <!--            validar sí en el estado que esta puede despachar
 ------------------------------------------------------------------------>
 <!-- @if($solicitud->puedeDespachar())
@@ -117,4 +123,7 @@
 
     @endcan
 @endif
+<a href="http://proa.hospitalnaval.cl/solicitudes/imprime/receta/54" target="_blank" >
+        <i class="fa fa-print fa-2x"></i>
+    </a>
 
