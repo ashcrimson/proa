@@ -69,6 +69,8 @@ Route::group(['middleware' => ['auth']], function () {
         'solicitudes' => 'solicitud'
     ]);
 
+    Route::get('solicitudes/imprime/receta/{solicitud}',"SolicitudController@imprimeReceta")->name('solicitudes.imprime.receta');
+
     Route::get('enfermeria/solicitudes',"SolicitudController@solicitudesEnfermera")->name('enfermeria.solicitudes');
 
     Route::group(['prefix' => 'solicitudes','as' => 'solicitudes.'],function (){

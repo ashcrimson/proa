@@ -9,7 +9,10 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "ext-curl": "*",
+        "ext-json": "*",
         "arielcr/numero-a-letras": "dev-master",
+        "barryvdh/laravel-dompdf": "^0.9.0",
         "barryvdh/laravel-snappy": "^0.4.8",
         "consoletvs/charts": "7.*",
         "doctrine/dbal": "^3.0",
@@ -35,9 +38,7 @@
         "tightenco/ziggy": "^1.3",
         "yajra/laravel-datatables-buttons": "^4.10",
         "yajra/laravel-datatables-oracle": "^9.15",
-        "yajra/laravel-oci8": "^8.3",
-        "ext-curl": "*",
-        "ext-json": "*"
+        "yajra/laravel-oci8": "^8.3"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",

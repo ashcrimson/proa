@@ -10,6 +10,10 @@
     <a href="{!! route('solicitudes.index') !!}" class="btn btn-outline-secondary mr-3">
         {{__('Back')}}
     </a>
+
+    <a href="{!! route('solicitudes.imprime.receta',$solicitud->id) !!}" target="_blank" class="btn btn-outline-info mr-3">
+        {{__('Imprimir')}}
+    </a>
     &nbsp;
 
     <!--            validar sí en el estado que esta puede despachar

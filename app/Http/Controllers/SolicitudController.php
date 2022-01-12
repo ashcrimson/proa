@@ -13,11 +13,13 @@ use App\Models\Role;
 use App\Models\Solicitud;
 use App\Models\SolicitudEstado;
 use App\Models\User;
+use Barryvdh\DomPDF\PDF;
 use Carbon\Carbon;
 use Exception;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use nusoap_client;
@@ -579,4 +581,21 @@ class SolicitudController extends AppBaseController
         return redirect(route('solicitudes.edit',$nueva->id));
     }
 
+    public function imprimeReceta(Solicitud $solicitud)
+    {
+
+        /**
+         * @var PDF $pdf
+         */
+        $pdf = App::make('dompdf.wrapper');
+
+        $vita = view('solicitudes.receta',compact('solicitud'))->render();
+
+
+        return $pdf->loadHTML($vita)
+            ->setPaper('letter','portrait')
+            ->stream("dompdf_out.pdf");
+
+
+    }
 }
