@@ -1,16 +1,15 @@
 table {
-	width: 80%;
+	width: 100%;
 	margin: auto;
 	
 }
 
 table th {
-	border: 1px solid;
 	padding: 5px;
 }
 
 table td {
-	border: 1px solid;
+	
 	padding: 5px;
 	text-align: left;
 }
@@ -27,7 +26,7 @@ table td {
 
 .izquierda{
 	float: left;
-	width: 20%;
+	width: 30%;
 	text-align: center;
 }
 
@@ -77,4 +76,5 @@ table td {
 	width: 45%;
 	text-align: center;
 	margin-left: 50%;
+	margin-top: 50px;
 }
