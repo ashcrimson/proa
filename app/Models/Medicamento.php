@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Database\Eloquent\Collection $farmacoCategorias
  * @property \Illuminate\Database\Eloquent\Collection $medicamentoFarmacos
  * @property \Illuminate\Database\Eloquent\Collection $solicitudMedicamentos
+ * @property string $codigo
  * @property string $nombre
  * @property string $indicaciones
  * @property string $contraindicaciones
@@ -41,6 +42,7 @@ class Medicamento extends Model
 
     protected $dates = ['deleted_at'];
 
+    protected $appends = ['text'];
 
 
     public $fillable = [
@@ -156,5 +158,10 @@ class Medicamento extends Model
         $query->whereHas('categorias',function ($queryCat){
             $queryCat->where('id',FarmacoCategoria::ANTIBIOTICO);
         });
+    }
+
+    public function getTextAttribute()
+    {
+        return $this->codigo." - ".$this->nombre;
     }
 }
