@@ -87,6 +87,7 @@
             <table class="table table-bordered table-sm table-striped mb-0">
                 <thead>
                 <tr>
+                    <th>Codigo</th>
                     <th>Antibiotico</th>
                     <th>dosis</th>
                     <th>frecuencia</th>
@@ -99,6 +100,7 @@
                     <td colspan="10" class="text-center">Ningún Registro agregado</td>
                 </tr>
                 <tr v-for="det in solicitud_medicamentos">
+                <td v-text="det.medicamento.codigo"></td>
                     <td v-text="det.medicamento.nombre"></td>
                     <td v-text="det.dosis_valor+'/'+det.dosis_unidad"></td>
                     <td v-text="det.frecuencia_valor+'/'+det.frecuencia_unidad"></td>
