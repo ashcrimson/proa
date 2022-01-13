@@ -119,11 +119,11 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div> 
 
     @endcan
 @endif
-<a href="http://proa.hospitalnaval.cl/solicitudes/imprime/receta/54" target="_blank" >
+<a href="{!! route('solicitudes.imprime.receta',$solicitud->id) !!}" target="_blank" >
         <i class="fa fa-print fa-2x"></i>
     </a>
 
