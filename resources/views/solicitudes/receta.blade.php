@@ -13,12 +13,13 @@
     </div>
    
     <div class="izquierda">
-        <p><b>ARMADA DE CHILE</b><br>
+        <p>ARMADA DE CHILE<br>
             HOSPITAL NAVAL "ALMIRANTE NEF" FARMARCIA
         </p>
     </div>
     <div class="derecha">
-        <p>ID: {{$solicitud->id}}</p>
+        <p>N°: {{$solicitud->id}}</p>
+        <p>Fecha Solicitud: {{$solicitud->fecha_solicita}}</p>
     </div>
     <div class="centro">
         <h3>RECETA PACIENTE HOSPITALIZADO</h3>
@@ -35,36 +36,44 @@
         <table>
             
             <tr>
-                <td>PISO:</td>
-                <td>SALA:</td>
-                <td>CAMA:</td>
+                <td><b>PISO:</b></td>
+                <td><b>SALA:</b></td>
+                <td><b>CAMA:</b></td>
             </tr>
         </table>
     </div>
     <div  style="margin-top: 20px;">
-        <h3>FÁRMACOS</h3>
+        <h3 class="card-title">Fármacos</h3>
         @include('solicitudes.partials.show_table_medicamentos',['detalles' => $solicitud->medicamentos])
         
     </div>
     <div class="izquierda-tres">
+        <hr>
         <p><b>FIRMA MÉDICO</b><br>
             
         </p>
     </div>
-    <div class="derecha-tres">
-        <p><b>CÓDIGO MÉDICO: </b></p>
+    <div class="derecha-tres"> 
+        
        
     </div>
 
     <div class="derecha-cuatro">
-        <p>Fecha Solicitud: {{$solicitud->fecha_solicita}}</p>
-       
+       <hr>
+       <p><b>CÓDIGO MÉDICO: </b></p>
     </div>
     <div class="centro-dos" >
-        <table style="width: 85%; border: none; text-align: center; margin-top: 20%;">
-            <td style="border: none">HORA DE RECEPCIÓN EN SALA</td>
-            <td style="border: none">RECIBO CONFORME</td>
-            <td style="border: none">N.P.I/R.U.N</td>
+        <table style="width: 85%; border: none; text-align: center; margin-top: 30%;">
+            <tr>
+                <td style="border: none"><hr></td>
+                <td style="border: none"><hr></td>
+                <td style="border: none"><hr></td>
+            </tr>
+            <tr>
+                <td style="border: none; text-align: center;">HORA DE RECEPCIÓN EN SALA</td>
+                <td style="border: none; text-align: center;">RECIBO CONFORME</td>
+                <td style="border: none; text-align: center;">N.P.I/R.U.N</td>
+            </tr>
         </table>
     </div>
 
