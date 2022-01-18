@@ -6,13 +6,52 @@
 </style>
 <!--            validar sí en el estado que esta puede despachar
 ------------------------------------------------------------------------>
-<!-- @if($solicitud->puedeDespachar())
+@if($solicitud->puedeDespachar())
     @can('Despachar Solicitudes')
-        <a href="{{ route('solicitudes.despachar', $solicitud->id) }}" data-toggle="tooltip" title="Despachar" class='btn btn-success btn-sm'>
+
+    <span data-toggle="tooltip" title="Despachar">
+        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#otromodelId" >
             <i class="fa fa-boxes"></i>
-        </a>
+        </button>
+    </span>
+        <!-- <a href="{{ route('solicitudes.despachar', $solicitud->id) }}" data-toggle="tooltip" title="Despachar" class='btn btn-success btn-sm'>
+            <i class="fa fa-boxes"></i>
+        </a> -->
+        <div class="modal fade" id="otromodelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modelTitleId">
+                            Despachar
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <form action="{{ route('solicitudes.despachar.store', $solicitud->id) }}" class="mr-3" method="post" style="display: inline">
+                    @csrf
+
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <p>
+                                    Elija cuántas dosis quiere despachar.
+                                </p>
+                                <label for="vol">Dosis:</label>
+                                <input class="form-control" type="number" max=10 style="width: 20%;">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Confirmar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     @endcan
-@endif -->
+@endif
 
 <!--            validar sí en el estado que esta puede aprobar
 ------------------------------------------------------------------------>

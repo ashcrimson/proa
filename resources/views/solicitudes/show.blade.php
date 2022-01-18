@@ -11,7 +11,12 @@
                 <div class="col-sm-6">
                     <h1>{{__('Solicitudes')}}</h1>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-6 text-right pl-3">
+                <a href="{!! route('solicitudes.index') !!}" class="btn btn-outline-secondary mr-3">
+                    {{__('Back')}}
+                </a>
+
+    
 
                 </div>
             </div>
