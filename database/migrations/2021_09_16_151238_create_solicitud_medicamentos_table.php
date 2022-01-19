@@ -21,7 +21,8 @@ class CreateSolicitudMedicamentosTable extends Migration
             $table->string('dosis_unidad');
             $table->integer('frecuencia_valor')->nullable();
             $table->string('frecuencia_unidad')->nullable();
-            $table->string('periodo')->nullable();
+            $table->integer('periodo')->nullable()->default(0);
+            $table->integer('despachos')->nullable()->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

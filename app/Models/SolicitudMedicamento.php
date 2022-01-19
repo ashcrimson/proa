@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property integer $frecuencia_valor
  * @property string $frecuencia_unidad
  * @property string $periodo
+ * @property string $despachos
  */
 class SolicitudMedicamento extends Model
 {
@@ -40,7 +41,8 @@ class SolicitudMedicamento extends Model
         'dosis_unidad',
         'frecuencia_valor',
         'frecuencia_unidad',
-        'periodo'
+        'periodo',
+        'despachos'
     ];
 
     /**
@@ -56,7 +58,8 @@ class SolicitudMedicamento extends Model
         'dosis_unidad' => 'string',
         'frecuencia_valor' => 'integer',
         'frecuencia_unidad' => 'string',
-        'periodo' => 'string'
+        'periodo' => 'integer',
+        'despachos' => 'integer'
     ];
 
     /**
@@ -91,5 +94,10 @@ class SolicitudMedicamento extends Model
     public function solicitud()
     {
         return $this->belongsTo(\App\Models\Solicitude::class, 'solicitud_id');
+    }
+
+    public function getPendientesDespacharAttribute()
+    {
+        return $this->periodo - $this->despachos;
     }
 }
