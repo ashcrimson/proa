@@ -355,7 +355,7 @@ class Solicitud extends Model
     {
         $pendientes = $this->medicamentos->sum('pendientes_despachar');
 
-        return $pendientes;
+        return $pendientes == 0;
     }
 
 }

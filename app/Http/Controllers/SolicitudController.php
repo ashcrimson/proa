@@ -568,7 +568,7 @@ class SolicitudController extends AppBaseController
              * @var SolicitudMedicamento $det
              */
             foreach ($solicitud->medicamentos as $index => $det) {
-                $det->despachos = $despachos[$det->id];
+                $det->despachos += $despachos[$det->id] ?? 0;
                 $det->save();
             }
         }
