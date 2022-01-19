@@ -12,6 +12,7 @@ use App\Models\Paciente;
 use App\Models\Role;
 use App\Models\Solicitud;
 use App\Models\SolicitudEstado;
+use App\Models\SolicitudMedicamento;
 use App\Models\User;
 use Barryvdh\DomPDF\PDF;
 use Carbon\Carbon;
@@ -547,16 +548,34 @@ class SolicitudController extends AppBaseController
         return view('solicitudes.despachar.despachar',compact('solicitud'));
     }
 
-    public function despacharStore(Solicitud $solicitud)
+    public function despacharStore(Solicitud $solicitud,Request $request)
     {
 
-        $solicitud->estado_id= SolicitudEstado::DESPACHADA;
-        $solicitud->user_actualiza = auth()->user()->id;
-        $solicitud->user_despacha = auth()->user()->id;
-        $solicitud->fecha_despacha = Carbon::now();
-        $solicitud->save();
 
-        flash('Solicitud despachada!')->success();
+//        if ($solicitud->medicamentosDespachados()){
+//            $solicitud->estado_id= SolicitudEstado::DESPACHADA;
+//            $solicitud->user_actualiza = auth()->user()->id;
+//            $solicitud->user_despacha = auth()->user()->id;
+//            $solicitud->fecha_despacha = Carbon::now();
+//            $solicitud->save();
+//        }
+
+        $despachos = $request->despachos ?? null;
+
+        if ($despachos){
+
+            /**
+             * @var SolicitudMedicamento $det
+             */
+            foreach ($solicitud->medicamentos as $index => $det) {
+                $det->despachos = $despachos[$det->id];
+                $det->save();
+            }
+        }
+
+
+
+        flash('Despacho realizado!')->success();
 
         return redirect(route('solicitudes.index'));
     }

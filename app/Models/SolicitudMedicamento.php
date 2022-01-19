@@ -33,6 +33,7 @@ class SolicitudMedicamento extends Model
     protected $dates = ['deleted_at'];
 
 
+    protected $appends = ['pendientes_despachar'];
 
     public $fillable = [
         'solicitud_id',

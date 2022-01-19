@@ -234,7 +234,7 @@ class Solicitud extends Model
 
                     if ($dif >= 24 && $dif < 48){
                         return "#f3fa93";
-                    
+
                     }elseif ($dif >= 72){
                         $this->estado_id = SolicitudEstado::VENCIDA;
                         $this->save();
@@ -349,6 +349,13 @@ class Solicitud extends Model
                 ->where('estado_id',SolicitudEstado::INGRESADA);
         });
 
+    }
+
+    public function medicamentosDespachados()
+    {
+        $pendientes = $this->medicamentos->sum('pendientes_despachar');
+
+        return $pendientes;
     }
 
 }

@@ -1,4 +1,4 @@
-{{$solicitud->userCrea->name}}
+{{$solicitud->paciente->nombre_completo}}
 
 
 <!--            validar sí en el estado que esta puede clonar
@@ -55,7 +55,7 @@
 
         <div class="modal fade" id="modalDespachar{{$solicitud->id}}" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
              aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title" id="modelTitleId">
@@ -73,9 +73,43 @@
                             <div class="container-fluid">
                                 <p>
                                     Elija cuántas dosis quiere despachar.
+                                    {{$solicitud->medicamentosDespachados()}}
                                 </p>
-                                <label for="vol">Dosis:</label>
-                                <input class="form-control" type="number" max=10 style="width: 20%;">
+                                <table class="table table-bordered table-sm  mb-0">
+                                    <thead>
+                                    <tr>
+                                        <td>Antimicrobiano</td>
+                                        <td>Dosis</td>
+                                        <td>Frecuencia</td>
+                                        <td>Periodo</td>
+                                        <td>Despachos</td>
+                                        <td>Despachar</td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @forelse($solicitud->medicamentos as $det)
+                                        <tr>
+                                            <td>{{$det->medicamento->nombre}}</td>
+                                            <td>{{$det->dosis_valor}}/{{$det->dosis_unidad}}</td>
+                                            <td>{{$det->frecuencia_valor}}/{{$det->frecuencia_unidad}}</td>
+                                            <td>{{$det->periodo}}</td>
+                                            <td>{{$det->despachos}}</td>
+                                            <td>
+                                                <select name="despachos[{{$det->id}}]" id="">
+                                                    @for($i=1;$i<=$det->pendientes_despachar;$i++)
+                                                        <option value="{{$i}}">{{$i}}</option>
+                                                    @endfor
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr class="text-center">
+                                            <td colspan="20">Ningun registro agregado</td>
+                                        </tr>
+                                    @endforelse
+                                    </tbody>
+                                </table>
+
                             </div>
                         </div>
                         <div class="modal-footer">

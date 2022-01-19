@@ -61,12 +61,12 @@ class SolicitudDataTable extends DataTable
            ->editColumn('fecha_fin_tratamiento',function (Solicitud $solicitud){
                return $solicitud->fecha_fin_tratamiento ? $solicitud->fecha_fin_tratamiento->format('d/m/Y') : '';
            })
-           ->editColumn('user_crea.name',function (Solicitud $solicitud){
+           ->editColumn('paciente.nombre_completo',function (Solicitud $solicitud){
 
                //en esta vista van los modals para que no tenga problemas de renderizado
-               return view('solicitudes.columna_medico',compact('solicitud'));
+               return view('solicitudes.columna_paciente',compact('solicitud'));
            })
-             ->rawColumns(['microorganismo','antimicrobiano','medico','action']);
+             ->rawColumns(['microorganismo','antimicrobiano','paciente','action']);
 
     }
 
