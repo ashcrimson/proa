@@ -17,12 +17,12 @@
         </div>
 
         @unlessrole('Médico')
-            <div class="form-group col-sm-4">
+            <!-- <div class="form-group col-sm-4">
                 {!! Form::label('del', 'Medico:') !!}
                 <multiselect v-model="user" :options="users" label="name" placeholder="Seleccione uno...">
                 </multiselect>
                 <input type="hidden" name="users" :value="user ? user.id : null">
-            </div>
+            </div> -->
         @endunlessrole
 
         <div class="form-group col-sm-3">

@@ -552,13 +552,7 @@ class SolicitudController extends AppBaseController
     {
 
 
-//        if ($solicitud->medicamentosDespachados()){
-//            $solicitud->estado_id= SolicitudEstado::DESPACHADA;
-//            $solicitud->user_actualiza = auth()->user()->id;
-//            $solicitud->user_despacha = auth()->user()->id;
-//            $solicitud->fecha_despacha = Carbon::now();
-//            $solicitud->save();
-//        }
+
 
         $despachos = $request->despachos ?? null;
 
@@ -573,9 +567,19 @@ class SolicitudController extends AppBaseController
             }
         }
 
+        if ($solicitud->medicamentosDespachados()){
+           $solicitud->estado_id= SolicitudEstado::DESPACHADA;
+           $solicitud->user_actualiza = auth()->user()->id;
+           $solicitud->user_despacha = auth()->user()->id;
+           $solicitud->fecha_despacha = Carbon::now();
+           $solicitud->save();
+       }
+
 
 
         flash('Despacho realizado!')->success();
+
+
 
         return redirect(route('solicitudes.index'));
     }

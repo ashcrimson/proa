@@ -217,15 +217,17 @@ class PacienteController extends AppBaseController
                 $params = array('run' => $request->run);
                 $client = new nusoap_client('http://172.25.16.18/bus/webservice/ws.php?wsdl');
                 $client->response_timeout = 5;
-                $response = $client->call('buscarDetallePersona', $params);
+                $response = $client->call('buscarDetallePersonaPROA', $params);
 
 
-                $client = new nusoap_client('http://172.25.16.18/bus/webservice/ws.php?wsdl');
-                $client->response_timeout = 5;
-                $response2 = $client->call('GetPacHospRunFicha', $params);
+                // $client = new nusoap_client('http://172.25.16.18/bus/webservice/ws.php?wsdl');
+                // $client->response_timeout = 5;
+                // $response2 = $client->call('GetPacHospRunFicha', $params);
 
 
-                $response3 = array_merge($response, $response2[0] ?? []);
+                $response3 = json_decode($response, true);
+
+                // $response3 = array_merge($response, $response2[0] ?? []); OJOOOOO
 
                 //dd($response, $response2,$response3);
 
