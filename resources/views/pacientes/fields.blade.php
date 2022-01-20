@@ -55,10 +55,34 @@
         {!! Form::text('apellido_materno', null, ['id' => 'apellido_materno','class' => 'form-control','maxlength' => 255]) !!}
     </div>
 
-    <!-- Apellido Materno Field -->
+    <!-- Cod Servicio Field -->
+    <div class="form-group col-sm-3">
+        {!! Form::label('codserv', 'Código Servicio:') !!}
+        {!! Form::text('codserv', null, ['id' => 'codserv','class' => 'form-control','maxlength' => 255]) !!}
+    </div>
+
+    <!-- Desc Servicio Field -->
     <div class="form-group col-sm-3">
         {!! Form::label('descserv', 'Descripción Servicio:') !!}
         {!! Form::text('descserv', null, ['id' => 'descserv','class' => 'form-control','maxlength' => 255]) !!}
+    </div>
+
+    <!-- Numero Piso Field -->
+    <div class="form-group col-sm-3">
+        {!! Form::label('nropiso', 'Piso:') !!}
+        {!! Form::text('nropiso', null, ['id' => 'nropiso','class' => 'form-control','maxlength' => 255]) !!}
+    </div>
+
+    <!-- Numero Pieza Field -->
+    <div class="form-group col-sm-3">
+        {!! Form::label('nropieza', 'Pieza:') !!}
+        {!! Form::text('nropieza', null, ['id' => 'nropieza','class' => 'form-control','maxlength' => 255]) !!}
+    </div>
+
+    <!-- Numero Cama Field -->
+    <div class="form-group col-sm-3">
+        {!! Form::label('nrocama', 'Cama:') !!}
+        {!! Form::text('nrocama', null, ['id' => 'nrocama','class' => 'form-control','maxlength' => 255]) !!}
     </div>
 
     <!-- Fecha Nac Field -->
@@ -166,8 +190,12 @@
                         $("#apellido_materno").val(paciente.apellido_materno);
                         $("#primer_nombre").val(paciente.primer_nombre);
                         $("#segundo_nombre").val(paciente.segundo_nombre);
+                        $("#codserv").val(paciente["hosp"].codserv);
                         $("#descserv").val(paciente["hosp"].descserv);
                         $("#nropiso").val(paciente["hosp"].nropiso);
+                        $("#nropieza").val(paciente["hosp"].nropieza);
+                        $("#nrocama").val(paciente["hosp"].nrocama);
+                        
                         this.fecha_nac = paciente.fecha_nac;
 
                         if (paciente.sexo=='M'){
