@@ -56,10 +56,10 @@
     </div>
 
     <!-- Cod Servicio Field -->
-    <div class="form-group col-sm-3">
-        {!! Form::label('codserv', 'Código Servicio:') !!}
-        {!! Form::text('codserv', null, ['id' => 'codserv','class' => 'form-control','maxlength' => 255]) !!}
-    </div>
+    <!-- <div class="form-group col-sm-3"> -->
+      <!--   {!! Form::label('codserv', 'Código Servicio:') !!} -->
+        {!! Form::hidden('codserv', null, ['id' => 'codserv','class' => 'form-control','maxlength' => 255]) !!}
+   <!--  </div> -->
 
     <!-- Desc Servicio Field -->
     <div class="form-group col-sm-3">
@@ -68,22 +68,22 @@
     </div>
 
     <!-- Numero Piso Field -->
-    <div class="form-group col-sm-3">
-        {!! Form::label('nropiso', 'Piso:') !!}
-        {!! Form::text('nropiso', null, ['id' => 'nropiso','class' => 'form-control','maxlength' => 255]) !!}
-    </div>
+   <!--  <div class="form-group col-sm-3"> -->
+        <!-- {!! Form::label('nropiso', 'Piso:') !!} -->
+        {!! Form::hidden('nropiso', null, ['id' => 'nropiso','class' => 'form-control','maxlength' => 255]) !!}
+<!--     </div> -->
 
     <!-- Numero Pieza Field -->
-    <div class="form-group col-sm-3">
-        {!! Form::label('nropieza', 'Pieza:') !!}
-        {!! Form::text('nropieza', null, ['id' => 'nropieza','class' => 'form-control','maxlength' => 255]) !!}
-    </div>
+    <!-- <div class="form-group col-sm-3"> -->
+        <!-- {!! Form::label('nropieza', 'Pieza:') !!} -->
+        {!! Form::hidden('nropieza', null, ['id' => 'nropieza','class' => 'form-control','maxlength' => 255]) !!}
+   <!--  </div> -->
 
     <!-- Numero Cama Field -->
-    <div class="form-group col-sm-3">
-        {!! Form::label('nrocama', 'Cama:') !!}
-        {!! Form::text('nrocama', null, ['id' => 'nrocama','class' => 'form-control','maxlength' => 255]) !!}
-    </div>
+   <!--  <div class="form-group col-sm-3"> -->
+        <!-- {!! Form::label('nrocama', 'Cama:') !!} -->
+        {!! Form::hidden('nrocama', null, ['id' => 'nrocama','class' => 'form-control','maxlength' => 255]) !!}
+  <!--   </div> -->
 
     <!-- Fecha Nac Field -->
     <div class="form-group col-sm-3">

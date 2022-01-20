@@ -27,7 +27,7 @@
     <div >
        
             <h3 class="card-title">Datos Paciente</h3>
-            <p><b>COD. SERVICIO ORIGEN: </b></p> 
+            <p><b>COD. SERVICIO ORIGEN: </b>{{$solicitud->codserv}}</p> 
             <p><b>R.U.N PACIENTE: </b>{{$solicitud->paciente->rut_completo}}</p>
             <p><b>NOMBRE PACIENTE: </b>{{$solicitud->paciente->nombre_completo}}</p>
             
@@ -37,8 +37,8 @@
             
             <tr>
                 <td><b>PISO:</b>{{$solicitud->nropiso}}</td>
-                <td><b>SALA:</b></td>
-                <td><b>CAMA:</b></td>
+                <td><b>SALA:</b>{{$solicitud->nropieza}}</td>
+                <td><b>CAMA:</b>{{$solicitud->nrocama}}</td>
             </tr>
         </table>
     </div>
