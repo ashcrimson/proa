@@ -167,7 +167,7 @@
                         $("#primer_nombre").val(paciente.primer_nombre);
                         $("#segundo_nombre").val(paciente.segundo_nombre);
                         $("#descserv").val(paciente["hosp"].descserv);
-                        $("#piso").val(paciente["hosp"].nropiso);
+                        $("#nropiso").val(paciente["hosp"].nropiso);
                         this.fecha_nac = paciente.fecha_nac;
 
                         if (paciente.sexo=='M'){

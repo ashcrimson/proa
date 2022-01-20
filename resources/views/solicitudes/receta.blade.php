@@ -36,7 +36,7 @@
         <table>
             
             <tr>
-                <td><b>PISO:</b>{{$solicitud->paciente->piso}}</td>
+                <td><b>PISO:</b>{{$solicitud->nropiso}}</td>
                 <td><b>SALA:</b></td>
                 <td><b>CAMA:</b></td>
             </tr>
