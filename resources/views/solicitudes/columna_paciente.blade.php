@@ -96,7 +96,7 @@
                                             <td>{{$det->despachos}}</td>
                                             <td>
                                                 <select name="despachos[{{$det->id}}]" id="">
-                                                    @for($i=1;$i<=$det->pendientes_despachar;$i++)
+                                                    @for($i=0;$i<=$det->pendientes_despachar;$i++)
                                                         <option value="{{$i}}">{{$i}}</option>
                                                     @endfor
                                                 </select>
@@ -113,10 +113,23 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            
+                                
+                            
                             <button type="submit" class="btn btn-primary">Confirmar</button>
+                            @can('Cerrar Solicitud')
+                    <form action="{{ route('solicitudes.despachar.store', $solicitud->id) }}"  method="post" >
+                        @csrf
+
+                        <button type="submit"  class='btn btn-danger ' data-toggle="tooltip" title="Cerrar Solicitud">
+                            <i class="fa fa-ban"></i> Cerrar Solicitud
+                        </button>&nbsp;
+                    @endcan
+                    </form>
+
                         </div>
                     </form>
+                    
                 </div>
             </div>
         </div>

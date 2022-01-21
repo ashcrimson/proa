@@ -33,15 +33,7 @@
                     <form action="{{ route('solicitudes.despachar.store', $solicitud->id) }}" class="mr-3" method="post" style="display: inline">
                     @csrf
 
-                        <div class="modal-body">
-                            <div class="container-fluid">
-                                <p>
-                                    Elija cuántas dosis quiere despachar.
-                                </p>
-                                <label for="vol">Dosis:</label>
-                                <input class="form-control" type="number" max=10 style="width: 20%;">
-                            </div>
-                        </div>
+                        
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                             <button type="submit" class="btn btn-primary">Confirmar</button>

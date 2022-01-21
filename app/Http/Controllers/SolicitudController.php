@@ -552,8 +552,6 @@ class SolicitudController extends AppBaseController
     {
 
 
-
-
         $despachos = $request->despachos ?? null;
 
         if ($despachos){
