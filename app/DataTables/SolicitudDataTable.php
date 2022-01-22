@@ -26,14 +26,9 @@ class SolicitudDataTable extends DataTable
 
                  return view('solicitudes.datatables_actions',compact('solicitud','id'))->render();
              })
-             ->editColumn('paciente.nombre_completo',function (Solicitud $solicitud){
-
-                 return $solicitud->paciente->nombre_completo;
-
-             })
              ->editColumn('paciente.rut_completo',function (Solicitud $solicitud){
 
-                 return $solicitud->paciente->rut_completo;
+                 return $solicitud->paciente->rut_completo ?? '';
 
              })
            ->editColumn('antimicrobiano',function (Solicitud $solicitud){
@@ -55,7 +50,7 @@ class SolicitudDataTable extends DataTable
                return $solicitud->created_at ? $solicitud->created_at->format('d/m/Y') : '';
            })
 
-           
+
            ->editColumn('fecha_fin_tratamiento',function (Solicitud $solicitud){
                return $solicitud->fecha_fin_tratamiento ? $solicitud->fecha_fin_tratamiento->format('d/m/Y') : '';
            })
@@ -164,7 +159,7 @@ class SolicitudDataTable extends DataTable
             Column::make('microorganismo')->searchable(false)->orderable(false),
             Column::make('fecha_ingreso')->data('created_at')->name('created_at')->visible(false),
             Column::make('fecha_solicitud')->data('fecha_solicita')->name('fecha_solicita'),
-           
+
             Column::make('fecha_fin_tratamiento')->data('fecha_fin_tratamiento')->name('fecha_fin_tratamiento'),
             Column::make('estado')->name('estado.nombre')->data('estado.nombre'),
         ];

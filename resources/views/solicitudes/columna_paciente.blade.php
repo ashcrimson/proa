@@ -1,4 +1,4 @@
-{{$solicitud->paciente->nombre_completo}}
+{{$solicitud->paciente->nombre_completo ?? ''}}
 
 
 <!--            validar sí en el estado que esta puede clonar
@@ -113,23 +113,21 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            
-                                
-                            
-                            <button type="submit" class="btn btn-primary">Confirmar</button>
-                            @can('Cerrar Solicitud')
-                    <form action="{{ route('solicitudes.despachar.store', $solicitud->id) }}"  method="post" >
-                        @csrf
 
-                        <button type="submit"  class='btn btn-danger ' data-toggle="tooltip" title="Cerrar Solicitud">
-                            <i class="fa fa-ban"></i> Cerrar Solicitud
-                        </button>&nbsp;
-                    @endcan
-                    </form>
+
+
+                            <button type="submit" class="btn btn-primary">Confirmar</button>
+
+                            @can('Cerrar Solicitud')
+
+                                <a href="{!! route('solicitudes.cerrar',$solicitud->id) !!}" class="btn btn-outline-danger ml-3">
+                                    <i class="fa fa-ban"></i> Cerrar Solicitud
+                                </a>
+                            @endcan
 
                         </div>
                     </form>
-                    
+
                 </div>
             </div>
         </div>

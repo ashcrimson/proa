@@ -84,6 +84,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('despachar/{solicitud}', 'SolicitudController@despachar')->name('despachar');
         Route::post('despachar/{solicitud}', 'SolicitudController@despacharStore')->name('despachar.store');
+        Route::get('cerrar/{solicitud}', 'SolicitudController@cerrar')->name('cerrar');
     });
 });
 

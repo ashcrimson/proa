@@ -619,4 +619,17 @@ class SolicitudController extends AppBaseController
 
 
     }
+
+    public function cerrar(Solicitud $solicitud)
+    {
+        $solicitud->estado_id= SolicitudEstado::DESPACHADA;
+        $solicitud->user_actualiza = auth()->user()->id;
+        $solicitud->user_despacha = auth()->user()->id;
+        $solicitud->fecha_despacha = Carbon::now();
+        $solicitud->save();
+
+        flash('Solicitud cerrada')->success();
+
+        return redirect(route('solicitudes.index'));
+    }
 }

@@ -314,6 +314,13 @@ class Solicitud extends Model
         ]);
     }
 
+    public function puedeCerrar()
+    {
+        return in_array($this->estado_id,[
+            SolicitudEstado::SOLICITADA
+        ]);
+    }
+
     /**
      * @return Solicitud
      */

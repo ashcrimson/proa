@@ -46,6 +46,14 @@
                                 <span class="badge badge-info">
                                         {{$solicitud->estado->nombre}}
                                     </span>
+
+                                @can('Cerrar Solicitud')
+                                    @if($solicitud->puedeCerrar())
+                                    <a href="{!! route('solicitudes.cerrar',$solicitud->id) !!}" class="btn btn-outline-danger ml-3">
+                                        <i class="fa fa-ban"></i> Cerrar Solicitud
+                                    </a>
+                                    @endif
+                                @endcan
                             </div>
 
                             <!-- Submit Field -->
