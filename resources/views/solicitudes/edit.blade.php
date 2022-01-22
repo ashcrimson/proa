@@ -36,37 +36,43 @@
 
                             @include('solicitudes.fields')
 
+
+                        </div>
+
+                        <div class="form-row" id="botonesGuardarSolicitud">
+
                             <div class="col-4 text-left pl-4 text-lg">
                                 Estado:
                                 <span class="badge badge-info">
-                                    {{$solicitud->estado->nombre}}
-                                </span>
+                                        {{$solicitud->estado->nombre}}
+                                    </span>
                             </div>
 
                             <!-- Submit Field -->
-                                <div class="form-group col-sm-4 text-right ">
+                            <div class="form-group col-sm-4 text-right ">
 
-                                    <a href="{!! route('solicitudes.index') !!}" class="btn btn-outline-secondary mr-3">
-                                        Cancelar
-                                    </a>
-                                    &nbsp;
-                                    @if($solicitud->estado_id!=\App\Models\SolicitudEstado::PARA_REGRESAR)
-                                    <button type="submit" class="btn btn-outline-success mr-3">
+                                <a href="{!! route('solicitudes.index') !!}" class="btn btn-outline-secondary mr-3">
+                                    Cancelar
+                                </a>
+                                &nbsp;
+                                @if($solicitud->estado_id!=\App\Models\SolicitudEstado::PARA_REGRESAR)
+                                    <button type="submit" class="btn btn-outline-success mr-3"
+                                            :disabled="desabilitar_botones_guardar">
                                         <i class="fa fa-save"></i> Guardar
                                     </button>
-                                    @endif
+                                @endif
 
-                                </div>
+                            </div>
 
                             @if($solicitud->puedeRegresar())
-
 
                                 <div class="form-group col-sm-4 text-right ">
 
                                     <div class="input-group mb-3">
-{{--                                        <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña">--}}
+                                        {{--                                        <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña">--}}
                                         <div class="input-group-append">
-                                            <button type="submit" class="btn btn-outline-primary mr-3" name="regresar" value="1">
+                                            <button type="submit" class="btn btn-outline-primary mr-3" name="regresar" value="1"
+                                                    :disabled="desabilitar_botones_guardar">
                                                 <i class="fa fa-paper-plane"></i> Guardar Y Corregir
                                             </button>
                                         </div>
@@ -76,15 +82,17 @@
 
                                 <div class="form-group col-sm-4 text-right ">
 
-                                <div class="input-group mb-3">
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="Ingrese PIN">
-                                    <div class="input-group-append">
-                                        <button type="submit" class="btn btn-outline-primary mr-3" id="btnEnviar" name="enviar" value="1">
-                                            <i class="fa fa-paper-plane"></i> Guardar Y Enviar
-                                        </button>
+                                    <div class="input-group mb-3">
+                                        <input type="password" class="form-control" id="password" name="password" placeholder="Ingrese PIN"
+                                               :disabled="desabilitar_botones_guardar">
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn btn-outline-primary mr-3" id="btnEnviar" name="enviar" value="1"
+                                                    :disabled="desabilitar_botones_guardar">
+                                                <i class="fa fa-paper-plane"></i> Guardar Y Enviar
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             @endif
                         </div>
 
@@ -98,6 +106,26 @@
 
 @push('scripts')
 <script>
+
+    let vmBotonesGuardarSolicitud = new Vue({
+        el: '#botonesGuardarSolicitud',
+        name: 'botonesGuardarSolicitud',
+        mounted() {
+            console.log('Instancia vue montada');
+        },
+        created() {
+            console.log('Instancia vue creada');
+        },
+        data: {
+            desabilitar_botones_guardar: false
+        },
+        methods: {
+            getDatos(){
+                console.log('Metodo Get Datos');
+            }
+        }
+    });
+
     $(function () {
         $("#password").keypress(function (e) {
             if (e.keyCode == 13) {
@@ -106,6 +134,8 @@
                 return;
             }
         });
+
+
     })
 </script>
 @endpush

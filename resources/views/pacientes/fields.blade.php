@@ -158,7 +158,6 @@
             fecha_nac : @json($solicitud->fecha_nac ?? old('fecha_nac') ?? null),
             sexo : @json(boolval($solicitud->sexo ?? old('sexo') ?? false)),
             edad : 0,
-
         },
         methods: {
             async getDatosPaciente(){
@@ -175,10 +174,6 @@
                     let res = await axios.get(url);
                     let paciente = res.data.data;
 
-                    //si existe la isntancia de vue vmPreparacionFields
-                    if (typeof vmPreparacionFields  !== 'undefined') {
-                        vmPreparacionFields.setDatosPreparacion(paciente.ultima_preparacion)
-                    }
 
                     logI('respuesta',res);
 
@@ -191,7 +186,12 @@
                         $("#primer_nombre").val(paciente.primer_nombre);
                         $("#segundo_nombre").val(paciente.segundo_nombre);
 
-                        if(typeof paciente["hosp"] !== 'undefined'){
+                        if(typeof paciente["hosp"] === 'undefined'){
+
+
+
+                        }else {
+
 
                             $("#codserv").val(paciente["hosp"].codserv);
                             $("#descserv").val(paciente["hosp"].descserv);
@@ -199,6 +199,16 @@
                             $("#nropieza").val(paciente["hosp"].nropieza);
                             $("#nrocama").val(paciente["hosp"].nrocama);
 
+                            var descserv = paciente["hosp"].descserv || null;
+
+                            vmBotonesGuardarSolicitud.desabilitar_botones_guardar= false;
+
+                            if (!descserv){
+                                alertWarning('Paciente no hospitalizado');
+                                vmBotonesGuardarSolicitud.desabilitar_botones_guardar= true;
+                            }else {
+
+                            }
                         }
 
                         this.fecha_nac = paciente.fecha_nac;
