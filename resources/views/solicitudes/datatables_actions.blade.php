@@ -33,7 +33,7 @@
                     <form action="{{ route('solicitudes.despachar.store', $solicitud->id) }}" class="mr-3" method="post" style="display: inline">
                     @csrf
 
-                        
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                             <button type="submit" class="btn btn-primary">Confirmar</button>
@@ -122,9 +122,9 @@
     @endcan
 @endif
 
-@can('Imprimir')
-<a href="{!! route('solicitudes.imprime.receta',$solicitud->id) !!}" class="btn btn-info btn-sm" target="_blank" >
-    <i class="fa fa-print fa-2x"></i>
-</a>
-@endcan
+@hasanyrole('Médico|Infectólogo')
+    <a href="{!! route('solicitudes.imprime.receta',$solicitud->id) !!}" class="btn btn-info btn-sm" target="_blank" >
+        <i class="fa fa-print fa-2x"></i>
+    </a>
+@endhasanyrole
 

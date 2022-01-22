@@ -190,12 +190,17 @@
                         $("#apellido_materno").val(paciente.apellido_materno);
                         $("#primer_nombre").val(paciente.primer_nombre);
                         $("#segundo_nombre").val(paciente.segundo_nombre);
-                        $("#codserv").val(paciente["hosp"].codserv);
-                        $("#descserv").val(paciente["hosp"].descserv);
-                        $("#nropiso").val(paciente["hosp"].nropiso);
-                        $("#nropieza").val(paciente["hosp"].nropieza);
-                        $("#nrocama").val(paciente["hosp"].nrocama);
-                        
+
+                        if(typeof paciente["hosp"] !== 'undefined'){
+
+                            $("#codserv").val(paciente["hosp"].codserv);
+                            $("#descserv").val(paciente["hosp"].descserv);
+                            $("#nropiso").val(paciente["hosp"].nropiso);
+                            $("#nropieza").val(paciente["hosp"].nropieza);
+                            $("#nrocama").val(paciente["hosp"].nrocama);
+
+                        }
+
                         this.fecha_nac = paciente.fecha_nac;
 
                         if (paciente.sexo=='M'){
