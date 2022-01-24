@@ -188,6 +188,18 @@
 
                         if(typeof paciente["hosp"] === 'undefined'){
 
+                            if (typeof paciente.ultima_solicitud === 'undefined'){
+                                alertWarning('Paciente no hospitalizado');
+                                vmBotonesGuardarSolicitud.desabilitar_botones_guardar= true;
+                            }else {
+
+                                $("#codserv").val(paciente.ultima_solicitud.codserv);
+                                $("#descserv").val(paciente.ultima_solicitud.descserv);
+                                $("#nropiso").val(paciente.ultima_solicitud.nropiso);
+                                $("#nropieza").val(paciente.ultima_solicitud.nropieza);
+                                $("#nrocama").val(paciente.ultima_solicitud.nrocama);
+
+                            }
 
 
                         }else {

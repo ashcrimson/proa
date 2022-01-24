@@ -9,10 +9,10 @@ use App\Http\Requests;
 use App\Http\Requests\CreatePacienteRequest;
 use App\Http\Requests\UpdatePacienteRequest;
 use App\Models\Paciente;
-use App\Models\Preparacion; 
+use App\Models\Preparacion;
 use App\Models\Solicitud;
 use Carbon\Carbon;
-use Exception;  
+use Exception;
 use Flash;
 use Illuminate\Http\Request;
 use nusoap_client;
@@ -197,11 +197,11 @@ class PacienteController extends AppBaseController
                     'diagnosticos',
                     'medicamentos',
                     'microorganismos',
-                ]); 
+                ]);
 
             }
 
-            $paciente->setAttribute('ultima_preparacion',$ultimaSolicitud);
+            $paciente->setAttribute('ultima_solicitud',$ultimaSolicitud);
             $paciente->setAttribute('fecha_nac',fechaEn($paciente->fecha_nac));
             $paciente->setAttribute('sexo',$paciente->sexo ? 'M' : 'F');
 
@@ -209,7 +209,7 @@ class PacienteController extends AppBaseController
         }
         else{
 
-//            dd('consulta api'); 
+//            dd('consulta api');
 
             try {
 
