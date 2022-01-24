@@ -135,7 +135,10 @@ class SolicitudController extends AppBaseController
 
         $estados = SolicitudEstado::whereIn('id',$estadosPuedeVer)->get();
 
-        return $solicitudDataTable->render('solicitudes.index',compact('estados'));
+        $servicios = Solicitud::select('descserv')->groupBy('descserv')->pluck('descserv')->toArray();
+
+
+        return $solicitudDataTable->render('solicitudes.index',compact('estados','servicios'));
     }
 
     public function solicitudesEnfermera(SolicitudEnfermeraDataTable $dataTable)

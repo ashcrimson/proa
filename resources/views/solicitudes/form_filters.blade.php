@@ -25,11 +25,18 @@
             </div> -->
         @endunlessrole
 
-        <div class="form-group col-sm-3">
-            {!! Form::label('del', 'Estado:') !!}
+        <div class="form-group col-sm-4">
+            {!! Form::label('estado', 'Estado:') !!}
             <multiselect v-model="estado" :options="estados" label="nombre" placeholder="Seleccione uno...">
             </multiselect>
             <input type="hidden" name="estados" :value="estado ? estado.id : null">
+        </div>
+
+        <div class="form-group col-sm-4">
+            {!! Form::label('servicio', 'Servicio:') !!}
+            <multiselect v-model="servicio" :options="servicios"  placeholder="Seleccione uno...">
+            </multiselect>
+            <input type="hidden" name="servicios" :value="servicio">
         </div>
 
         <div class="form-group col-sm-2">
@@ -76,6 +83,8 @@
             data: {
                 estados : @json($estados ?? []),
                 estado: null,
+                servicios : @json($servicios ?? []),
+                servicio: null,
 
                 users : @json(\App\Models\User::role([\App\Models\Role::MEDICO,\App\Models\Role::INFECTOLOGO])->get() ?? []),
                 user: null,

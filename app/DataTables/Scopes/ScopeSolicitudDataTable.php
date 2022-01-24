@@ -11,6 +11,7 @@ class ScopeSolicitudDataTable implements DataTableScope
 
 
     public $estados;
+    public $servicios;
     public $users;
     public $pacientes;
     public $medicos;
@@ -21,6 +22,7 @@ class ScopeSolicitudDataTable implements DataTableScope
     public function __construct()
     {
         $this->estados = request()->estados ?? null;
+        $this->servicios = request()->servicios ?? null;
         $this->pacientes = request()->pacientes ?? null;
         $this->medicos = request()->medicos ?? null;
         $this->del = request()->del ?? null;
@@ -44,6 +46,8 @@ class ScopeSolicitudDataTable implements DataTableScope
                 $query->where('user_crea',$this->users);
             }
         }
+
+
 
         if ($this->estados){
 
@@ -90,6 +94,15 @@ class ScopeSolicitudDataTable implements DataTableScope
                 $query->whereIn('user_crea',$this->medicos);
             }else{
                 $query->where('user_crea',$this->medicos);
+            }
+        }
+
+        if ($this->servicios){
+            if (is_array($this->servicios)){
+                $query->whereIn('descserv',$this->servicios);
+            }else{
+
+                $query->where('descserv',$this->servicios);
             }
         }
 
