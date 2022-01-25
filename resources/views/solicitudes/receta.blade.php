@@ -14,7 +14,7 @@
    
     <div class="izquierda">
         <p>ARMADA DE CHILE<br>
-            HOSPITAL NAVAL "ALMIRANTE NEF" FARMARCIA
+            HOSPITAL NAVAL "ALMIRANTE NEF" FARMACIA
         </p>
     </div>
     <div class="derecha">

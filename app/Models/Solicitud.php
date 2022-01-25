@@ -294,6 +294,7 @@ class Solicitud extends Model
     public function puedeDespachar()
     {
         return in_array($this->estado_id,[
+            SolicitudEstado::SOLICITADA,
             SolicitudEstado::APROBADA
         ]);
     }
