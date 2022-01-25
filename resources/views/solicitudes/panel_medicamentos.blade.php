@@ -166,12 +166,15 @@
 
         },
         methods: {
+            
             async getItems() {
                 const res = await  axios.get(route('api.solicitud_medicamentos.index',{solicitud_id: this.solicitud_id}));
 
                 console.log('res getItems:',res)
                 this.solicitud_medicamentos = res.data.data;
             },
+
+
             getId(item){
                 if(item)
                     return item.id;

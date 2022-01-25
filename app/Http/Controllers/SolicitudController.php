@@ -331,7 +331,7 @@ class SolicitudController extends AppBaseController
                 $estado = SolicitudEstado::APROBADA;
             }
 
-            $periodo = $solicitud->medicamentos->first()->periodo;
+            $periodo = $solicitud->medicamentos->first()->max('periodo');
 
             $request->merge([
                 'fecha_solicita' => Carbon::now(),
@@ -539,7 +539,7 @@ class SolicitudController extends AppBaseController
         $solicitud->user_actualiza = auth()->user()->id;
         $solicitud->user_autoriza = auth()->user()->id;
         $solicitud->fecha_autoriza = Carbon::now();
-        $solicitud->save();
+        $solicitud->save(); 
 
         flash('Solicitud aprobada!')->success();
 
