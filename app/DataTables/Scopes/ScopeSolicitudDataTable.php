@@ -47,35 +47,41 @@ class ScopeSolicitudDataTable implements DataTableScope
             }
         }
 
-
-
         if ($this->estados){
-
             if (is_array($this->estados)){
-
-
-                $estaEstadoIngresada = in_array(SolicitudEstado::INGRESADA,$this->estados);
-
-                //Cuando esta el esado ingresado se debe quitar par filtrar por el usuario
-                if ($estaEstadoIngresada){
-
-                    $this->estados = removeElementByValueArray($this->estados,SolicitudEstado::INGRESADA);
-
-                    $query->ingresadasDelUser()
-                        ->orWhereIn('estado_id',$this->estados);
-                }else{
-                    $query->whereIn('estado_id',$this->estados);
-                }
+                $query->whereIn('estado_id',$this->estados);
             }else{
-
-                if ($this->estados==SolicitudEstado::INGRESADA){
-                    $query->ingresadasDelUser();
-                }else{
-
-                    $query->where('estado_id',$this->estados);
-                }
+                $query->where('estado_id',$this->estados);
             }
         }
+
+//        if ($this->estados){
+//
+//            if (is_array($this->estados)){
+//
+//
+//                $estaEstadoIngresada = in_array(SolicitudEstado::INGRESADA,$this->estados);
+//
+//                //Cuando esta el esado ingresado se debe quitar par filtrar por el usuario
+//                if ($estaEstadoIngresada){
+//
+//                    $this->estados = removeElementByValueArray($this->estados,SolicitudEstado::INGRESADA);
+//
+//                    $query->ingresadasDelUser()
+//                        ->orWhereIn('estado_id',$this->estados);
+//                }else{
+//                    $query->whereIn('estado_id',$this->estados);
+//                }
+//            }else{
+//
+//                if ($this->estados==SolicitudEstado::INGRESADA){
+//                    $query->ingresadasDelUser();
+//                }else{
+//
+//                    $query->where('estado_id',$this->estados);
+//                }
+//            }
+//        }
 
 
         if ($this->pacientes){

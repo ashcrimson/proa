@@ -65,13 +65,17 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('medicamentos', 'MedicamentoController');
 
+
+
+    Route::get('solicitudes/enfermeria',"SolicitudController@solicitudesEnfermera")->name('enfermeria.solicitudes');
+    Route::get('mis/solicitudes',"SolicitudController@solicitudesMedico")->name('solicitudes.medico');
+
+
     Route::resource('solicitudes', 'SolicitudController')->except(['show'])->parameters([
         'solicitudes' => 'solicitud'
     ]);
 
     Route::get('solicitudes/imprime/receta/{solicitud}',"SolicitudController@imprimeReceta")->name('solicitudes.imprime.receta');
-
-    Route::get('enfermeria/solicitudes',"SolicitudController@solicitudesEnfermera")->name('enfermeria.solicitudes');
 
     Route::group(['prefix' => 'solicitudes','as' => 'solicitudes.'],function (){
         Route::get('{solicitude}/ver', 'SolicitudController@show')->name('show');

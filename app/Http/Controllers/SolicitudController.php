@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\DataTables\Scopes\ScopeSolicitudDataTable;
 use App\DataTables\SolicitudDataTable;
 use App\DataTables\SolicitudEnfermeraDataTable;
+use App\DataTables\SolicitudMedicoDataTable;
 use App\Http\Requests;
 use App\Http\Requests\CreateSolicitudRequest;
 use App\Http\Requests\UpdateSolicitudRequest;
@@ -73,18 +74,7 @@ class SolicitudController extends AppBaseController
 
         if($user->hasRole(Role::MEDICO)){
 
-            $estadosPuedeVer = [
-                SolicitudEstado::INGRESADA,
-                SolicitudEstado::SOLICITADA,
-                SolicitudEstado::APROBADA,
-                SolicitudEstado::DESPACHADA,
-                SolicitudEstado::RECHAZADA,
-                SolicitudEstado::ANULADA,
-                SolicitudEstado::PARA_REGRESAR,
-                SolicitudEstado::VENCIDA,
-            ];
-
-            $scope->users = auth()->user()->id;
+            return redirect(route('solicitudes.medico'));
         }
 
         if ($user->hasRole(Role::INFECTOLOGO)){
@@ -168,6 +158,33 @@ class SolicitudController extends AppBaseController
 
         return $dataTable->render('solicitudes.enfermeria.index',compact('estados'));
     }
+
+    public function solicitudesMedico(SolicitudMedicoDataTable $dataTable)
+    {
+
+        $scope = new ScopeSolicitudDataTable();
+
+
+        $estadosPuedeVer = [
+            SolicitudEstado::INGRESADA,
+            SolicitudEstado::SOLICITADA,
+            SolicitudEstado::APROBADA,
+            SolicitudEstado::DESPACHADA,
+            SolicitudEstado::RECHAZADA,
+            SolicitudEstado::ANULADA,
+            SolicitudEstado::VENCIDA,
+        ];
+
+
+        $scope->estados = request()->estados ?? $estadosPuedeVer;
+
+        $dataTable->addScope($scope);
+
+        $estados = SolicitudEstado::whereIn('id',$estadosPuedeVer)->get();
+
+        return $dataTable->render('solicitudes.medico.index',compact('estados'));
+    }
+
 
     /**
      * Show the form for creating a new Solicitud.
