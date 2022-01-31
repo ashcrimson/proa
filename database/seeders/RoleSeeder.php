@@ -42,6 +42,7 @@ class RoleSeeder extends Seeder
             12, //solicitudes
             13, //Nueva Solicitud
             14, //Pacientes
+            19, //Mis solicitudes
         ]);
 
         $role = Role::create(["name" => "Infectólogo"]);
