@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title_page',__('Solicitudes'))
+@section('title_page',__('Mis Solicitudes'))
 
 @section('content')
 
@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Solicitudes Enfermería</h1>
+                    <h1>Mis Solicitudes</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->

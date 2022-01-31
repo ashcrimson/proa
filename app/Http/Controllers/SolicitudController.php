@@ -74,7 +74,16 @@ class SolicitudController extends AppBaseController
 
         if($user->hasRole(Role::MEDICO)){
 
-            return redirect(route('solicitudes.medico'));
+            $estadosPuedeVer = [
+                SolicitudEstado::INGRESADA,
+                SolicitudEstado::SOLICITADA,
+                SolicitudEstado::APROBADA,
+                SolicitudEstado::DESPACHADA,
+                SolicitudEstado::RECHAZADA,
+                SolicitudEstado::ANULADA,
+                SolicitudEstado::PARA_REGRESAR,
+                SolicitudEstado::VENCIDA,
+            ];
         }
 
         if ($user->hasRole(Role::INFECTOLOGO)){
