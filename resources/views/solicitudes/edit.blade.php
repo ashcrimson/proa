@@ -64,10 +64,10 @@
                                 </a>
                                 &nbsp;
                                 @if($solicitud->estado_id!=\App\Models\SolicitudEstado::PARA_REGRESAR)
-                                    <button type="submit" class="btn btn-outline-success mr-3"
+                                    <!-- <button type="submit" class="btn btn-outline-success mr-3"
                                             :disabled="desabilitar_botones_guardar">
                                         <i class="fa fa-save"></i> Guardar
-                                    </button>
+                                    </button> -->
                                 @endif
 
                             </div>
