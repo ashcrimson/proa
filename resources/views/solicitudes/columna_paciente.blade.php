@@ -91,7 +91,7 @@
                                         <tr>
                                             <td>{{$det->medicamento->nombre}}</td>
                                             <td>{{$det->dosis_valor}}/{{$det->dosis_unidad}}</td>
-                                            <td>{{$det->frecuencia_valor}}/{{$det->frecuencia_unidad}}</td>
+                                            <td>{{$det->frecuencia_valor}}/hora</td>
                                             <td>{{$det->periodo}}</td>
                                             <td>{{$det->despachos}}</td>
                                             <td>

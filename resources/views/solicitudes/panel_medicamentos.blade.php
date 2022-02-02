@@ -105,7 +105,7 @@
                 <td v-text="det.medicamento.codigo"></td>
                     <td v-text="det.medicamento.nombre"></td>
                     <td v-text="det.dosis_valor+'/'+det.dosis_unidad"></td>
-                    <td v-text="det.frecuencia_valor"></td>
+                    <td v-text="det.frecuencia_valor+'/horas'"></td>
                     <td v-text="det.periodo"></td>
                     <td  class="text-nowrap">
                         <button type="button" @click="editItem(det)" class="btn btn-sm btn-outline-info" v-tooltip="'Editar'"  >
