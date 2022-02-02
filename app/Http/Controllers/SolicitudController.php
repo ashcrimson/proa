@@ -100,7 +100,7 @@ class SolicitudController extends AppBaseController
         if ($user->hasRole(Role::QF_CLINICO)){
 
             $estadosPuedeVer = [
-                SolicitudEstado::INGRESADA,
+             
                 SolicitudEstado::SOLICITADA,
                 SolicitudEstado::APROBADA,
                 SolicitudEstado::DESPACHADA,

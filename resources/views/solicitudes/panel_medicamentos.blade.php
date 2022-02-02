@@ -38,7 +38,7 @@
                     <div class="form-group col-sm-12" style="padding: 0px; margin: 0px"></div>
 
                     <div class="form-group col-sm-2">
-                        <label for="vol">Dosis Valor:</label>
+                        <label for="vol">Dosis</label>
                         <input class="form-control" type="number" v-model="editedItem.dosis_valor">
                     </div>
 
@@ -51,18 +51,20 @@
 
                     <div class="form-group col-sm-2">
                         <label for="vol">Frecuencia Cada:</label>
-                        <multiselect v-model="editedItem.frecuencia_valor" :options="[1,2,4,5,6,7,8,9,10,11,13,14,15,16,17,18,19,20,21,22,23,24]" placeholder="Seleccione uno...">
+                        <multiselect v-model="editedItem.frecuencia_valor" :options="[4, 6, 8, 12, 24, 48, 72]" placeholder="Seleccione uno...">
                         </multiselect>
                     </div>
 
-                    <div class="form-group col-sm-2">
-                        <label for="vol">Frecuencia Unidad:</label>
-                        <multiselect v-model="editedItem.frecuencia_unidad" :options="['horas','dias']"  placeholder="Seleccione uno...">
-                        </multiselect>
+                    <div class="form-group col-sm-2" >
+                        <label for="vol"  style="visibility: hidden;">Frecuencia Unidad:</label>
+
+                        <!-- <multiselect v-model="editedItem.frecuencia_unidad" :options="['horas']"  placeholder="Seleccione uno...">
+                        </multiselect> -->
+                        <p style="position: relative; top:10px;">horas</p>
                     </div>
 
                     <div class="form-group col-sm-3">
-                        <label for="peep">Periodo:</label>
+                        <label for="peep">Cantidad de días:</label>
                         <input class="form-control" type="number" v-model="editedItem.periodo">
                     </div>
 
@@ -91,7 +93,7 @@
                     <th>Antibiotico</th>
                     <th>dosis</th>
                     <th>frecuencia</th>
-                    <th>periodo</th>
+                    <th>Cantidad de días</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -103,7 +105,7 @@
                 <td v-text="det.medicamento.codigo"></td>
                     <td v-text="det.medicamento.nombre"></td>
                     <td v-text="det.dosis_valor+'/'+det.dosis_unidad"></td>
-                    <td v-text="det.frecuencia_valor+'/'+det.frecuencia_unidad"></td>
+                    <td v-text="det.frecuencia_valor"></td>
                     <td v-text="det.periodo"></td>
                     <td  class="text-nowrap">
                         <button type="button" @click="editItem(det)" class="btn btn-sm btn-outline-info" v-tooltip="'Editar'"  >
