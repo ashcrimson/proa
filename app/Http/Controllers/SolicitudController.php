@@ -55,6 +55,8 @@ class SolicitudController extends AppBaseController
 
         $scope->users = request()->users ?? null;
 
+         $estadosPuedeVer = [];
+
 
         if($user->hasRole(Role::DEVELOPER)){
 

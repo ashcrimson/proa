@@ -99,7 +99,15 @@ class SolicitudMedicamento extends Model
 
     public function getPendientesDespacharAttribute()
     {
-        $dosis = (24/$this->frecuencia_valor) * $this->periodo;
+        if($this->frecuencia_valor<=24){
+            $dosis = (24/$this->frecuencia_valor) * $this->periodo;
+        }
+        elseif($this->frecuencia_valor==48) {
+            $dosis = $this->periodo/2;
+        }
+        elseif($this->frecuencia_valor==72) {
+            $dosis = $this->periodo/3;
+        }
         return $dosis - $this->despachos;
     }
 }
