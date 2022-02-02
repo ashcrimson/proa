@@ -129,6 +129,7 @@ class SolicitudDataTable extends DataTable
     {
         return [
 
+            
 
             Column::make('medico')->name('userCrea.name')->data('user_crea.name'),
 
