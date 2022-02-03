@@ -4,6 +4,26 @@
 
 @section('content')
 
+<style>
+    .table-sm td, .table-sm th {
+    padding: 0;
+    font-size: 0.8rem;
+    }
+    table.dataTable thead>tr>td.sorting, table.dataTable thead>tr>td.sorting_asc, table.dataTable thead>tr>td.sorting_desc, table.dataTable thead>tr>th.sorting, table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_desc {
+        padding: 0;
+        }
+    .table td, .table th {
+    border-top: 1px solid #dee2e6;
+    padding: 0rem !important;
+    font-size: 0.8rem;
+    }
+    .btn-group-sm>.btn, .btn-sm {
+    border-radius: 0.2rem;
+    font-size: .60rem;
+}
+
+</style>
+
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
