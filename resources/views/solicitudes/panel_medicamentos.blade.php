@@ -65,7 +65,8 @@
 
                     <div class="form-group col-sm-3">
                         <label for="peep">Cantidad de días:</label>
-                        <input class="form-control" type="number" v-model="editedItem.periodo">
+{{--                        <input class="form-control" type="number" v-model="editedItem.periodo">--}}
+                        <multiselect v-model="editedItem.periodo" :options="diasPeriodo" placeholder="Seleccione uno..."></multiselect>
                     </div>
 
                     <div class="form-group col-sm-3">
@@ -168,7 +169,7 @@
 
         },
         methods: {
-            
+
             async getItems() {
                 const res = await  axios.get(route('api.solicitud_medicamentos.index',{solicitud_id: this.solicitud_id}));
 
@@ -277,6 +278,18 @@
                     return this.editedItem.id === 0 ? 'Agregar' : 'Actualizar'
 
                 }
+            },
+            diasPeriodo(){
+                if (this.editedItem.frecuencia_valor==48){
+                    return [2,4,6,8,10,12,14,16,18,20]
+                }
+
+
+                if (this.editedItem.frecuencia_valor==72){
+                    return [3,6,9,12,15,18,21]
+                }
+
+                return [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
             }
         },
     });
