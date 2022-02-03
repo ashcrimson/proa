@@ -14,6 +14,23 @@
                 $('[data-toggle="tooltip"]').tooltip();
             });
 
+
+            var minutos = 10 * 60 * 1000;
+
+
+            setInterval(function (){
+
+                console.log('ejecuta actulizacion automatica')
+                axios.get('{{route('solicitudes.depura.actualiza')}}')
+                    .then(function (res){
+                        console.log('actualizadas', res);
+                    })
+                    .catch(function (error){
+                        console.log('error', error);
+
+                    })
+            },minutos)
+
         })
     </script>
 @endpush

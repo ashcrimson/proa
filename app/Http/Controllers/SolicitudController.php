@@ -102,7 +102,7 @@ class SolicitudController extends AppBaseController
         if ($user->hasRole(Role::QF_CLINICO)){
 
             $estadosPuedeVer = [
-             
+
                 SolicitudEstado::SOLICITADA,
                 SolicitudEstado::APROBADA,
                 SolicitudEstado::DESPACHADA,
@@ -662,5 +662,38 @@ class SolicitudController extends AppBaseController
         flash('Solicitud cerrada')->success();
 
         return redirect(route('solicitudes.index'));
+    }
+
+    public function depuraAtualiza()
+    {
+
+        $actualizadas = 0;
+        $solicitudes = Solicitud::with('paciente')->get();
+
+        /**
+         * @var Solicitud $solicitud
+         */
+        foreach ($solicitudes as $index => $solicitud) {
+
+            $depurada = $solicitud->depurar();
+
+//
+            //si no se debe borrar por días pasados
+            if (!$depurada){
+
+                $params = array('run' => $solicitud->paciente->run);
+                $client = new nusoap_client('http://172.25.16.18/bus/webservice/ws.php?wsdl');
+                $client->response_timeout = 5;
+                $response = $client->call('buscarDetallePersonaPROA', $params);
+
+
+                $solicitud->descserv = $response["hosp"]['descserv'] ?? 'Sin respuesta';
+                $solicitud->save();
+                $actualizadas++;
+            }
+
+        }
+
+        return response()->json($actualizadas);
     }
 }

@@ -376,4 +376,33 @@ class Solicitud extends Model
         return $pendientes == 0;
     }
 
+    public function scopeVigentes($query)
+    {
+        $query->whereIn('estado_id',[
+            SolicitudEstado::INGRESADA,
+            SolicitudEstado::SOLICITADA,
+            SolicitudEstado::APROBADA,
+            SolicitudEstado::DESPACHADA,
+            SolicitudEstado::RECHAZADA,
+            SolicitudEstado::ANULADA,
+            SolicitudEstado::VENCIDA,
+            SolicitudEstado::PARA_REGRESAR,
+        ]);
+    }
+
+    public function depurar()
+    {
+        if ($this->estado_id==SolicitudEstado::RECHAZADA || $this->estado_id==SolicitudEstado::VENCIDA){
+            $dias = Carbon::now()->diffInDays($this->updated_at);
+
+            if ($dias >= 7){
+                $this->delete();
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }

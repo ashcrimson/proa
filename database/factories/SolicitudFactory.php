@@ -17,6 +17,10 @@ $factory->define(Solicitud::class, function (Faker $faker) use ($autoIncrement) 
     $fechaIni = Carbon::now()->subDays($dias-1);
     $fechaFin = Carbon::parse($fechaIni)->addDays(7);
 
+    $diasRandomCrea = rand(0,5);
+    $fechaCrea = Carbon::now()->subDays($diasRandomCrea);
+    $fechaActualiza = Carbon::now()->subDays(rand(7,9));
+
     $estados = [
         SolicitudEstado::INGRESADA,
         SolicitudEstado::SOLICITADA,
@@ -63,8 +67,8 @@ $factory->define(Solicitud::class, function (Faker $faker) use ($autoIncrement) 
         'fecha_solicita' => $fechaSolicita,
         'fecha_inicio_tratamiento' => $fechaIni,
         'fecha_fin_tratamiento' => $fechaFin,
-        'created_at' => $faker->date('Y-m-d H:i:s'),
-        'updated_at' => $faker->date('Y-m-d H:i:s'),
+        'created_at' => $fechaCrea,
+        'updated_at' => $fechaActualiza,
     ];
 });
 

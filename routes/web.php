@@ -67,6 +67,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 
+    Route::get('solicitudes/depura/actualiza',"SolicitudController@depuraAtualiza")->name('solicitudes.depura.actualiza');
     Route::get('solicitudes/enfermeria',"SolicitudController@solicitudesEnfermera")->name('enfermeria.solicitudes');
     Route::get('mis/solicitudes',"SolicitudController@solicitudesMedico")->name('solicitudes.medico');
 
