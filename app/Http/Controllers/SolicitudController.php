@@ -687,7 +687,7 @@ class SolicitudController extends AppBaseController
                 $response = $client->call('buscarDetallePersonaPROA', $params);
 
 
-                $solicitud->descserv = $response["hosp"]['descserv'] ?? 'Sin respuesta';
+                $solicitud->descserv = $response["hosp"]['descserv'] ?? 'no hay respuesta';
                 $solicitud->save();
                 $actualizadas++;
             }

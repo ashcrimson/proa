@@ -393,9 +393,9 @@ class Solicitud extends Model
     public function depurar()
     {
         if ($this->estado_id==SolicitudEstado::RECHAZADA || $this->estado_id==SolicitudEstado::VENCIDA){
-            $dias = Carbon::now()->diffInDays($this->updated_at);
+            $dias = Carbon::now()->diffInDays($this->created_at);
 
-            if ($dias >= 7){
+            if ($dias > 7){
                 $this->delete();
 
                 return true;
