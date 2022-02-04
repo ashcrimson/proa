@@ -25,7 +25,7 @@ class SolicitudesTableSeeder extends Seeder
 
         $medicamentos = Medicamento::all();
 
-        factory(Solicitud::class,50)->create()->each(function (Solicitud $solicitud) use ($medicamentos){
+        factory(Solicitud::class,20)->create()->each(function (Solicitud $solicitud) use ($medicamentos){
 
             $frecuencia1 = array_random([4,6,8,12,24]);
             $frecuencia2 = array_random([4,6,8,12,24]);
