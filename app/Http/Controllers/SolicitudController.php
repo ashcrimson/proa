@@ -681,15 +681,19 @@ class SolicitudController extends AppBaseController
             //si no se debe borrar por días pasados
             if (!$depurada){
 
-                $params = array('run' => $solicitud->paciente->run);
-                $client = new nusoap_client('http://172.25.16.18/bus/webservice/ws.php?wsdl');
-                $client->response_timeout = 5;
-                $response = $client->call('buscarDetallePersonaPROA', $params);
+                if($solicitud->paciente){
+
+                    $params = array('run' => $solicitud->paciente->run);
+                    $client = new nusoap_client('http://172.25.16.18/bus/webservice/ws.php?wsdl');
+                    $client->response_timeout = 5;
+                    $response = $client->call('buscarDetallePersonaPROA', $params);
 
 
-                $solicitud->descserv = $response["hosp"]['descserv'] ?? 'no hay respuesta';
-                $solicitud->save();
-                $actualizadas++;
+                    dump($response);
+                    $solicitud->descserv = $response["hosp"]['descserv'] ?? 'no hay respuesta';
+                    $solicitud->save();
+                    $actualizadas++;
+                }
             }
 
         }
