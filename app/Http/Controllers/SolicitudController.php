@@ -688,9 +688,9 @@ class SolicitudController extends AppBaseController
                     $client->response_timeout = 5;
                     $response = $client->call('buscarDetallePersonaPROA', $params);
 
+                    $response = json_decode($response, true);
 
-                    dump($response);
-                    $solicitud->descserv = $response["hosp"]['descserv'] ?? 'no hay respuesta';
+                    $solicitud->descserv = $response["hosp"]['descserv'] ?? 'No Hospitalizado';
                     $solicitud->save();
                     $actualizadas++;
                 }
