@@ -166,8 +166,10 @@ class SolicitudController extends AppBaseController
         $dataTable->addScope($scope);
 
         $estados = SolicitudEstado::whereIn('id',$estadosPuedeVer)->get();
+        
+        $servicios = Solicitud::select('descserv')->groupBy('descserv')->pluck('descserv')->toArray();
 
-        return $dataTable->render('solicitudes.enfermeria.index',compact('estados'));
+        return $dataTable->render('solicitudes.enfermeria.index',compact('estados','servicios'));
     }
 
     public function solicitudesMedico(SolicitudMedicoDataTable $dataTable)

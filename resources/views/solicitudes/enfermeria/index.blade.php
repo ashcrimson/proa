@@ -32,7 +32,8 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    @include('solicitudes.enfermeria.form_filters')
+                    @include('solicitudes.form_filters')
+
                 </div>
                 <!-- /.card-body -->
             </div>
