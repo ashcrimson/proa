@@ -3,7 +3,9 @@
 namespace App\Console\Commands;
 
 use App\Models\Solicitud;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\File;
 use nusoap_client;
 
 class DepuraActualizaSolicitudes extends Command
@@ -59,12 +61,12 @@ class DepuraActualizaSolicitudes extends Command
 
                 if($solicitud->paciente){
 
-                    $params = array('run' => $solicitud->paciente->run);
-                    $client = new nusoap_client('http://172.25.16.18/bus/webservice/ws.php?wsdl');
-                    $client->response_timeout = 5;
-                    $response = $client->call('buscarDetallePersonaPROA', $params);
-
-                    $response = json_decode($response, true);
+//                    $params = array('run' => $solicitud->paciente->run);
+//                    $client = new nusoap_client('http://172.25.16.18/bus/webservice/ws.php?wsdl');
+//                    $client->response_timeout = 5;
+//                    $response = $client->call('buscarDetallePersonaPROA', $params);
+//
+//                    $response = json_decode($response, true);
 
                     $solicitud->descserv = $response["hosp"]['descserv'] ?? 'No Hospitalizado';
                     $solicitud->save();
@@ -80,5 +82,8 @@ class DepuraActualizaSolicitudes extends Command
         $this->info('Depuradas: '.$depurada);
         $this->info('Actualizadas: '.$actualizadas);
 
+        $contenido = Carbon::now()->format('d/m/Y H:i:s a')." -> Se actualizo y depuro solicitudes";
+
+        File::put(base_path('log_schedule.txt'),$contenido);
     }
 }
