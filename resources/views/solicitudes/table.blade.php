@@ -14,21 +14,21 @@
                 $('[data-toggle="tooltip"]').tooltip();
             });
 
-            async function depuraActualiza(){
+            {{--async function depuraActualiza(){--}}
 
-                console.log('ejecuta actulizacion automatica')
+            {{--    console.log('ejecuta actulizacion automatica')--}}
 
-                let res = await axios.get('{{route('solicitudes.depura.actualiza')}}')
+            {{--    let res = await axios.get('{{route('solicitudes.depura.actualiza')}}')--}}
 
-                console.log('actualizadas', res);
-            }
+            {{--    console.log('actualizadas', res);--}}
+            {{--}--}}
 
-            depuraActualiza();
+            {{--depuraActualiza();--}}
 
-            var minutos = 1 * 60 * 1000;
+            {{--var minutos = 1 * 60 * 1000;--}}
 
 
-            setInterval(depuraActualiza,minutos)
+            {{--setInterval(depuraActualiza,minutos)--}}
 
         })
     </script>
