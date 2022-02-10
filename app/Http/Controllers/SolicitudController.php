@@ -347,7 +347,7 @@ class SolicitudController extends AppBaseController
 
             $params = array('email' => auth()->user()->email, "pin" => $request->password);
             $client = new nusoap_client('http://172.25.16.18/bus/webservice/ws.php?wsdl');
-            $client->response_timeout = 5;
+            $client->response_timeout = 1800;
             $chekPass = $client->call('ValidaPin', $params);
 
             // $chekPass = Hash::check($request->password,auth()->user()->getAuthPassword());
@@ -687,7 +687,7 @@ class SolicitudController extends AppBaseController
 
                     $params = array('run' => $solicitud->paciente->run);
                     $client = new nusoap_client('http://172.25.16.18/bus/webservice/ws.php?wsdl');
-                    $client->response_timeout = 5;
+                    $client->response_timeout = 1800;
                     $response = $client->call('buscarDetallePersonaPROA', $params);
 
                     $response = json_decode($response, true);

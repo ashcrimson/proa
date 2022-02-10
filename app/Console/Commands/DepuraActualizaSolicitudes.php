@@ -61,12 +61,12 @@ class DepuraActualizaSolicitudes extends Command
 
                 if($solicitud->paciente){
 
-//                    $params = array('run' => $solicitud->paciente->run);
-//                    $client = new nusoap_client('http://172.25.16.18/bus/webservice/ws.php?wsdl');
-//                    $client->response_timeout = 5;
-//                    $response = $client->call('buscarDetallePersonaPROA', $params);
-//
-//                    $response = json_decode($response, true);
+                   $params = array('run' => $solicitud->paciente->run);
+                   $client = new nusoap_client('http://172.25.16.18/bus/webservice/ws.php?wsdl');
+                   $client->response_timeout = 5;
+                   $response = $client->call('buscarDetallePersonaPROA', $params);
+
+                   $response = json_decode($response, true);
 
                     $solicitud->descserv = $response["hosp"]['descserv'] ?? 'No Hospitalizado';
                     $solicitud->save();
