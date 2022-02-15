@@ -61,7 +61,6 @@ class SolicitudController extends AppBaseController
         if($user->hasRole(Role::DEVELOPER)){
 
             $estadosPuedeVer = [
-                SolicitudEstado::TEMPORAL,
                 SolicitudEstado::INGRESADA,
                 SolicitudEstado::SOLICITADA,
                 SolicitudEstado::APROBADA,

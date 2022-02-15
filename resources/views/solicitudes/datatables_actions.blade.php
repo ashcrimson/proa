@@ -45,6 +45,13 @@
     @endcan
 @endif
 
+@can('Cerrar Solicitud')
+
+        <a href="{!! route('solicitudes.cerrar',$solicitud->id) !!}" data-toggle="tooltip" title="Cerrar Solicitud" class="btn btn-outline-danger btn-sm">
+            <i class="fa fa-ban"></i> 
+        </a>
+@endcan
+
 <!--            validar sí en el estado que esta puede aprobar
 ------------------------------------------------------------------------>
 @if($solicitud->puedeAprobar())
@@ -124,7 +131,7 @@
 
 @hasanyrole('Médico|Infectólogo')
     <a href="{!! route('solicitudes.imprime.receta',$solicitud->id) !!}" class="btn btn-info btn-sm" target="_blank" >
-        <i class="fa fa-print fa-2x"></i>
+        <i class="fa fa-print "></i>
     </a>
 @endhasanyrole
 

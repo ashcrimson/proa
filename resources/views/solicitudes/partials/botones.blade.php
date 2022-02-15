@@ -45,6 +45,13 @@
         @endcan
     @endif
 
+    @can('Cerrar Solicitud')
+
+        <a href="{!! route('solicitudes.cerrar',$solicitud->id) !!}" class="btn btn-outline-danger ml-2">
+            <i class="fa fa-ban"></i> Cerrar Solicitud
+        </a>
+    @endcan
+
 <!--            validar sí en el estado que esta puede aprobar
 ------------------------------------------------------------------------>
     @if($solicitud->puedeAprobar())
