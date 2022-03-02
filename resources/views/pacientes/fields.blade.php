@@ -88,7 +88,7 @@
     <!-- Fecha Nac Field -->
     <div class="form-group col-sm-3">
         {!! Form::label('fecha_nac', 'Fecha Nac:') !!}
-        {!! Form::date('fecha_nac', null, ['v-model' => 'fecha_nac','id' => 'fecha_nac','class' => 'form-control','id'=>'fecha_nac']) !!}
+        {!! Form::date('fecha_nac', null, ['v-model' => 'fecha_nac','id' => 'fecha_nac','class' => 'form-control','id'=>'fecha_nac', 'required']) !!}
     </div>
 
 
