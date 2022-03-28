@@ -52,7 +52,7 @@
             <!-- Creatinina Field -->
             <div class="form-group col-sm-2">
                 {!! Form::label('creatinina', 'Creatinina:') !!}
-                <input type="number" step="any" class="form-control" name="creatinina" v-model="creatinina" :required="disfuncion_hepatica" :readonly="readonly">
+                <input type="number" step="any" class="form-control" name="creatinina" v-model="creatinina" :required="disfuncion_renal" :readonly="readonly">
             </div>
 
             <!-- Peso Field -->

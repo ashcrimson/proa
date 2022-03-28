@@ -3,7 +3,7 @@
         <tr>
             <td>Antimicrobiano</td>
             <td>Dosis</td>
-            <td>Frecuencia</td>
+            <td>Frecuencia cada</td>
             <td>Periodo</td>
         </tr>
     </thead>
@@ -12,7 +12,7 @@
         <tr>
             <td>{{$det->medicamento->nombre}}</td>
             <td>{{$det->dosis_valor}}/{{$det->dosis_unidad}}</td>
-            <td>{{$det->frecuencia_valor}}/{{$det->frecuencia_unidad}}</td>
+            <td>{{$det->frecuencia_valor}} horas</td>
             <td>{{$det->periodo}}</td>
         </tr>
     @empty

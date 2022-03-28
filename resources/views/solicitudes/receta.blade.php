@@ -32,7 +32,7 @@
             <p><b>NOMBRE PACIENTE: </b>{{$solicitud->paciente->nombre_completo}}</p>
             
     </div>
-    <div >
+    <div>
         <table>
             
             <tr>
@@ -42,11 +42,34 @@
             </tr>
         </table>
     </div>
+
     <div  style="margin-top: 20px;">
         <h3 class="card-title">Fármacos</h3>
         @include('solicitudes.partials.show_table_medicamentos',['detalles' => $solicitud->medicamentos])
         
     </div>
+    <div>
+        <table class="table table-bordered table-sm  mb-0">
+            <thead>
+                <tr>
+                    <td>Día Tratamiento</td>
+                    <td>Fecha</td>
+                    <td>Cantidad Dosis</td>
+                    <td>Observaciones</td>
+                    <td>Firma</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>  
     <div class="izquierda-tres">
         <hr>
         <p><b>FIRMA MÉDICO</b><br>
