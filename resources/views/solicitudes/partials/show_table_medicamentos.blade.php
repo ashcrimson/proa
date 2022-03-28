@@ -41,8 +41,10 @@
         @for($i=0 ; $i<$det->periodo ; $i++)
             <tr>
                 <td>{{$i+1}}</td>
-                <td>{{$solicitud->fecha_inicio_tratamiento->addDays($i)->format('d/m/Y')}}</td>
-                <td>{{24/$det->frecuencia_valor}}</td>
+                <!-- <td>{{$solicitud->fecha_inicio_tratamiento->addDays($i)->format('d/m/Y')}}</td> -->
+                <td></td>
+                <!-- <td>{{24/$det->frecuencia_valor}}</td> -->
+                <td></td>
                 <td height="60px;"></td>
                 <td></td>
             </tr>
