@@ -642,7 +642,6 @@ class SolicitudController extends AppBaseController
          */
         $pdf = App::make('dompdf.wrapper');
 
-        return $solicitud->load('medicamentos');
 
         $vita = view('solicitudes.receta',compact('solicitud'))->render();
 
