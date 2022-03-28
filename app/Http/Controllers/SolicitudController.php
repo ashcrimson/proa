@@ -165,7 +165,7 @@ class SolicitudController extends AppBaseController
         $dataTable->addScope($scope);
 
         $estados = SolicitudEstado::whereIn('id',$estadosPuedeVer)->get();
-        
+
         $servicios = Solicitud::select('descserv')->groupBy('descserv')->pluck('descserv')->toArray();
 
         return $dataTable->render('solicitudes.enfermeria.index',compact('estados','servicios'));
@@ -641,6 +641,8 @@ class SolicitudController extends AppBaseController
          * @var PDF $pdf
          */
         $pdf = App::make('dompdf.wrapper');
+
+        return $solicitud->load('medicamentos');
 
         $vita = view('solicitudes.receta',compact('solicitud'))->render();
 

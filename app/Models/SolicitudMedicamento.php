@@ -33,7 +33,7 @@ class SolicitudMedicamento extends Model
     protected $dates = ['deleted_at'];
 
 
-    protected $appends = ['pendientes_despachar'];
+    protected $appends = ['total_dosis','pendientes_despachar'];
 
     public $fillable = [
         'solicitud_id',
@@ -75,7 +75,7 @@ class SolicitudMedicamento extends Model
         'dosis_unidad' => 'required|string|max:255',
         'frecuencia_valor' => 'required|integer',
         'frecuencia_unidad' => 'nullable|string|max:255',
-        
+
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
@@ -99,6 +99,13 @@ class SolicitudMedicamento extends Model
 
     public function getPendientesDespacharAttribute()
     {
+
+        return $this->total_dosis - $this->despachos;
+    }
+
+    public function getTotalDosisAttribute()
+    {
+
         if($this->frecuencia_valor<=24){
             $dosis = (24/$this->frecuencia_valor) * $this->periodo;
         }
@@ -108,6 +115,7 @@ class SolicitudMedicamento extends Model
         elseif($this->frecuencia_valor==72) {
             $dosis = $this->periodo/3;
         }
-        return $dosis - $this->despachos;
+
+        return $dosis;
     }
 }

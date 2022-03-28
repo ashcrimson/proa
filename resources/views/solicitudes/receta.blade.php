@@ -9,9 +9,9 @@
 
 </head>
 <body>
-    
+
     </div>
-   
+
     <div class="izquierda">
         <p>ARMADA DE CHILE<br>
             HOSPITAL NAVAL "ALMIRANTE NEF" FARMACIA
@@ -25,16 +25,16 @@
         <h3>RECETA PACIENTE HOSPITALIZADO</h3>
     </div>
     <div >
-       
+
             <h3 class="card-title">Datos Paciente</h3>
-            <p><b>COD. SERVICIO ORIGEN: </b>{{$solicitud->codserv}}</p> 
+            <p><b>COD. SERVICIO ORIGEN: </b>{{$solicitud->codserv}}</p>
             <p><b>R.U.N PACIENTE: </b>{{$solicitud->paciente->rut_completo}}</p>
             <p><b>NOMBRE PACIENTE: </b>{{$solicitud->paciente->nombre_completo}}</p>
-            
+
     </div>
     <div>
         <table>
-            
+
             <tr>
                 <td><b>PISO:</b>{{$solicitud->nropiso}}</td>
                 <td><b>SALA:</b>{{$solicitud->nropieza}}</td>
@@ -46,39 +46,18 @@
     <div  style="margin-top: 20px;">
         <h3 class="card-title">Fármacos</h3>
         @include('solicitudes.partials.show_table_medicamentos',['detalles' => $solicitud->medicamentos])
-        
+
     </div>
-    <div>
-        <table class="table table-bordered table-sm  mb-0">
-            <thead>
-                <tr>
-                    <td>Día Tratamiento</td>
-                    <td>Fecha</td>
-                    <td>Cantidad Dosis</td>
-                    <td>Observaciones</td>
-                    <td>Firma</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>  
+
     <div class="izquierda-tres">
         <hr>
         <p><b>FIRMA MÉDICO</b><br>
-            
+
         </p>
     </div>
-    <div class="derecha-tres"> 
-        
-       
+    <div class="derecha-tres">
+
+
     </div>
 
     <div class="derecha-cuatro">
