@@ -295,7 +295,8 @@ class Solicitud extends Model
     {
         return in_array($this->estado_id,[
             SolicitudEstado::SOLICITADA,
-            SolicitudEstado::APROBADA
+            SolicitudEstado::APROBADA,
+            SolicitudEstado::VENCIDA,
         ]);
     }
 
@@ -395,7 +396,7 @@ class Solicitud extends Model
         if ($this->estado_id==SolicitudEstado::RECHAZADA || $this->estado_id==SolicitudEstado::VENCIDA || $this->estado_id==SolicitudEstado::DESPACHADA){
             $dias = Carbon::now()->diffInDays($this->created_at);
 
-            if ($dias > 7){ 
+            if ($dias > 7){
                 $this->delete();
 
                 return true;
