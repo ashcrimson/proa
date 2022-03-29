@@ -26,13 +26,14 @@
 </table>
 
 @foreach($detalles as $det)
+    <h2>{{$det->medicamento->nombre}}</h2>
     <table class="table table-bordered table-sm  mb-0">
         <thead>
         <tr>
-            <td>Día Tratamiento</td>
-            <td>Fecha</td>
-            <td>Cantidad Dosis</td>
-            <td>Observaciones</td>
+            <td width="60px;">Día TTO</td>
+            <td width="20px;">Fecha</td>
+            <td width="20px;">Dosis</td>
+            <td >Observaciones</td>
             <td>Firma</td>
         </tr>
         </thead>
@@ -40,19 +41,21 @@
         @for($i=0 ; $i<$det->periodo ; $i++)
             <tr>
                 <td>{{$i+1}}</td>
-                <td>{{$solicitud->fecha_inicio_tratamiento->addDays($i)->format('d/m/Y')}}</td>
-                <td>{{24/$det->frecuencia_valor}}</td>
+                <!-- <td>{{$solicitud->fecha_inicio_tratamiento->addDays($i)->format('d/m/Y')}}</td> -->
                 <td></td>
+                <!-- <td>{{24/$det->frecuencia_valor}}</td> -->
+                <td></td>
+                <td height="60px;"></td>
                 <td></td>
             </tr>
         @endfor
-        <tr>
+        <!-- <tr>
             <td>Total</td>
             <td></td>
             <td>{{$det->total_dosis }}</td>
             <td></td>
             <td></td>
-        </tr>
+        </tr> -->
         </tbody>
     </table>
 @endforeach
