@@ -206,30 +206,30 @@
                     @include('solicitudes.panel_disfuncion',['readonly' => true])
                 </div>
 
-                <div class="form-group col-sm-12 col-lg-12">
-                    <div class="card " id="panel_medicamentos">
+{{--                <div class="form-group col-sm-12 col-lg-12">--}}
+{{--                    <div class="card " id="panel_medicamentos">--}}
 
-                        <div class="card-header py-0 px-1">
-                            <h3 class="card-title">Antibiótico Solicitado</h3>
+{{--                        <div class="card-header py-0 px-1">--}}
+{{--                            <h3 class="card-title">Antibiótico Solicitado</h3>--}}
 
-                            <div class="card-tools">
+{{--                            <div class="card-tools">--}}
 
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fa fa-minus"></i>
-                                </button>
-                            </div>
-                            <!-- /.card-tools -->
-                        </div>
-
-
-                        <div class="card-body p-0">
-                            @include('solicitudes.partials.show_table_medicamentos',['detalles' => $solicitud->medicamentos])
-                        </div>
+{{--                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fa fa-minus"></i>--}}
+{{--                                </button>--}}
+{{--                            </div>--}}
+{{--                            <!-- /.card-tools -->--}}
+{{--                        </div>--}}
 
 
+{{--                        <div class="card-body p-0">--}}
+{{--                            @include('solicitudes.partials.show_table_medicamentos',['detalles' => $solicitud->medicamentos])--}}
+{{--                        </div>--}}
 
-                    </div>
 
-                </div>
+
+{{--                    </div>--}}
+
+{{--                </div>--}}
 
                 <!-- Observaciones Field -->
                 <div class="form-group col-sm-12 col-lg-12">
