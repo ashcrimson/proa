@@ -75,7 +75,7 @@ class SolicitudMedicamento extends Model
         'dosis_unidad' => 'required|string|max:255',
         'frecuencia_valor' => 'required|integer',
         'frecuencia_unidad' => 'nullable|string|max:255',
-
+        'periodo' => 'required',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'

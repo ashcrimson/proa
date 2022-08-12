@@ -162,6 +162,7 @@ class Solicitud extends Model
         'creatinina' => 'nullable|numeric',
         'peso' => 'nullable|numeric',
         'observaciones' => 'nullable|string',
+        
     ];
 
     /**

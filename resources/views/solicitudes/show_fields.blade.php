@@ -201,6 +201,9 @@
                     </div>
 
                 </div>
+                <div class="form-group col-12">
+                    @include('solicitudes.panel_medicamentos',['readonly' => true])
+                </div>
 
                 <div class="form-group col-12">
                     @include('solicitudes.panel_disfuncion',['readonly' => true])
